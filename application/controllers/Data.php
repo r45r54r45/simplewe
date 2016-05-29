@@ -67,7 +67,7 @@ class Data extends CI_Controller {
 		$result=$this->gdata->reset_find($email);
 		if($result->cnt==1){
 			$this->load->library('email');
-			// $this->email->from('your@example.com', 'Your Name');
+			$this->email->from('your@example.com', 'Your Name');
 			$code=$this->encrypt_decrypt('encrypt',$email);
 			$this->email->to($email);
 			$this->email->subject('Reset your password');
