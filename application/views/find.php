@@ -103,7 +103,7 @@
       </div>
     </div>
   </div>
-  <div class="container-fluid" style="background:#2e2e2e; margin: 20px -15px 0px; padding-bottom:20px;" ng-controller="main_stat">
+  <div class="container-fluid" style="background:#2e2e2e; margin: 20px -15px 0px; padding-bottom:50px;" ng-controller="main_stat">
     <div class="row">
       <div class="col-xs-12 text-center page-title">
         <span style="color:white">COMMUNITY</span>
@@ -136,7 +136,7 @@
       </div>
     </div>
   </div>
-  <div class="container" style="padding:20px 0;" ng-controller="main_veri_review">
+  <div class="container" style="padding:0px 0 40px 0;" ng-controller="main_veri_review">
     <div class="row">
       <div class="col-xs-12 page-title text-center">
         <span>Verified Patient Reviews</span>
@@ -146,7 +146,7 @@
 
       <div class="col-xs-4" ng-repeat="i in patient_review ">
         <div class="profile_area">
-          <img class="img-circle img img-responsive" src="/src/user_profile.jpg"/>
+          <img class="img-circle-profile img img-responsive" src="/src/user_profile.jpg"/>
         </div>
         <div style="margin-top:-5px; font-size:12px;" class="text-center">
           <span>{{i.NAME}}</span>
