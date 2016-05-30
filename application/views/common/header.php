@@ -58,9 +58,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <div class="navbar-collapse collapse">
         <!-- Right nav -->
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">ABOUT</a></li>
+          <li><a href="/">HOME</a></li>
           <li><a href="/search">HOSPITAL</a></li>
-          <li><a href="#">REVIEW</a></li>
           <li><a href="/consultation">CONSULTATION</a></li>
           <? if(!$login){?>
           <li><a onclick="$('#login_modal').modal('show')">LOGIN</a></li>

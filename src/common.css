@@ -58,37 +58,7 @@ nav{
 .banner-input{
   border-radius: 4px !important;
 }
-.banner-input::-webkit-input-placeholder {
-  font-size: 7px;
-}
 
-.banner-input:-moz-placeholder { /* Firefox 18- */
-  font-size: 7px;
-}
-
-.banner-input::-moz-placeholder {  /* Firefox 19+ */
-  font-size: 7px;
-}
-
-.banner-input:-ms-input-placeholder {
-  font-size: 7px;
-}
-
-.placeholder::-webkit-input-placeholder {
-  font-size: 7px;
-}
-
-.placeholder:-moz-placeholder { /* Firefox 18- */
-  font-size: 7px;
-}
-
-.placeholder::-moz-placeholder {  /* Firefox 19+ */
-  font-size: 7px;
-}
-
-.placeholder:-ms-input-placeholder {
-  font-size: 7px;
-}
 .banner-button {
   -webkit-border-radius: 4;
   -moz-border-radius: 4;
