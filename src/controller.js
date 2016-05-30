@@ -369,8 +369,9 @@ app.controller("consultation",function($scope,$http){
   }
 });
 
-app.controller("add_hospital",function($scope,$http){
+app.controller("add_hospital",function($scope,$http,image){
   $scope.hospital_data={};
+  $scope.hospital_data.doctor=[];
   $scope.promotion_data=[];
   $scope.editStatus={};
   $scope.edit=function(target){
@@ -393,6 +394,30 @@ app.controller("add_hospital",function($scope,$http){
   }
   //TODO doctor profile image
   $scope.addProfile=function(){
+    $("#doctor_pic_modal").modal('show');
+  }
+  $scope.profileSelect=function(id){
+    image.toDataURI(document.getElementById(id),function(data){
+      $scope.doctor_info.pic=data;
+      // console.log(data); //returned data for image
+      console.log($scope.doctor_info);
+      $("#doctor_pic_modal").modal('hide');
+      $scope.$apply();
+    });
+  }
+  $scope.addDoctor=function(){
+    var data=$scope.doctor_info;
+    if(data.d_name&&data.d_description&&data.pic){
+      //new doctor info checked
+      $scope.hospital_data.doctor.push(data);
+      // $scope.doctor_info.pic="";
+      //TODO profile image on adding doctor still remaining
+      $scope.doctor_info={};
+      $scope.add_doctor=false;
+      console.log($scope.hospital_data);
+    }else{
+      alert('please fill in all infomation of doctor');
+    }
 
   }
   $scope.D_edit=function(target){
@@ -406,7 +431,37 @@ app.controller("add_hospital",function($scope,$http){
   }
 
   $scope.addHospital=function(data){
+    //check if info is filled
+    console.log(data);
+    if(data.doctor.length==0){
+      alert('insert at least one doctor');
+      return;
+    }else if(!data.hos_title||!data.hos_description){
+      alert('fill hospital information');
+      return;
+    }else if(!data.ordering){
+      alert('fill hospital location in main page');
+      return;
+    }else{
+      //success
+      //trim data
+      data.hos_title=data.hos_title.trim();
+      data.hos_description=data.hos_description.trim();
+      for(var i=0; i<data.doctor.length;i++){
+        data.doctor[i].d_name=data.doctor[i].d_name.trim();
+        data.doctor[i].d_description=data.doctor[i].d_description.trim();
+      }
+      //post data and save data respectatively
+      alert('Uploading data... Do not exit this page until noticed. Click Okay and WAIT!');
+      $http.post("/data/addHospital",data).then(function(res){
+        console.log(res.data);
+        if(res.data.result=="true"){
+          alert('upload complete');
+          location.href="/hospital";
+        }
+      });
+    }
 
-    //TODO post data and save data respectatively
   }
+
 });

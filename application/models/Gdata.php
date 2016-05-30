@@ -21,8 +21,11 @@ class Gdata extends CI_Model{
   }
   public function getDoctors($hid){
     return $this->q("
-    select d.NAME as NAME, d.MAJOR as MAJOR, d.DID as DID from HOSPITAL h
-    join DOCTOR d on h.HID=d.DID
+    select
+    d.NAME as NAME, d.MAJOR as MAJOR, d.DID as DID,
+    d.PROFILE as profile 
+    from HOSPITAL h
+    join DOCTOR d on h.HID=d.HID
     where h.HID='$hid'")->result_array();
   }
 
@@ -118,29 +121,64 @@ class Gdata extends CI_Model{
   //register
   public function register($req){
     return $this->q("
-      insert into USER
-      (EMAIL,NAME, PASSWORD)
-      values
-      ('$req->email','$req->name','$req->password')
+    insert into USER
+    (EMAIL,NAME, PASSWORD)
+    values
+    ('$req->email','$req->name','$req->password')
     ");
   }
 
   //consultation
   public function consultation(){
     return $this->q("
-      select * from
-      CONSULTATION
-      order by time desc
+    select * from
+    CONSULTATION
+    order by time desc
     ")->result_array();
   }
   public function writeConsult($req){
     return $this->q("
-      insert into
-      CONSULTATION
-      (TITLE,AUTHOR,PASSWORD,BODY)
-      values
-      ('$req->title','$req->author','$req->password','$req->body')
+    insert into
+    CONSULTATION
+    (TITLE,AUTHOR,PASSWORD,BODY)
+    values
+    ('$req->title','$req->author','$req->password','$req->body')
     ");
+  }
+
+  //add hospital
+  public function addHospital($req){
+    $doctor=$req->doctor;
+    //insert hospital first and get new hid
+    // ans insert doctors respectatively
+    $this->db->trans_start();
+
+    $this->q("
+    insert into HOSPITAL
+    (NAME, DESCRIPTION, ORDERING)
+    values
+    ('$req->hos_title','$req->hos_description','$req->ordering')
+    ");
+    $new_hospital=$this->q("
+    select max(HID) as hid from HOSPITAL
+    ")->row();
+    $new_hid=$new_hospital->hid;
+    for($i=0; $i<count($doctor); $i++){
+      $data=$doctor[$i];
+      $this->q("
+      insert into DOCTOR
+      (HID,NAME, DESCRIPTION, PROFILE)
+      values
+      ('$new_hid','$data->d_name','$data->d_description','$data->pic')
+      ");
+    }
+    $this->db->trans_complete();
+
+    if ($this->db->trans_status() === FALSE)
+    {
+      // generate an error... or use the log_message() function to log your error
+      return log_message();
+    }
   }
 
   private function q($query){

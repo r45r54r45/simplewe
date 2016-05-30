@@ -154,6 +154,17 @@ class Data extends CI_Controller {
 		$this->gdata->writeConsult($req);
 	}
 
+	//add hospital
+	public function addHospital(){
+		$postdata = file_get_contents("php://input");
+		$req = json_decode($postdata);
+		$this->load->model('gdata');
+		$result=[];
+		$result['log']=$this->gdata->addHospital($req);
+		$result['result']=true;
+		echo json_encode($result);
+	}
+
 
 
 	//helper function

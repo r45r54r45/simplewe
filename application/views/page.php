@@ -115,7 +115,7 @@
 
         <div class="col-xs-6 col-sm-3" ng-repeat="i in doctor" ng-click="openDoctor(i.DID)">
           <div class="profile_area">
-            <img class="img-circle img img-responsive" src="/src/user_profile.jpg"/>
+            <img class="img-circle img img-responsive" ng-src="{{i.profile}}"/>
           </div>
           <div style="margin-top:-5px; font-size:12px;" class="text-center">
             <span>{{i.NAME}}</span>

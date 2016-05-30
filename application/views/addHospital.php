@@ -98,7 +98,7 @@
   <div class="row" style="padding: 0 50px; margin-bottom:20px;">
 
     <!-- add doctor -->
-    <div class="col-xs-6 col-sm-3">
+    <div class="col-xs-6 col-sm-3" style="margin-bottom: 15px;">
       <div class="profile_area text-center" style="border-radius:50%; background:#dedede; height: 100px;
       width: 100px;display:table;">
       <i class="glyphicon glyphicon-plus" style="display: table-cell;  vertical-align: middle;  font-size: 40px; color: #39bbcf;" ng-click="doctor_add_open()"></i>
@@ -109,12 +109,17 @@
   </div>
 
   <!-- added doctor -->
-  <div class="col-xs-6 col-sm-3" ng-repeat="i in hospital_data.doctor">
-    <div class="profile_area text-center" style="border-radius:50%; background:#dedede; height: 100px;
-    width: 100px;">
+  <div class="col-xs-6 col-sm-3" ng-repeat="i in hospital_data.doctor" style="margin-bottom: 15px;">
+    <div class="profile_area text-center" style="border-radius:50%; height: 100px;
+    width: 100px;position: relative;
+    overflow: hidden;">
+    <img ng-src="{{i.pic}}" class="img img-circle" style="position: absolute;
+    left: 0;
+    top: 0;
+    width: 100px;"/>
   </div>
   <div style="margin-top:5px; font-size:12px;" class="text-center">
-    <span>None</span>
+    <span>{{i.d_name}}</span>
   </div>
 </div>
 
@@ -127,7 +132,12 @@
       <div class="media">
         <div class="media-left" style="padding: 30px 20px;">
           <div class="profile_area text-center" style="border-radius:50%; background:#dedede; height: 100px;
-          width: 100px;display:table;">
+          width: 100px;display:table; position: relative;
+    overflow: hidden">
+          <img ng-src="{{doctor_info.pic}}" style="    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100px;"/>
           <i class="glyphicon glyphicon-plus" style="display: table-cell;  vertical-align: middle;  font-size: 40px; color: #39bbcf;" ng-click="addProfile()"></i>
         </div>
       </div>
@@ -149,7 +159,8 @@
         <i class="glyphicon glyphicon-ok"></i>
       </div>
 
-      <button class=" write-review-button" style="margin-top:10px;" type="button" ng-click="">ADD DOCTOR</button>
+      <button class=" write-review-button" style="margin-top:10px;" type="button" ng-click="addDoctor()">ADD DOCTOR</button>
+      <br>
 
 
     </div>
@@ -164,5 +175,16 @@
   <button class=" write-review-button" style="width:50px;height:50px; border-radius:50%;" type="button" ng-click="addHospital(hospital_data)">ADD</button>
 </div>
 </div>
+</div>
+
+<div class="modal fade" id="doctor_pic_modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-body" style="padding: 20px 10px;">
+        <input class="form-control" type="file" id="doctor_pic_id">
+        <button class=" write-review-button" style="margin-top:10px;" type="button" ng-click="profileSelect('doctor_pic_id')">Select File</button>
+      </div>
+    </div>
+  </div>
 </div>
 </div>
