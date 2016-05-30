@@ -56,7 +56,9 @@ app.service("image",function(){
     fr = new FileReader();
     fr.readAsDataURL(file);
     fr.onload = function(){
-      callback(reduceSize(fr.result,100,100));
+      // callback(reduceSize(fr.result,100,100));
+      callback(fr.result);
+
     }
   }
 
