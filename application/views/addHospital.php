@@ -96,11 +96,11 @@
       <!-- add doctor -->
       <div class="col-xs-6 col-sm-3" style="margin-bottom: 15px;">
         <div class="profile_area text-center" style="border-radius:50%; background:#dedede; height: 100px;
-        width: 100px;display:table;">
+        width: 100px;display:table;margin: auto;">
         <i class="glyphicon glyphicon-plus" style="display: table-cell;  vertical-align: middle;  font-size: 40px; color: #39bbcf;" ng-click="doctor_add_open()"></i>
       </div>
       <div style="margin-top:5px; font-size:12px;" class="text-center">
-        <span>None</span>
+        <span>Add doctor</span>
       </div>
     </div>
 
@@ -122,7 +122,7 @@
 </div>
 
 
-<div class="row" style="margin-bottom:20px;"  ng-show="add_doctor">
+<div class="row animate-show" style="margin-bottom:20px;"  ng-show="add_doctor">
   <div class="col-xs-12">
     <div class="search-result-block relative" style="height: auto; margin-bottom:0px;">
       <div class="media">
@@ -146,9 +146,11 @@
 
 
       <div style="font-size: 9px; color:white; margin-top:10px;">
-        <textarea class="embedded_input"  type="text" id="d_description"  placeholder="DOCTOR DESCRIPTION" ng-model="doctor_info.d_description"></textarea>
+        <textarea class="embedded_input"  type="text" id="d_description"  placeholder="DOCTOR DESCRIPTION" style="width: 80%;
+    height: 100px;"  ng-model="doctor_info.d_description"></textarea>
+        <div style="display:inline-block; margin-left:10px;"  ng-click="edit('d_description')"><i class="glyphicon glyphicon-pencil"></i></div>
       </div>
-      <div style="display:inline-block; margin-left:10px;"  ng-click="edit('d_description')"><i class="glyphicon glyphicon-pencil"></i></div>
+
 
       <button class=" write-review-button" style="margin-top:15px;" type="button" ng-click="addDoctor()">ADD DOCTOR</button>
       <br>
