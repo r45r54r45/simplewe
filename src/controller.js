@@ -361,6 +361,9 @@ app.controller("consultation",function($scope,$http){
       //TODO response check and upload
     }
   }
+  $scope.cvd=function(date){
+    return Date.parse(data);
+  }
   $scope.consultForm=function(data){
     $http.post("/data/writeConsult",data);
     alert("Consult has been uploaded");

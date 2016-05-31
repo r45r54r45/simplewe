@@ -94,13 +94,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div class="search-field">
       <div class="container">
         <div class="row">
-          <div class="col-md-8 col-md-offset-2 ">
-            <div class="input-group">
-              <input type="text" class="form-control banner-input" placeholder="Find hospital" ng-model="search_query">
-              <span class="input-group-btn">
-                <button class=" banner-button" type="button" ng-click="search()">SEARCH</button>
-              </span>
-            </div>
+          <div class="col-sm-8 col-sm-offset-2 ">
+                <div class="input-group">
+                  <input type="text" class="form-control banner-input" placeholder="Find hospital" ng-model="search_query">
+                  <span class="input-group-btn">
+                    <button class=" banner-button" type="button" ng-click="search()">SEARCH</button>
+                  </span>
+                </div>
+
           </div>
         </div>
       </div>

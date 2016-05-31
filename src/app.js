@@ -66,3 +66,14 @@ app.service("image",function(){
   }
 
 });
+
+app.filter('Cdate', function() {
+  return function(input) {
+    var d=new Date(Date.parse(input));
+    return d.toLocaleDateString('en-GB', {
+      day : 'numeric',
+      month : 'short',
+      year : 'numeric'
+    }).split(' ').join('-');;
+  }
+});

@@ -611,26 +611,26 @@ $(document).ready(function() {
 </style>
 <div class="container" ng-controller="consultation" ng-init="init()">
   <div class="row">
-    <div class="col-xs-12 table-responsive">
+    <div class="col-xs-12 ">
       <table id="table" class="table table-hover  table-mc-light-blue" >
         <thead>
           <tr>
-            <th>Number</th>
+            <th class="hidden-xs">Num</th>
             <th>Title</th>
-            <th>Author</th>
+            <th  class="hidden-xs">Author</th>
             <th>Date</th>
           </tr>
         </thead>
         <tbody>
 
           <tr ng-repeat="i in consultList" ng-click="openConsult(i)">
-            <td data-title="Number">{{$index+1}}</td>
+            <td data-title="Number"  class="hidden-xs">{{$index+1}}</td>
             <td data-title="Title">{{i.TITLE}}</td>
-            <td data-title="Author">
+            <td data-title="Author" class="hidden-xs">
               {{i.AUTHOR}}
             </td>
             <td data-title="Date">
-              {{i.TIME}}
+              {{i.TIME|Cdate}}
             </td>
           </tr>
 
