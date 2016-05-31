@@ -242,16 +242,17 @@ app.controller("hospital",function($scope,rating,$http){
     //get hospital info. by hid
     $http.get("/data/getHosp/"+$scope.HID).then(function(res){
       $scope.hospital=res.data;
+      $http.get("/data/getRatingAllDoctor/"+$scope.HID).then(function(res){
+        var num=rating.floor(res.data.RATING_doctor);
+        $scope.D_R=rating.draw(num);
+        $scope.hospital.RATING_doctor=num;
+      });
     });
     //NAME, DESCRIPTION, RATING_hospital,
     //TODO RATING_hospital (hospital rating)
 
     // $scope.H_R=rating.draw(data.RATING_hospital);
-    $http.get("/data/getRatingAllDoctor/"+$scope.HID).then(function(res){
-      var num=rating.floor(res.data.RATING_doctor);
-      $scope.D_R=rating.draw(num);
-      $scope.hospital.RATING_doctor=num;
-    });
+
 
     //get doctor info  with hid
     $http.get("/data/getDoctors/"+$scope.HID).then(function(res){
