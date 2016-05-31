@@ -137,7 +137,7 @@
       </div>
     </div>
     <div class="container" style="padding:0px 0 40px 0;" ng-controller="main_veri_review">
-      <div class="row">
+      <div class="row" style="width:100%">
         <div class="col-xs-12 page-title text-center">
           <span>Verified Patient Reviews</span>
         </div>
