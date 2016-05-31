@@ -76,7 +76,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <div class="container-fluid header-banner" ng-controller="header" style="    background-image: url('/src/banner.png');
     background-size: cover;
     background-position-x: 50%;" >
-    <div class="absolute text-center" style="top: 80px;width: 400px;left: 50%;margin-left: -200px;">
+    <div class="absolute text-center" style="top: 80px;
+    width: 100%;
+    left: 50%;
+    margin-left: -50%;">
       <div style="
     color: #fffffe;
     font-size: 45px;
