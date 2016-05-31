@@ -35,7 +35,7 @@
         <div class="col-xs-6 col-sm-3 result-block" ng-click="moveTo(block_title[2])">
           <div class="dummy_for_height"></div>
           <div class="actual_block">
-            <div class="content-area background-img"   ng-style="{'background-image': 'url(' +block_title[2].IMAGE + ')'}"
+            <div class="content-area background-img"   ng-style="{'background-image': 'url(' +block_title[2].IMAGE + ')'}">
               <div>{{block_title[2].name}}</div>
             </div>
           </div>
