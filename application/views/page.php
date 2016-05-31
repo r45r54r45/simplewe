@@ -53,7 +53,7 @@
         <div class="row">
           <div class="col-xs-12">
             <div class="search-result-block background-img"
-              ng-style="{'background-image': 'url(' +hospital.IMAGE + ')'}"
+              ng-style="{'background-image': 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.6) 100%),url(' +hospital.IMAGE + ')'}"
             >
             <?if($login){?>
               <div class="write_review">
