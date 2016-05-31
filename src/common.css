@@ -481,7 +481,7 @@ nav{
 
 
 .animate-show.ng-hide-add, .animate-show.ng-hide-remove {
-  transition: all linear 10s;
+  transition: all linear 0.5s;
 }
 
 .animate-show.ng-hide {
