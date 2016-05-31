@@ -16,8 +16,6 @@ nav{
 
   -moz-text-size-adjust: none,
 
-  -webkit-text-size-adjust: none;
-
   -ms-text-size-adjust: none;
 
   font-size-adjust: none;
@@ -496,10 +494,10 @@ nav{
   color: white;
   background: transparent;
   border: none;
-
-.partner{
-  font-size: 18px;
 }
+  .partner{
+    font-size: 18px;
+  }
 
 .img-circle-profile{
   border-radius: 50%;
