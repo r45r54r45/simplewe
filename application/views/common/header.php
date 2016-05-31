@@ -73,8 +73,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
   </nav>
   <!-- end of nav -->
-  <div class="container-fluid header-banner" ng-controller="header" >
-    <img class="banner-img " src="/src/banner.png" style="width: 1000px;"/>
+  <div class="container-fluid header-banner" ng-controller="header" style="    background-image: url('/src/banner.png');
+    background-size: cover;
+    background-position-x: 50%;" >
     <div class="absolute text-center" style="top: 80px;width: 400px;left: 50%;margin-left: -200px;">
       <div style="
     color: #fffffe;
