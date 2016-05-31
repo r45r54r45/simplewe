@@ -22,9 +22,9 @@
 
               </div>
               <div class="">
-                <div style="display:inline-block"  class="search-result-body">
+                <div style="display:inline-block; width:100%"  class="search-result-body">
                   <textarea class="embedded_input"  type="text" id="hos_description"
-                  style="width: 40%;"
+                  style="width: 100%;"
                   placeholder="HOSPITAL DESCRIPTION" ng-model="hospital_data.hos_description"></textarea>
                   <div style="display:inline-block;margin-left: 10px;"   ng-click="edit('hos_description')"><i class="glyphicon glyphicon-pencil"></i></div>
                 </div>
