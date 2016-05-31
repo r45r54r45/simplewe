@@ -190,6 +190,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="modal-body">
           <div class="form-group has-feedback has-feedback-left">
             <input type="text" class="placeholder form-control no-border" placeholder="Name" ng-model="register.name"/>
+
             <i class="form-control-feedback glyphicon glyphicon-user"></i>
           </div>
           <div class="form-group has-feedback has-feedback-left">
@@ -220,17 +221,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="modal-body">
           <div class="form-group has-feedback has-feedback-left">
             <input type="text" class="placeholder form-control no-border" placeholder="Name"  ng-model="consult.name" />
-            <i class="form-control-feedback glyphicon glyphicon-user"></i>
+            <img class="form-padding form-control-feedback" src="/src/name.svg">
           </div>
           <div class="form-group has-feedback has-feedback-left">
-            <input type="email" class="placeholder form-control no-border" placeholder="Email" ng-model="consult.email" />
-            <i class="form-control-feedback glyphicon glyphicon-envelope"></i>
+            <input type="email" class="placeholder form-control no-border"  placeholder="Email" ng-model="consult.email" />
+            <img class="form-padding form-control-feedback" src="/src/email.svg">
           </div>
           <div class="form-group has-feedback has-feedback-left">
             <textarea class="placeholder form-control" rows="5" id="consult_body" style="border:none; box-shadow:none;" placeholder="Message" ng-model="consult.body" ></textarea>
             <i class="form-control-feedback glyphicon "></i>
           </div>
-          <div class="btn btn-block" style="margin-top:15px; background:#49c4d5;color:white; font-size: 7px;" ng-click="consultForm(consult)">SEND</div>
+          <div class="btn btn-block" style="margin-top:15px; background:#49c4d5;color:white; font-size: 10px;" ng-click="consultForm(consult)">SEND</div>
         </div>
       </div>
     </div>
