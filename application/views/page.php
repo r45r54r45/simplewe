@@ -77,8 +77,8 @@
           <div class="col-xs-12 col-sm-6" style="margin-bottom:20px;">
             <div class="relative" style="padding-top:50%; overflow:hidden;">
               <div class="row absolute width-100 height-100" style="left: 15px;top:0; overflow:hidden;">
-                <div class="col-xs-6 grey-back height-100" style="padding:15px 0 0 15px;">
-                  <div class="">
+                <div class="col-xs-6 grey-back height-100 center-table">
+                  <div class="center-cell">
                     <div class="text-center" style="font-weight:600; font-size:15px; color:white;">HOSPITAL RATING</div>
                     <div class="text-center" style="font-weight:600; font-size:49px; color:white;">{{hospital.RATING_hospital}}</div>
                     <div class="text-center" style="    margin-top: -10px;" ng-bind-html="H_R">
@@ -86,8 +86,8 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-xs-6 grey-back height-100" style="padding:15px 0 0 0px;">
-                  <div class="">
+                <div class="col-xs-6 grey-back height-100 center-table" style="">
+                  <div class="center-cell">
                     <div class="text-center" style="font-weight:600; font-size:15px; color:white;">DOCTOR RATING</div>
                     <div class="text-center" style="font-weight:600; font-size:49px; color:white;">{{hospital.RATING_doctor}}</div>
                     <div class="text-center" style="    margin-top: -10px;" ng-bind-html="D_R">
@@ -101,14 +101,14 @@
           <div class="col-xs-12 col-sm-6" style="margin-bottom:20px;">
             <div class="relative" style="padding-top:50%; overflow:hidden;">
               <div class="row absolute width-100 height-100" style="left: 15px;top:0; overflow:hidden;">
-                <div class="col-xs-6 grey-back height-100" style="padding:0;" ng-click="toggleGallery()">
-                  <div class="">
-                    <div class="text-center margin:auto auto;" style="padding-top: 46%;font-weight:600; font-size:15px; color:white;" >GALLERY</div>
+                <div class="col-xs-6 grey-back height-100 center-table" style="padding:0;" ng-click="toggleGallery()">
+                  <div class="center-cell">
+                    <div class="text-center" style="font-weight:600; font-size:15px; color:white;" >GALLERY</div>
                   </div>
                 </div>
-                <div class="col-xs-6 blue-back height-100" style="padding:0px 0 0 0px;">
-                  <div class="" >
-                    <div class="text-center margin:auto auto;" style="padding-top: 46%;font-weight:600; font-size:15px; color:white;">PROMOTION</div>
+                <div class="col-xs-6 blue-back height-100 center-table" style="padding:0px 0 0 0px;">
+                  <div class="center-cell" >
+                    <div class="text-center margin:auto auto;" style="font-weight:600; font-size:15px; color:white;">PROMOTION</div>
                   </div>
                 </div>
               </div>

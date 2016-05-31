@@ -495,9 +495,9 @@ nav{
   background: transparent;
   border: none;
 }
-  .partner{
-    font-size: 18px;
-  }
+.partner{
+  font-size: 18px;
+}
 
 .img-circle-profile{
   border-radius: 50%;
@@ -522,8 +522,8 @@ The width can be either fixed in px or flexible in %.
 Position must be relative!
 */
 .jcarousel {
-    position: relative;
-    overflow: hidden;
+  position: relative;
+  overflow: hidden;
 }
 
 /*
@@ -532,13 +532,13 @@ You must ensure that the position is relative or absolute and
 that the width is big enough to contain all items.
 */
 .jcarousel ul {
-    width: 20000em;
-    position: relative;
+  width: 20000em;
+  position: relative;
 
-    /* Optional, required in this case since it's a <ul> element */
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  /* Optional, required in this case since it's a <ul> element */
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 /*
@@ -546,6 +546,14 @@ These are the item elements. jCarousel works best, if the items
 have a fixed width and height (but it's not required).
 */
 .jcarousel li {
-    /* Required only for block elements like <li>'s */
-    float: left;
+  /* Required only for block elements like <li>'s */
+  float: left;
+}
+
+.center-cell{
+  display: table-cell;
+  vertical-align: middle;
+}
+.center-table{
+  display: table;
 }
