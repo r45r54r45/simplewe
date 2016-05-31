@@ -19,7 +19,7 @@
         <!-- search result block -->
         <div class="row" ng-repeat="i in hospital_list" ng-show="$index < num_limit" ng-click="linkToHospital(i.HID)">
           <div class="col-xs-12">
-            <div class="search-result-block">
+            <div class="search-result-block background-img" ng-style="{'background-image': 'url(' + i.IMAGE + ')'}">
               <div class="search-result-area col-xs-12 col-sm-5">
                 <div class="" style="margin-bottom:10px;">
                   <span class="search-result-title" >{{i.NAME}}</span>

@@ -557,3 +557,7 @@ have a fixed width and height (but it's not required).
 .center-table{
   display: table;
 }
+.background-img{
+  background-position: center;
+  background-size: cover;
+}

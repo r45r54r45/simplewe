@@ -133,7 +133,8 @@ class Gdata extends CI_Model{
     SELECT COUNT( * )
     FROM RATING_H r
     WHERE r.HID = h.HID
-    ) AS REVIEW, h.HID AS HID
+    ) AS REVIEW, h.HID AS HID,
+    h.IMAGE as IMAGE 
     FROM HOSPITAL h
     join DOCTOR d on d.HID=h.HID
     WHERE h.NAME LIKE  '%$name%'
