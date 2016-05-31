@@ -128,7 +128,11 @@
       </div>
 
 
-      <div class="row"  ng-show="doctor_info">
+      <div class="row" ng-show="doctor_info" style="
+      <?if($login==false){?>
+      margin-bottom:30px;
+      <? } ?>
+      ">
         <div class="col-xs-12">
           <div class="search-result-block relative" style="height: auto; margin-bottom:0px;">
             <div class="absolute hidden-xs" style="right:-30px; top:5px; width:10px; hight:10px;">
@@ -192,6 +196,7 @@
           </div>
         </div>
       </div>
+      <?if($login=="true"){?>
       <div class="row" ng-show="doctor_info">
         <div class="col-xs-12">
           <div class="media" style="background:#595959;margin-bottom:50px;">
@@ -219,7 +224,7 @@
                   <div style="font-weight:300; color:white; font-size:9px;margin-top:5px;">{{i.BODY}}</div>
                 </div>
               </div>
-
+              <?}?>
 
 
 

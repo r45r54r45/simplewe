@@ -474,3 +474,19 @@ nav{
 .fa-circle, .fa-circle-o{
   margin-right: 5px;
 }
+
+.animate-show.ng-hide-add, .animate-show.ng-hide-remove {
+  transition: all linear 10s;
+}
+
+.animate-show.ng-hide {
+  line-height: 0;
+  opacity: 0;
+  padding: 0 10px;
+}
+
+.embedded_input{
+  color: white;
+  background: transparent;
+  border: none;
+}

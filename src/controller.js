@@ -373,16 +373,8 @@ app.controller("add_hospital",function($scope,$http,image){
   $scope.hospital_data={};
   $scope.hospital_data.doctor=[];
   $scope.promotion_data=[];
-  $scope.editStatus={};
   $scope.edit=function(target){
-    $scope.editStatus[target]=true;
-    $("#"+target).summernote({focus: true,toolbar:false});
-  }
-  $scope.save=function(target){
-    $scope.editStatus[target]=false;
-    $scope.hospital_data[target]=  $("#"+target).summernote('code');
-    $("#"+target).summernote('destroy');
-    console.log($scope.hospital_data[target]);
+    $("#"+target).focus();
   }
   $scope.addPromotion=function(){
     //TODO promotion data add
@@ -397,6 +389,7 @@ app.controller("add_hospital",function($scope,$http,image){
     $("#doctor_pic_modal").modal('show');
   }
   $scope.profileSelect=function(id){
+    console.log(document.getElementById(id));
     image.toDataURI(document.getElementById(id),function(data){
       $scope.doctor_info.pic=data;
       // console.log(data); //returned data for image
@@ -420,15 +413,7 @@ app.controller("add_hospital",function($scope,$http,image){
     }
 
   }
-  $scope.D_edit=function(target){
-    $scope.editStatus[target]=true;
-    $("#"+target).summernote({focus: true,toolbar:false});
-  }
-  $scope.D_save=function(target){
-    $scope.editStatus[target]=false;
-    $scope.doctor_info[target]=  $("#"+target).summernote('code');
-    $("#"+target).summernote('destroy');
-  }
+
 
   $scope.addHospital=function(data){
     //check if info is filled

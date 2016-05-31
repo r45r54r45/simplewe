@@ -46,6 +46,10 @@ app.service("image",function(){
     return deferred.promise();
   }
   this.toDataURI=function(input,callback){
+    if(input.files[0].size>2000000){
+      alert("Images should not be over 2mb");
+      return;
+    }
     //id selector of file input form as a input
     var file,fr;
     if (!window.File || !window.FileReader || !window.FileList || !window.Blob) {
@@ -58,7 +62,6 @@ app.service("image",function(){
     fr.onload = function(){
       // callback(reduceSize(fr.result,100,100));
       callback(fr.result);
-
     }
   }
 
