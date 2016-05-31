@@ -23,9 +23,12 @@
               </div>
               <div class="">
                 <div style="display:inline-block; width:100%"  class="search-result-body">
+                  <div style="display: inline-block;
+    width: 90%;">
                   <textarea class="embedded_input"  type="text" id="hos_description"
-                  style="width: 100%;"
+                  style="width: 100%;height: 100px;;"
                   placeholder="HOSPITAL DESCRIPTION" ng-model="hospital_data.hos_description"></textarea>
+                </div>
                   <div style="display:inline-block;margin-left: 10px;"   ng-click="edit('hos_description')"><i class="glyphicon glyphicon-pencil"></i></div>
                 </div>
               </div>
@@ -173,7 +176,7 @@
 <div class="modal fade" id="doctor_pic_modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
-      <div class="modal-body" style="padding: 20px 10px;">
+      <div class="modal-body" style="text-align: center;padding: 20px 10px;">
         <input class="form-control" type="file" id="doctor_pic_id">
         <button class=" write-review-button" style="margin-top:10px;" type="button" ng-click="profileSelect('doctor_pic_id')">Select File</button>
       </div>

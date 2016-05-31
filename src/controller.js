@@ -198,10 +198,8 @@ app.controller("main_stat",function($scope,$http){
 app.controller("main_veri_review",function($scope,$http){
   // verified patient review  가져오기
   $http.get("/data/getVR").then(function(res){
-    console.log(res.data);
     $scope.patient_review=res.data;
     $scope.patient_review_num=Math.floor(res.data.length/3)+1;
-    console.log($scope.patient_review_num);
   });
   $scope.range = function(n) {
         return new Array(n);
