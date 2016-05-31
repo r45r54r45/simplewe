@@ -85,7 +85,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     color: #fffffe;
     font-size: 45px;
     font-weight: 700;
-">Simplewe</div>
+">Simplwe</div>
       <div style="
     color: #fffffe;
     font-size: 18px;
