@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'localhost:8000/';
+$config['base_url'] = 'http://cocodingtest1.cafe24.com/';
 // localhost:8000/
 // http://cocodingtest1.cafe24.com/
 /*
