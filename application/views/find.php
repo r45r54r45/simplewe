@@ -18,7 +18,7 @@
         <div class="col-xs-6 col-sm-6 result-block" ng-click="moveTo(block_title[0])">
           <div class="dummy_for_height_half"></div>
           <div class="actual_block">
-            <div class="content-area background-img"     ng-style="{'background-image': 'url(' +block_title[0].IMAGE + ')'}">
+            <div class="content-area background-img"     ng-style="{'background-image': 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.6) 100%),url(' +block_title[0].IMAGE + ')'}">
               <div>{{block_title[0].name}}</div>
             </div>
           </div>
