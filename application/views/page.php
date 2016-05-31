@@ -137,7 +137,7 @@
         </div>
 
 
-        <div class="row" ng-show="doctor_info" style="
+        <div class="row animate-show" ng-show="doctor_info" style="
         <?if($login==false){?>
           margin-bottom:30px;
           <? } ?>
