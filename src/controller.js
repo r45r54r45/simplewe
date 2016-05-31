@@ -460,6 +460,8 @@ app.controller("add_hospital",function($scope,$http,image){
         if(res.data.result=="true"){
           alert('upload complete');
           location.href="/hospital";
+        }else{
+          alert('upload failed. please alert admin');
         }
       });
     }

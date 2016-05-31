@@ -55,9 +55,11 @@
             <div class="search-result-block"
             style="background-image: url('{{hospital.IMAGE}}'); background-size:cover;"
           >
+          <?if($login){?>
               <div class="write_review">
                 <button class=" write-review-button" type="button" >WRITE A REVIEW</button>
               </div>
+              <?}?>
               <div class="search-result-area col-xs-12 col-sm-5">
                 <div class="" style="margin-bottom:10px;">
                   <span class="search-result-title">{{hospital.NAME}}</span>
