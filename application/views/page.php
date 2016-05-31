@@ -8,7 +8,7 @@
   </div>
 
   <div class="container-fluid" style="background: #494949;">
-    <div class="container-fluid" ng-show="gallery">
+    <div class="container-fluid animate-show" ng-show="gallery">
       <div class="row" style="background: #494949;">
         <div class="col-xs-12 text-center" style="padding-top:30px;">
           <span style="color:white; font-size:20px; font-weight:500;">Gallery</span>

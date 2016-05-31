@@ -257,7 +257,6 @@ app.controller("hospital",function($scope,rating,$http){
     //get doctor info  with hid
     $http.get("/data/getDoctors/"+$scope.HID).then(function(res){
       $scope.doctor=res.data;
-      console.log(res.data);
     });
 
 
