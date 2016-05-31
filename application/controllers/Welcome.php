@@ -6,8 +6,10 @@ class Welcome extends CI_Controller {
 		parent::__construct();
 		$this->load->library('session');
 		if($this->session->userdata('uid')){
+			$data['uid']=$this->session->userdata('uid');
 			$data['login']=true;
 		}else{
+			$data['uid']="";
 			$data['login']=false;
 		}
 		if(isset($_GET['reset_data'])){

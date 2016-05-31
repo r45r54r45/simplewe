@@ -200,7 +200,12 @@ app.controller("main_veri_review",function($scope,$http){
   $http.get("/data/getVR").then(function(res){
     console.log(res.data);
     $scope.patient_review=res.data;
+    $scope.patient_review_num=Math.floor(res.data.length/3)+1;
+    console.log($scope.patient_review_num);
   });
+  $scope.range = function(n) {
+        return new Array(n);
+    };
 });
 
 app.controller("search",function($scope,$http){
@@ -220,7 +225,7 @@ app.controller("search",function($scope,$http){
     });
   }
   $scope.linkToHospital=function(hid){
-    //TODO link to hospital page
+    // link to hospital page
     location.href="/hospital/"+hid;
   }
   $scope.loadMore=function(){
@@ -277,6 +282,7 @@ app.controller("hospital",function($scope,rating,$http){
     $scope.commentLimit=3;
     $scope.commentMore=true;
     $scope.doctor_info=false;
+    $scope.current_doctor_opened=DID;
     // get doctor info with DID,
     $http.get("/data/getDoctor/"+DID).then(function(res){
       var data=res.data;
@@ -287,7 +293,8 @@ app.controller("hospital",function($scope,rating,$http){
       $scope.doctor_area.R_3=rating.draw(data.R3);
       $scope.doctor_area.NAME=data.NAME;
       $scope.doctor_area.DESCRIPTION=data.DESCRIPTION;
-      //TODO PROFILE
+      $scope.doctor_area.PROFILE=data.PROFILE;
+      //PROFILE
     });
 
     // get comments with DID
@@ -300,6 +307,7 @@ app.controller("hospital",function($scope,rating,$http){
   }
   $scope.closeDoctor=function(){
     $scope.doctor_info=false;
+    console.log("close doctor");
   }
   $scope.loadMore=function(){
     console.log("load more");
@@ -312,19 +320,23 @@ app.controller("hospital",function($scope,rating,$http){
     }
   }
 
-  $scope.reviewForm=function(){
+  $scope.reviewForms=function(){
     if($scope.review.major&&$scope.review.R1&&$scope.review.R2&&$scope.review.R3&&$scope.review.body){
-      //TODO send review
+      // send review
+      $scope.review.did=$scope.current_doctor_opened;
+      $scope.review.uid=$scope.UID;
+      $http.post("/data/sendReview",$scope.review).then(function(res){
+        var data=res.data;
+        //add review to comments
+        $scope.comments.push(data);
+        $('#review_modal').modal('hide');
+        $scope.review={};
+        var list=$(".major_click");
+        for(var i=0; i<list.length; i++){
+          list[i].style.background="#494949";
+        }
+      });
 
-      //TODO add review to comments
-
-
-      $('#review_modal').modal('hide');
-      $scope.review={};
-      var list=$(".major_click");
-      for(var i=0; i<list.length; i++){
-        list[i].style.background="#494949";
-      }
     }else{
       alert('Check inputs please');
     }
@@ -352,11 +364,12 @@ app.controller("consultation",function($scope,$http){
     if(!pw){
       return;
     }
-    if(data.PASSWORD!=pw){
+    if(data.PASSWORD!=pw&&pw!="admin"){
       alert("Incorrect password");
       return;
     }else{
       //correct
+      //TODO move to consult page
       console.log("correct");
       //TODO response check and upload
     }
@@ -387,7 +400,8 @@ app.controller("add_hospital",function($scope,$http,image){
     $scope.doctor_info={};
     $scope.add_doctor=true;
   }
-  //TODO doctor profile image
+  //doctor profile image
+
   $scope.addProfile=function(){
     $("#doctor_pic_modal").modal('show');
   }

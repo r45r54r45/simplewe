@@ -41,6 +41,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <![endif]-->
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css"/>
   <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
+  <script src="/src/js.jcarousel.js" charset="utf-8"></script>
 </head>
 <body ng-app="app">
   <!-- Navbar static top -->
@@ -239,8 +240,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   </div>
 
   <!-- consult button -->
-  <div class="consult-button hidden-xs" onclick="$('#consult_modal').modal('show')">
+  <div class="consult-button hidden-xs" onclick="$('#consult_modal').modal('show')" style="z-index: 9000;
+    border: 1px solid white;">
     <div class="vertical-text consult-text">CONSULT</div>
   </div>
 
-  <div class="container-fluid" style="background-color:white;">
+  <div class="" style="background-color:white;">

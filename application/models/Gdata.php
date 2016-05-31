@@ -23,7 +23,7 @@ class Gdata extends CI_Model{
     return $this->q("
     select
     d.NAME as NAME, d.MAJOR as MAJOR, d.DID as DID,
-    d.PROFILE as profile 
+    d.PROFILE as PROFILE
     from HOSPITAL h
     join DOCTOR d on h.HID=d.HID
     where h.HID='$hid'")->result_array();
@@ -36,7 +36,8 @@ class Gdata extends CI_Model{
     SUM(NUM2)/count(*) as R2,
     SUM(NUM3)/count(*) as R3,
     d.NAME as NAME,
-    d.DESCRIPTION as DESCRIPTION
+    d.DESCRIPTION as DESCRIPTION,
+    d.PROFILE as PROFILE
     from DOCTOR d
     join RATING_D r on d.DID=r.DID
     where d.DID='$did'
@@ -45,14 +46,36 @@ class Gdata extends CI_Model{
   public function getComment($did){
     return $this->q("
     select u.NAME as NAME, r.MAJOR as MAJOR,
-    r.TIME as TIME, r.BODY as BODY
+    r.TIME as TIME, r.BODY as BODY, u.PROFILE as PROFILE
     from REVIEW r
     join USER u on u.UID=r.UID
     join DOCTOR d on d.DID=r.DID
     where d.DID='$did'
     ")->result_array();
   }
-
+  public function sendReview($req){
+    $this->q("
+    insert into RATING_D
+    (NUM1,NUM2,NUM3,DID,UID)
+    values
+    ('$req->R1','$req->R2','$req->R3','$req->did','$req->uid')
+    ");
+    $this->q("
+      insert into REVIEW
+      (BODY,MAJOR,UID,DID)
+      values
+      ('$req->body','$req->major','$req->uid','$req->did')
+    ");
+    return $this->q("
+    select u.NAME as NAME, r.MAJOR as MAJOR,
+    r.TIME as TIME, r.BODY as BODY, u.PROFILE as PROFILE
+    from REVIEW r
+    join USER u on u.UID=r.UID
+    join DOCTOR d on d.DID=r.DID
+    where d.DID='$req->did' order by TIME desc
+    limit 1
+    ")->row();
+  }
 
   //main page
   public function getStat(){

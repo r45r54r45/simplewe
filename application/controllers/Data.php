@@ -165,7 +165,13 @@ class Data extends CI_Controller {
 		echo json_encode($result);
 	}
 
-
+	//hospital page
+	public function sendReview(){
+		$postdata = file_get_contents("php://input");
+		$req = json_decode($postdata);
+		$this->load->model('gdata');
+		echo json_encode($this->gdata->sendReview($req));
+	}
 
 	//helper function
 	private function encrypt_decrypt($action, $string) {
