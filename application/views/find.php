@@ -18,7 +18,7 @@
         <div class="col-xs-6 col-sm-6 result-block" ng-click="moveTo(block_title[0])">
           <div class="dummy_for_height_half"></div>
           <div class="actual_block">
-            <div class="content-area"   style="background-image: url('{{block_title[0].IMAGE}}'); background-size:cover;">
+            <div class="content-area background-img"     ng-style="{'background-image': 'url(' +block_title[0].IMAGE + ')'}">
               <div>{{block_title[0].name}}</div>
             </div>
           </div>
@@ -26,7 +26,8 @@
         <div class="col-xs-6 col-sm-3 result-block" ng-click="moveTo(block_title[1])">
           <div class="dummy_for_height"></div>
           <div class="actual_block">
-            <div class="content-area" style="background-image: url('{{block_title[1].IMAGE}}'); background-size:cover;">
+            <div class="content-area background-img"
+            ng-style="{'background-image': 'url(' +block_title[1].IMAGE + ')'}">
               <div>{{block_title[1].name}}</div>
             </div>
           </div>
@@ -34,7 +35,7 @@
         <div class="col-xs-6 col-sm-3 result-block" ng-click="moveTo(block_title[2])">
           <div class="dummy_for_height"></div>
           <div class="actual_block">
-            <div class="content-area" style="background-image: url('{{block_title[2].IMAGE}}'); background-size:cover;">
+            <div class="content-area background-img" style="background-image: url('{{block_title[2].IMAGE}}'); background-size:cover;">
               <div>{{block_title[2].name}}</div>
             </div>
           </div>
@@ -45,7 +46,7 @@
         <div class="col-xs-6 col-sm-3 result-block" ng-click="moveTo(block_title[3])">
           <div class="dummy_for_height"></div>
           <div class="actual_block">
-            <div class="content-area" style="background-image: url('{{block_title[3].IMAGE}}'); background-size:cover;">
+            <div class="content-area background-img"   ng-style="{'background-image': 'url(' +block_title[3].IMAGE + ')'}">
               <div>{{block_title[3].name}}</div>
             </div>
           </div>
@@ -53,7 +54,7 @@
         <div class="col-xs-6 col-sm-3 result-block" ng-click="moveTo(block_title[4])">
           <div class="dummy_for_height"></div>
           <div class="actual_block">
-            <div class="content-area" style="background-image: url('{{block_title[4].IMAGE}}'); background-size:cover;">
+            <div class="content-area background-img"   ng-style="{'background-image': 'url(' +block_title[4].IMAGE + ')'}">
               <div>{{block_title[4].name}}</div>
             </div>
           </div>
@@ -61,7 +62,7 @@
         <div class="col-xs-6 col-sm-6 result-block" ng-click="moveTo(block_title[5])">
           <div class="dummy_for_height_half"></div>
           <div class="actual_block">
-            <div class="content-area" style="background-image: url('{{block_title[5].IMAGE}}'); background-size:cover;">
+            <div class="content-area background-img"   ng-style="{'background-image': 'url(' +block_title[5].IMAGE + ')'}">
               <div>{{block_title[5].name}}</div>
             </div>
           </div>
@@ -71,7 +72,7 @@
         <div class="col-xs-6 col-sm-6 result-block" ng-click="moveTo(block_title[6])">
           <div class="dummy_for_height_half"></div>
           <div class="actual_block">
-            <div class="content-area" style="background-image: url('{{block_title[6].IMAGE}}'); background-size:cover;">
+            <div class="content-area background-img"   ng-style="{'background-image': 'url(' +block_title[6].IMAGE + ')'}">
               <div>{{block_title[6].name}}</div>
             </div>
           </div>
@@ -79,7 +80,7 @@
         <div class="col-xs-6 col-sm-3 result-block" ng-click="moveTo(block_title[7])">
           <div class="dummy_for_height"></div>
           <div class="actual_block">
-            <div class="content-area" style="background-image: url('{{block_title[7].IMAGE}}'); background-size:cover;">
+            <div class="content-area background-img"   ng-style="{'background-image': 'url(' +block_title[7].IMAGE + ')'}">
               <div>{{block_title[7].name}}</div>
             </div>
           </div>
@@ -87,7 +88,7 @@
         <div class="col-xs-6 col-sm-3 result-block" ng-click="moveTo(block_title[8])">
           <div class="dummy_for_height"></div>
           <div class="actual_block">
-            <div class="content-area" style="background-image: url('{{block_title[8].IMAGE}}'); background-size:cover;">
+            <div class="content-area background-img"   ng-style="{'background-image': 'url(' +block_title[8].IMAGE + ')'}">
               <div>{{block_title[8].name}}</div>
             </div>
           </div>
