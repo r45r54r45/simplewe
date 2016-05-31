@@ -52,8 +52,8 @@
         <!-- search result block -->
         <div class="row">
           <div class="col-xs-12">
-            <div class="search-result-block"
-            style="background-image: url('{{hospital.IMAGE}}'); background-size:cover;"
+            <div class="search-result-block background-img"
+              ng-style="{'background-image': 'url(' +hospital.IMAGE + ')'}"
             >
             <?if($login){?>
               <div class="write_review">
