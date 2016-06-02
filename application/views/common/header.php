@@ -74,10 +74,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
   </nav>
   <!-- end of nav -->
-  <div class="container-fluid header-banner" ng-controller="header" style="    background-image: url('/src/banner.png');
-    background-size: cover;
-    background-position-x: 50%;" >
-    <div class="absolute text-center" style="top: 80px;
+  <div class="container-fluid header-banner" ng-controller="header" style="    background-image:linear-gradient(rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%),  url('/src/banner.png');
+    background-size: cover;" >
+    <div class="absolute text-center" style="top: 120px;
     width: 100%;
     left: 50%;
     margin-left: -50%;">
@@ -123,18 +122,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="modal-body">
           <div class="form-group has-feedback has-feedback-left">
             <input type="email" class="placeholder form-control no-border" placeholder="Email" ng-model="login.email" />
-            <i class="form-control-feedback glyphicon glyphicon-envelope"></i>
+            <img class="form-padding form-control-feedback" src="/src/email.svg">
           </div>
           <div class="form-group has-feedback has-feedback-left">
             <input type="password" class=" placeholder form-control no-border" placeholder="Password" ng-model="login.password" />
-            <i class="form-control-feedback glyphicon glyphicon-lock"></i>
+            <img class="form-padding form-control-feedback" src="/src/password2.svg">
           </div>
           <div style="margin-top: -10px;">
-            <span style="font-size: 10px;">Forgot your password? <a onclick="$('#login_modal').modal('hide');$('#reset_modal').modal('show');" style="color:#c8e7f1;">Reset Password</a></span>
+            <span style="font-size: 10px; color:#8a8a8a">Forgot your password? <a onclick="$('#login_modal').modal('hide');$('#reset_modal').modal('show');" style="color:#c8e7f1;">Reset Password</a></span>
           </div>
-          <div class="btn btn-block" style="margin-top:15px; background:#49c4d5;color:white; font-size: 7px;" ng-click="loginForm(login)">LOGIN</div>
+          <div class="btn btnForm btn-block"  ng-click="loginForm(login)">LOGIN</div>
           <div class="pull-right">
-            <span style="font-size: 10px;">Don't have an account? <a onclick="$('#login_modal').modal('hide');$('#register_modal').modal('show');" style="color:#c8e7f1;">Sign Up</a></span>
+            <span style="font-size: 10px; color:#8a8a8a">Don't have an account? <a onclick="$('#login_modal').modal('hide');$('#register_modal').modal('show');" style="color:#c8e7f1;">Sign Up</a></span>
           </div>
           <div class="clearfix">
 
@@ -151,15 +150,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <span class="modal-title">RESET PASSWORD</span>
         </div>
         <div class="text-center" style="margin-bottom:20px;">
-          <div style="font-size: 9px;">Please input the Email you used to register.</div>
-          <div style="font-size: 9px;">A link to reset your password will be sent to your email.</div>
+          <div style="font-size: 10px;">Please input the Email you used to register.</div>
+          <div style="font-size: 90x;">A link to reset your password will be sent to your email.</div>
         </div>
         <div class="modal-body">
           <div class="form-group has-feedback has-feedback-left">
             <input type="email" class="placeholder form-control no-border" placeholder="Email" ng-model="reset.email" />
-            <i class="form-control-feedback glyphicon glyphicon-envelope"></i>
+            <img class="form-padding form-control-feedback" src="/src/email.svg">
           </div>
-          <div class="btn btn-block" style="margin-top:15px; background:#49c4d5;color:white; font-size: 7px;" ng-click="resetForm(reset)">SEND</div>
+          <div class="btn btnForm btn-block" ng-click="resetForm(reset)">SEND</div>
         </div>
       </div>
     </div>
@@ -175,13 +174,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="modal-body">
           <div class="form-group has-feedback has-feedback-left">
             <input type="password" class=" placeholder form-control no-border" placeholder="New Password" ng-model="actual_reset.pw1"/>
-            <i class="form-control-feedback glyphicon glyphicon-lock"></i>
+            <img class="form-padding form-control-feedback" src="/src/password2.svg">
           </div>
           <div class="form-group has-feedback has-feedback-left">
             <input type="password" class=" placeholder form-control no-border" placeholder="Confirm Password" ng-model="actual_reset.pw2"/>
-            <i class="form-control-feedback glyphicon glyphicon-lock"></i>
+            <img class="form-padding form-control-feedback" src="/src/password2.svg">
           </div>
-          <div class="btn btn-block" style="margin-top:15px; background:#49c4d5;color:white; font-size: 7px;" ng-click="resetForm()">RESET</div>
+          <div class="btn btnForm btn-block" ng-click="resetForm()">RESET</div>
         </div>
       </div>
     </div>
@@ -198,19 +197,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <div class="form-group has-feedback has-feedback-left">
             <input type="text" class="placeholder form-control no-border" placeholder="Name" ng-model="register.name"/>
 
-            <i class="form-control-feedback glyphicon glyphicon-user"></i>
+            <img class="form-padding form-control-feedback" src="/src/name.svg">
           </div>
           <div class="form-group has-feedback has-feedback-left">
             <input type="email" class="placeholder form-control no-border" placeholder="Email" ng-model="register.email"/>
-            <i class="form-control-feedback glyphicon glyphicon-envelope"></i>
+            <img class="form-padding form-control-feedback" src="/src/email.svg">
           </div>
           <div class="form-group has-feedback has-feedback-left">
             <input type="password" class=" placeholder form-control no-border" placeholder="Password" ng-model="register.password"/>
-            <i class="form-control-feedback glyphicon glyphicon-lock"></i>
+            <img class="form-padding form-control-feedback" src="/src/password2.svg">
           </div>
-          <div class="btn btn-block" style="margin-top:15px; background:#49c4d5;color:white; font-size: 7px;" ng-click="registerForm(register)">REGISTER</div>
+          <div class="btn btnForm btn-block" ng-click="registerForm(register)">REGISTER</div>
           <div class="pull-right">
-            <span style="font-size: 10px;">Already have an account? <a onclick="$('#register_modal').modal('hide'); $('#login_modal').modal('show');" style="color:#c8e7f1;">Log in</a></span>
+            <span style="font-size: 10px; color:#8a8a8a">Already have an account? <a onclick="$('#register_modal').modal('hide'); $('#login_modal').modal('show');" style="color:#c8e7f1;">Log in</a></span>
           </div>
           <div class="clearfix">
           </div>
@@ -235,10 +234,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <img class="form-padding form-control-feedback" src="/src/email.svg">
           </div>
           <div class="form-group has-feedback has-feedback-left">
-            <textarea class="placeholder form-control" rows="5" id="consult_body" style="border:none; box-shadow:none;" placeholder="Message" ng-model="consult.body" ></textarea>
+            <textarea class="placeholder form-control" rows="5" id="consult_body" style="resize:none;border:none; box-shadow:none;" placeholder="Message" ng-model="consult.body" ></textarea>
             <i class="form-control-feedback glyphicon "></i>
           </div>
-          <div class="btn btn-block" style="margin-top:15px; background:#49c4d5;color:white; font-size: 10px;" ng-click="consultForm(consult)">SEND</div>
+          <div class="btn btnForm btn-block" ng-click="consultForm(consult)">SEND</div>
         </div>
       </div>
     </div>
@@ -250,4 +249,4 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div class="vertical-text consult-text">CONSULT</div>
   </div>
 
-  <div class="" style="background-color:white;">
+  <div class="" style="background-color:white;padding-bottom:50px;">

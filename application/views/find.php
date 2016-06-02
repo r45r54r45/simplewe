@@ -18,7 +18,7 @@
         <div class="col-xs-6 col-sm-6 result-block" ng-click="moveTo(block_title[0])">
           <div class="dummy_for_height_half"></div>
           <div class="actual_block">
-            <div class="content-area background-img"     ng-style="{'background-image': 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.6) 100%),url(' +block_title[0].IMAGE + ')'}">
+            <div class="content-area background-img"     ng-style="{'background-image': 'linear-gradient(to bottom, rgba(0,0,0,0.4) 0%,rgba(0,0,0,0.4) 100%),url(' +block_title[0].IMAGE + ')'}">
               <div>{{block_title[0].name}}</div>
             </div>
           </div>
@@ -27,7 +27,7 @@
           <div class="dummy_for_height"></div>
           <div class="actual_block">
             <div class="content-area background-img"
-            ng-style="{'background-image': 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.6) 100%),url(' +block_title[1].IMAGE + ')'}">
+            ng-style="{'background-image': 'linear-gradient(to bottom, rgba(0,0,0,0.4) 0%,rgba(0,0,0,0.4) 100%),url(' +block_title[1].IMAGE + ')'}">
               <div>{{block_title[1].name}}</div>
             </div>
           </div>
@@ -35,7 +35,7 @@
         <div class="col-xs-6 col-sm-3 result-block" ng-click="moveTo(block_title[2])">
           <div class="dummy_for_height"></div>
           <div class="actual_block">
-            <div class="content-area background-img"   ng-style="{'background-image': 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.6) 100%),url(' +block_title[2].IMAGE + ')'}">
+            <div class="content-area background-img"   ng-style="{'background-image': 'linear-gradient(to bottom, rgba(0,0,0,0.4) 0%,rgba(0,0,0,0.4) 100%),url(' +block_title[2].IMAGE + ')'}">
               <div>{{block_title[2].name}}</div>
             </div>
           </div>
@@ -99,7 +99,7 @@
     </div>
     <div class="col-md-1 vcenter hidden-xs" ng-show="mode!='Hospital'||maxHospital>currentHosNum+9">
       <div ng-click="moreHospital()" style="height:30px;">
-        <i class="glyphicon glyphicon-chevron-right" style="font-size: 40px; color: black;"></i>
+        <img class="navArrow" aria-hidden="true" src="src/right.png">
       </div>
     </div>
   </div>
@@ -166,11 +166,11 @@
           </div>
           <!-- Controls -->
           <a class="left carousel-control" href="#carousel-example-generic2" role="button" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="helper"><img class="navArrow" aria-hidden="true" src="src/left.png"></span>
             <span class="sr-only">Previous</span>
           </a>
           <a class="right carousel-control" href="#carousel-example-generic2" role="button" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="helper"><img class="navArrow" aria-hidden="true" src="src/right.png"></span>
             <span class="sr-only">Next</span>
           </a>
         </div>
@@ -225,12 +225,13 @@
         </div>
 
         <!-- Controls -->
-        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev" style="text-align:left">
+          <span class="helper"><img class="navArrow" aria-hidden="true" src="src/left.png"></span>
           <span class="sr-only">Previous</span>
         </a>
-        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next" style="text-align:right">
+          <!--<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>-->
+          <span class="helper"><img class="navArrow" aria-hidden="true" src="src/right.png"></span>
           <span class="sr-only">Next</span>
         </a>
       </div>

@@ -53,7 +53,7 @@
         <div class="row">
           <div class="col-xs-12">
             <div class="search-result-block background-img"
-              ng-style="{'background-image': 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.6) 100%),url(' +hospital.IMAGE + ')'}"
+              ng-style="{'background-image': 'linear-gradient(to bottom, rgba(0,0,0,0.4) 0%,rgba(0,0,0,0.6) 100%),url(' +hospital.IMAGE + ')'}"
             >
             <?if($login){?>
               <div class="write_review">
@@ -61,7 +61,7 @@
               </div>
               <?}?>
               <div class="search-result-area col-xs-12 col-sm-5">
-                <div class="" style="margin-bottom:10px;">
+                <div class="" style="margin-bottom:15px;">
                   <span class="search-result-title">{{hospital.NAME}}</span>
                 </div>
                 <div class="">
@@ -126,10 +126,10 @@
             <div class="profile_area">
               <img class="img-circle img img-responsive" ng-src="{{i.PROFILE}}"/>
             </div>
-            <div style="margin-top:-5px; font-size:12px;" class="text-center">
+            <div style="margin-top:5px; font-size:12px;" class="text-center">
               <span>{{i.NAME}}</span>
             </div>
-            <div style="margin-top:7px; font-size:10px;" class="text-center">
+            <div style="margin-top:0px; font-size:10px;" class="text-center">
               <span>{{i.MAJOR}}</span>
             </div>
           </div>
@@ -176,7 +176,7 @@
                   </div>
                   <div class="media-body" style="padding: 20px 10px;">
                     <div class="search-result-title">{{doctor_area.NAME}}</div>
-                    <div style="font-size: 9px; color:white; margin-top:10px;">
+                    <div style="font-size: 12px; color:white; margin-top:10px;margin-right:10px;">
                       {{doctor_area.DESCRIPTION}}
                     </div>
                     <div class="row hidden-xs" style="margin-top:20px;">
@@ -219,20 +219,20 @@
 
                     <!-- repeat reviews -->
                     <div class="media" ng-repeat="i in comments" ng-show="$index < commentLimit">
-                      <div class="media-left" style="width: 20%; min-width: 90px;padding: 10px 10px 5px 0px;">
-                        <div class="profile_area">
+                      <div class="media-left">
+                        <div class="profile_areaComment">
                           <img class="img-circle img img-responsive" src="/src/user_profile.jpg"/>
                         </div>
-                        <div style="margin-top:-5px; font-size:12px;" class="text-center">
+                        <div style="margin-top:5%; font-size:12px;" class="text-center">
                           <span style="font-weight:600; color:white; font-size:12px;">{{i.NAME}}</span>
                         </div>
-                        <div style="margin-top:3px; font-size:10px;" class="text-center">
+                        <div style="margin-top:3%; font-size:10px;" class="text-center">
                           <span style="font-weight:400; color:white; font-size:10px;">{{i.MAJOR}}</span>
                         </div>
                       </div>
-                      <div class="media-body" style="padding: 10px 10px; vertical-align: bottom;">
-                        <div style="font-weight:400; color:white; font-size:10px;">{{i.TIME}}</div>
-                        <div style="font-weight:300; color:white; font-size:9px;margin-top:5px;">{{i.BODY}}</div>
+                      <div class="media-body" style="padding: 10px 10px; vertical-align: middle;">
+                        <div style="font-weight:400; color:#9F9F9F; font-size:8px;">{{i.TIME}}</div>
+                        <div style="font-weight:300; color:white; font-size:10px;margin-top:5px;">{{i.BODY}}</div>
                       </div>
                     </div>
 
@@ -306,7 +306,7 @@
                           </div>
                         </div>
                       </div>
-                      <div class="row" style="padding-top: 40px;padding-left: 15px;">
+                      <div class="row" style="padding-top: 40px;padding-left: 15px;position: absolute;bottom: 35px;">
                         <button class=" write-review-button" type="button"  ng-click="reviewForms()">SUBMIT REVIEW</button>
                       </div>
                     </div>

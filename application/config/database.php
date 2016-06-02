@@ -73,10 +73,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $active_group = 'default';
 $query_builder = TRUE;
 // cocodingtest1.cafe24.com
+//localhost
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
+	'hostname' => 'cocodingtest1.cafe24.com',
 	'username' => 'cocodingtest1',
 	'password' => 'e34e43E34!!',
 	'database' => 'cocodingtest1',

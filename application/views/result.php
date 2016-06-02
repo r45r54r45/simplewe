@@ -11,7 +11,8 @@
         <div class="row">
           <div class="col-xs-12">
             <div class="search-result-block" style="background:#ececec; display: table; text-align: center;" ng-click="addHospital()">
-              <i class="glyphicon glyphicon-plus" style="display: table-cell;  vertical-align: middle;  font-size: 40px; color: #39bbcf;"></i>
+              <i class="glyphicon glyphicon-plus" style="display: table-cell;  vertical-align: middle;  font-size: 30px; color: #39bbcf;"></i>
+
             </div>
           </div>
         </div>
@@ -19,9 +20,9 @@
         <!-- search result block -->
         <div class="row" ng-repeat="i in hospital_list" ng-show="$index < num_limit" ng-click="linkToHospital(i.HID)">
           <div class="col-xs-12">
-            <div class="search-result-block background-img" ng-style="{'background-image': 'url(' + i.IMAGE + ')'}">
+            <div class="search-result-block background-img" ng-style="{'background-image': 'linear-gradient(to bottom, rgba(0,0,0,0.4) 0%,rgba(0,0,0,0.4) 100%),  url(' + i.IMAGE + ')'}">
               <div class="search-result-area col-xs-12 col-sm-5">
-                <div class="" style="margin-bottom:10px;">
+                <div class="" style="margin-bottom:15px;">
                   <span class="search-result-title" >{{i.NAME}}</span>
                 </div>
                 <div class="">

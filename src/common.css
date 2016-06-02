@@ -26,7 +26,7 @@ nav{
 .header-banner{
   position: relative;
   width:100%;
-  height:350px;
+  height:420px;
   /*background-image: url('/src/banner.png');*/
   padding:0;
   overflow: hidden;
@@ -358,21 +358,28 @@ nav{
   margin-bottom:20px;
   position:relative;
 }
+.search-result-footer{
+  width:100%;
+  height:40px;
+  background:#808080;
+  margin-bottom:40px;
+  position:relative;
+}
 .search-result-area{
   position: absolute;
   bottom:10px;
-  padding:10px;
+  padding:15px;
 }
 .search-result-title{
   color:white;
   font-size:17px;
-  font-weight: 700;
+  font-weight: 600;
 }
 .search-result-body{
   color:white;
   font-size:10px;
   font-weight: 200;
-  line-height: 13px;
+  line-height: 15px;
   display: block;
 }
 .circle_rating{
@@ -407,7 +414,7 @@ nav{
 }
 .review-btn-circle{
   border-radius: 50%;
-  padding: 10px;
+  padding: 13px;
   width: 50px;
   height: 50px;
   background: #494949;
@@ -415,6 +422,7 @@ nav{
   font-size: 9px;
   margin: auto;
   margin-bottom: 20px;
+  margin-top:50px;
 }
 .small-review-btn{
   margin-top:-5px;
@@ -431,7 +439,7 @@ nav{
 }
 .write-review-button{
   color: white;
-  font-size: 8px;
+  font-size: 10px;
   font-weight: 500;
   padding: 7px 5px;
   background: #39bbcf;
@@ -467,13 +475,14 @@ nav{
 
 /*review*/
 .review_label{
-  padding: 2px 9px;
+  padding: 5px 10px;
   border-radius: 10px;
   font-size: 9px;
-  font-weight: 600;
+  font-weight: 400;
   color: white;
   background: #494949;
-  margin-right:15px;
+  margin-right:3px;
+  line-height: 3.3;
 }
 .fa-circle, .fa-circle-o{
   margin-right: 5px;
@@ -560,4 +569,50 @@ have a fixed width and height (but it's not required).
 .background-img{
   background-position: center;
   background-size: cover;
+}
+.navArrow{
+  width:30px;
+  vertical-align: middle;
+  height: 30px;
+}
+
+.helper{
+  margin-top:100px;
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.btnForm{
+  margin-top: 15px;
+    background: #49c4d5;
+    color: white;
+    font-size: 10px;
+    margin-bottom:5px;
+}
+
+.profile_areaComment{
+  padding:5%;
+  max-width: 100px;
+  margin: auto;
+  width: 15%;
+    min-width: 60px;
+    max-width: 60px;
+}
+
+#ninja-slider-pager a{
+  box-shadow:none !important;
+}
+#ninja-slider-pager a.active{
+  box-shadow:none !important;
+  background-color: #ffffff !important;
+}
+
+.has-feedback-left-none .form-control-none{
+  padding-right: 12px;
+    padding-left: 12px;
+}
+
+textarea{
+  resize:none;
 }

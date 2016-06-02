@@ -25,11 +25,11 @@
                 <div style="display:inline-block; width:100%"  class="search-result-body">
                   <div style="display: inline-block;
     width: 90%;">
-                  <textarea class="embedded_input"  type="text" id="hos_description"
-                  style="width: 100%;height: 100px;;"
+                  <textarea  class="embedded_input"  type="text" id="hos_description"
+                  style="width: 100%;height: 100px;resize:none;"
                   placeholder="HOSPITAL DESCRIPTION" ng-model="hospital_data.hos_description"></textarea>
                 </div>
-                  <div style="display:inline-block;margin-left: 10px;"   ng-click="edit('hos_description')"><i class="glyphicon glyphicon-pencil"></i></div>
+
                 </div>
               </div>
             </div>
@@ -66,13 +66,13 @@
                 <div class="absolute" style="top:15px; left: 50%;
                 margin-left: -32px; font-weight:600; font-size:15px; color:white;
                 ">GALLERY</div>
-                <i class="glyphicon glyphicon-plus" style="display: table-cell;  vertical-align: middle;  font-size: 40px; color: white;"></i>
+                <i class="glyphicon glyphicon-plus" style="display: table-cell;  vertical-align: middle;  font-size: 20px; color: white;"></i>
               </div>
               <div class="col-xs-6 blue-back height-100 text-center relative" style="padding:0px 0 0 0px;display:table; text-align:center">
                 <div class="absolute" style="top:15px; left: 50%;
                 margin-left: -46px; font-weight:600; font-size:15px; color:white;
                 ">PROMOTION</div>
-                <i class="glyphicon glyphicon-plus" style="display: table-cell;  vertical-align: middle;  font-size: 40px; color: white;" ng-click="addPromotion()"></i>
+                <i class="glyphicon glyphicon-plus" style="display: table-cell;  vertical-align: middle;  font-size: 20px; color: white;" ng-click="addPromotion()"></i>
               </div>
             </div>
           </div>
@@ -100,7 +100,7 @@
       <div class="col-xs-6 col-sm-3" style="margin-bottom: 15px;">
         <div class="profile_area text-center" style="border-radius:50%; background:#dedede; height: 100px;
         width: 100px;display:table;margin: auto;">
-        <i class="glyphicon glyphicon-plus" style="display: table-cell;  vertical-align: middle;  font-size: 40px; color: #39bbcf;" ng-click="doctor_add_open()"></i>
+        <i class="glyphicon glyphicon-plus" style="display: table-cell;  vertical-align: middle;  font-size: 20px; color: #39bbcf;" ng-click="doctor_add_open()"></i>
       </div>
       <div style="margin-top:5px; font-size:12px;" class="text-center">
         <span>Add doctor</span>
@@ -137,7 +137,7 @@
           top: 0;
           left: 0;
           width: 100px;"/>
-          <i class="glyphicon glyphicon-plus" style="display: table-cell;  vertical-align: middle;  font-size: 40px; color: #39bbcf;" ng-click="addProfile()"></i>
+          <i class="glyphicon glyphicon-plus" style="display: table-cell;  vertical-align: middle;  font-size: 20px; color: #39bbcf;" ng-click="addProfile()"></i>
         </div>
       </div>
       <div class="media-body" style="padding: 20px 10px;">
@@ -145,13 +145,13 @@
         >
         <input class="embedded_input"  type="text" id="d_name"  placeholder="DOCTOR NAME" ng-model="doctor_info.d_name">
       </div>
-      <div style="display:inline-block; margin-left:10px;"  ng-click="edit('d_name')"><i class="glyphicon glyphicon-pencil"></i></div>
+      <div style="display:inline-block; margin-right:10px; float:right;"  ng-click="edit('d_name')"><i class="glyphicon glyphicon-pencil"></i></div>
 
 
-      <div style="font-size: 9px; color:white; margin-top:10px;">
+      <div style="font-size: 12px; color:white; margin-top:10px;margin-right:10px;">
         <textarea class="embedded_input"  type="text" id="d_description"  placeholder="DOCTOR DESCRIPTION" style="width: 80%;
     height: 100px;"  ng-model="doctor_info.d_description"></textarea>
-        <div style="display:inline-block; margin-left:10px;"  ng-click="edit('d_description')"><i class="glyphicon glyphicon-pencil"></i></div>
+
       </div>
 
 
@@ -166,6 +166,8 @@
 </div>
 </div>
 </div>
+
+<div class="search-result-footer"></div>
 
 <div class="row text-center" style="margin-bottom:50px;">
   <button class=" write-review-button" style="width:50px;height:50px; border-radius:50%;" type="button" ng-click="addHospital(hospital_data)">ADD</button>
