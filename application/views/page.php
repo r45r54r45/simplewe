@@ -137,6 +137,7 @@
         </div>
 
 
+
         <div class="row animate-show" ng-show="doctor_info" style="
         <?if($login==false){?>
           margin-bottom:30px;
@@ -207,6 +208,7 @@
               </div>
             </div>
           </div>
+          <div class="search-result-footer"></div>
           <?if($login=="true"){?>
             <div class="row" ng-show="doctor_info">
               <div class="col-xs-12">
