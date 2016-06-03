@@ -489,7 +489,7 @@ nav{
 }
 
 
-.animate-show.ng-hide-add, .animate-show.ng-hide-remove {
+.animate-show {
   transition: all ease 0.5s;
 }
 
