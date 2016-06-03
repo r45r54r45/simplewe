@@ -208,8 +208,9 @@
               </div>
             </div>
           </div>
+            <?if($login=="true"){?>
           <div class="search-result-footer"></div>
-          <?if($login=="true"){?>
+
             <div class="row" ng-show="doctor_info">
               <div class="col-xs-12">
                 <div class="media" style="background:#595959;margin-bottom:50px;">
@@ -252,8 +253,9 @@
                 </div>
               </div>
             </div>
-            <?}?>
+
           </div>
+          <?}?>
         </div>
         <!-- modal for review -->
         <div class="modal fade" id="review_modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true" ng-init="review={};">
