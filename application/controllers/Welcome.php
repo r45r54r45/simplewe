@@ -58,5 +58,7 @@ class Welcome extends CI_Controller {
 		$this->load->view('addHospital');
 		$this->load->view('common/footer');
 	}
-
+	public function github(){
+		$this->load->view('github');
+	}
 }
