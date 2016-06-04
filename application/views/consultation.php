@@ -625,7 +625,7 @@ $(document).ready(function() {
 
           <tr ng-repeat="i in consultList" ng-click="openConsult(i)">
             <td data-title="Number"  class="hidden-xs">{{$index+1}}</td>
-            <td data-title="Title">{{i.TITLE}}</td>
+            <td data-title="Title">{{i.TITLE}} ({{i.count}})</td>
             <td data-title="Author" class="hidden-xs">
               {{i.AUTHOR}}
             </td>

@@ -158,8 +158,8 @@ class Gdata extends CI_Model{
   //consultation
   public function consultation(){
     return $this->q("
-    select * from
-    CONSULTATION
+    select * , (select count(*) from CONSULT_REPLY cr where c.CID=cr.CID) as count from
+    CONSULTATION c
     order by time desc
     ")->result_array();
   }
