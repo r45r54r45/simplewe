@@ -49,8 +49,13 @@ class Welcome extends CI_Controller {
 		$this->load->view('page',$data);
 		$this->load->view('common/footer');
 	}
-	public function consultation(){
-		$this->load->view('consultation');
+	public function consultation($num=-1){
+		if($num==-1){
+			$this->load->view('consultation');
+		}else{
+			$data['consult_num']=$num;
+			$this->load->view('private_consult',$data);
+		}
 		$this->load->view('common/footer');
 	}
 	public function addHospital()
@@ -61,4 +66,6 @@ class Welcome extends CI_Controller {
 	public function github(){
 		$this->load->view('github');
 	}
+
+
 }
