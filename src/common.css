@@ -490,7 +490,7 @@ nav{
 
 
 .animate-show {
-  transition: all ease 0.5s;
+  transition: all ease 1s;
   max-height:800px;
 }
 
