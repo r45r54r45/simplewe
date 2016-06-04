@@ -9,10 +9,14 @@ class Data extends CI_Controller {
 		$this->load->library('session');
 		$this->load->helper('url');
 	}
-
+// hospital page
 	public function getHosp($hid){
 		$this->load->model('gdata');
 		echo json_encode($this->gdata->getHosp($hid));
+	}
+	public function getGallery($hid){
+		$this->load->model('gdata');
+		echo json_encode($this->gdata->getGallery($hid));
 	}
 	public function getRatingAllDoctor($hid){
 		$this->load->model('gdata');
@@ -153,6 +157,20 @@ class Data extends CI_Controller {
 		$this->load->model('gdata');
 		$this->gdata->writeConsult($req);
 	}
+	public function getConsult($cid){
+		$this->load->model('gdata');
+		 echo json_encode($this->gdata->getConsult($cid));
+	}
+	public function getConsultReply($cid){
+		$this->load->model('gdata');
+		 echo json_encode($this->gdata->getConsultReply($cid));
+	}
+	public function writeConsultReply(){
+		$postdata = file_get_contents("php://input");
+		$req = json_decode($postdata);
+		$this->load->model('gdata');
+		$this->gdata->writeConsultReply($req);
+	}
 
 	//add hospital
 	public function addHospital(){
@@ -172,6 +190,8 @@ class Data extends CI_Controller {
 		$this->load->model('gdata');
 		echo json_encode($this->gdata->sendReview($req));
 	}
+
+
 
 	//helper function
 	private function encrypt_decrypt($action, $string) {

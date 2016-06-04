@@ -53,6 +53,14 @@ class Welcome extends CI_Controller {
 		if($num==-1){
 			$this->load->view('consultation');
 		}else{
+			$this->load->model('gdata');
+			$re=$this->gdata->getConsult($num);
+			if($this->session->userdata('uid')!=1){
+				if($re->PASSWORD!=urldecode($_GET['pw'])){
+					$this->load->view('consultation');
+					return;
+				}
+			}
 			$data['consult_num']=$num;
 			$this->load->view('private_consult',$data);
 		}

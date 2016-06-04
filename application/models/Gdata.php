@@ -7,6 +7,9 @@ class Gdata extends CI_Model{
   }
 
   //hospital page
+  public function getGallery($hid){
+    return $this->q("select * from HOSPITAL_IMAGE where HID='$hid'")->result_array();
+  }
   public function getHosp($hid){
     return $this->q("select * from HOSPITAL where HID='$hid'")->row();
     //TODO hospital rating
@@ -134,7 +137,7 @@ class Gdata extends CI_Model{
     FROM RATING_H r
     WHERE r.HID = h.HID
     ) AS REVIEW, h.HID AS HID,
-    h.IMAGE as IMAGE 
+    h.IMAGE as IMAGE
     FROM HOSPITAL h
     join DOCTOR d on d.HID=h.HID
     WHERE h.NAME LIKE  '%$name%'
@@ -159,6 +162,30 @@ class Gdata extends CI_Model{
     CONSULTATION
     order by time desc
     ")->result_array();
+  }
+  public function getConsult($cid){
+    return $this->q("
+    select * from
+    CONSULTATION c
+    where c.CID='$cid'
+    ")->row();
+  }
+  public function getConsultReply($cid){
+    return $this->q("
+    select * from
+    CONSULT_REPLY c
+    where c.CID='$cid'
+    order by TIME
+    ")->result_array();
+  }
+  public function writeConsultReply($req){
+    return $this->q("
+    insert into
+    CONSULT_REPLY
+    (CID,BODY,AUTHOR)
+    values
+    ('$req->CID','$req->BODY','$req->AUTHOR')
+    ");
   }
   public function writeConsult($req){
     return $this->q("

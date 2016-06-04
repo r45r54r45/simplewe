@@ -17,20 +17,8 @@
           <div id="ninja-slider" style="background: #494949;">
             <div class="slider-inner">
               <ul>
-                <li>
-                  <img class="ns-img" src="/src/images/image-slider-1.jpg" />
-                </li>
-                <li>
-                  <img class="ns-img" src="/src/images/image-slider-2.jpg" />
-                </li>
-                <li>
-                  <img class="ns-img" src="/src/images/image-slider-3.jpg" />
-                </li>
-                <li>
-                  <img class="ns-img" src="/src/images/image-slider-4.jpg" />
-                </li>
-                <li>
-                  <img class="ns-img" src="/src/images/image-slider-5.jpg" />
+                <li ng-repeat="g in galls">
+                  <img class="ns-img" ng-src="{{g.IMAGE}}" />
                 </li>
               </ul>
               <div class="fs-icon" title="Expand/Close"></div>
@@ -107,11 +95,24 @@
                   </div>
                 </div>
                 <div class="col-xs-6 blue-back height-100 center-table" style="padding:0px 0 0 0px;">
-                  <div class="center-cell" >
-                    <div class="text-center margin:auto auto;" style="font-weight:600; font-size:15px; color:white;">PROMOTION</div>
+                  <div class="center-cell" ng-click="promotion()">
+                    <div class="text-center margin:auto auto;" style="font-weight:600; font-size:15px; color:white;" >PROMOTION</div>
                   </div>
                 </div>
               </div>
+
+
+              <div class="modal fade" id="promotion_modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-body" style="padding: 30px;">
+                      promotion image
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
             </div>
           </div>
         </div>
@@ -149,7 +150,7 @@
                 <i class="glyphicon glyphicon-remove" style="font-size: 20px; cursor:pointer;" ng-click="closeDoctor()"></i>
               </div>
               <div class="media">
-                <div class="media-left" style="padding: 30px 20px;">
+                <div class="media-left" style="padding: 30px 20px;min-width: 135px;">
                   <img class="img-circle img img-responsive" ng-src="{{doctor_area.PROFILE}}"/>
                   <div class="text-center" style="font-weight:600; font-size:45px; color:white;">{{doctor_area.R_A}}</div>
                   <div class="text-center margin:auto auto;" style="margin-top:-10px;font-weight:600; font-size:15px; color:white;">Doctor Rating</div>
@@ -209,7 +210,6 @@
             </div>
           </div>
             <?if($login=="true"){?>
-          <div class="search-result-footer"></div>
 
             <div class="row" ng-show="doctor_info">
               <div class="col-xs-12">
@@ -234,7 +234,7 @@
                         </div>
                       </div>
                       <div class="media-body" style="padding: 10px 10px; vertical-align: middle;">
-                        <div style="font-weight:400; color:#9F9F9F; font-size:8px;">{{i.TIME}}</div>
+                        <div style="font-weight:400; color:#9F9F9F; font-size:8px;">{{i.TIME|Cdate}}</div>
                         <div style="font-weight:300; color:white; font-size:10px;margin-top:5px;">{{i.BODY}}</div>
                       </div>
                     </div>

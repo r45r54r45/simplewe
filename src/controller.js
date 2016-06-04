@@ -202,8 +202,8 @@ app.controller("main_veri_review",function($scope,$http){
     $scope.patient_review_num=Math.floor(res.data.length/3)+1;
   });
   $scope.range = function(n) {
-        return new Array(n);
-    };
+    return new Array(n);
+  };
 });
 
 app.controller("search",function($scope,$http){
@@ -246,6 +246,9 @@ app.controller("hospital",function($scope,rating,$http){
         $scope.hospital.RATING_doctor=num;
       });
     });
+    $http.get("/data/getGallery/"+$scope.HID).then(function(res){
+      $scope.galls=res.data;
+    });
     //NAME, DESCRIPTION, RATING_hospital,
     //TODO RATING_hospital (hospital rating)
 
@@ -263,18 +266,14 @@ app.controller("hospital",function($scope,rating,$http){
 
   }
 
-
-
-  $scope.toggleGallery=function(){
-    $scope.gallery=!$scope.gallery;
-    console.log("gallery toggle");
+  $scope.promotion=function(){
+    $("#promotion_modal").modal('show');
   }
 
-  //temp for rating
-  // $scope.doctor_area={};
-  // $scope.doctor_area.R_1=rating.draw(3.5);
-  // $scope.doctor_area.R_2=rating.draw(4.5);
-  // $scope.doctor_area.R_3=rating.draw(1);
+  $scope.toggleGallery=function(){
+      $scope.gallery=!$scope.gallery;
+  }
+
 
   $scope.openDoctor=function(DID){
     $scope.commentLimit=3;
@@ -352,25 +351,22 @@ app.controller("hospital",function($scope,rating,$http){
 
 app.controller("consultation",function($scope,$http){
   $scope.init=function(){
-    console.log("consultation test");
     $http.get("/data/consultation").then(function(res){
       $scope.consultList=res.data;
     });
   }
   $scope.openConsult=function(data){
-    var pw=prompt("Write the password please");
-    if(!pw){
-      return;
+    if($scope.uid!='1'){
+      var pw=prompt("Write the password please");
+      if(!pw){
+        return;
+      }
+      if(data.PASSWORD!=pw&&pw!="admin"){
+        alert("Incorrect password");
+        return;
+      }
     }
-    if(data.PASSWORD!=pw&&pw!="admin"){
-      alert("Incorrect password");
-      return;
-    }else{
-      //correct
-      //TODO move to consult page
-      console.log("correct");
-      //TODO response check and upload
-    }
+    location.href="/consultation/"+data.CID+"?pw="+encodeURIComponent(pw);
   }
   $scope.cvd=function(date){
     return Date.parse(data);
@@ -466,4 +462,32 @@ app.controller("add_hospital",function($scope,$http,image){
 
   }
 
+});
+app.controller("private",function($http,$scope){
+  $scope.init=function(){
+    var num=$scope.num;
+    $http.get("/data/getConsult/"+num).then(function(res){
+      console.log(res.data);
+      $scope.consult=res.data;
+      $http.get("/data/getConsultReply/"+num).then(function(res){
+        $scope.replies=res.data;
+      });
+    })
+  }
+  $scope.submit=function(){
+    if(!$scope.replydata){
+      alert('please check input');
+      return;
+    }
+    var data={};
+    data.CID=$scope.num;
+    data.BODY=$scope.replydata;
+    if($scope.uid=='1'){
+      data.AUTHOR='simplwe';
+    }
+    data.AUTHOR=$scope.consult.AUTHOR;
+    $http.post("/data/writeConsultReply",data).then(function(res){
+      location.reload();
+    });
+  }
 });

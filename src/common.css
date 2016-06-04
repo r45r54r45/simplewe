@@ -616,3 +616,25 @@ have a fixed width and height (but it's not required).
 textarea{
   resize:none;
 }
+.consult-header{
+  margin-right:15px;
+  font-size:10px;
+}
+.down_line{
+  border-bottom:1px solid #f5f5f5;
+}
+.top_line{
+  border-top:1px solid #f5f5f5;
+}
+.padding-20{
+  padding:20px;
+}
+.padding-10{
+  padding:10px;
+}
+.author_consult_comment{
+
+}
+.author_consult_body{
+  margin-top:10px;
+}

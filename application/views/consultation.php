@@ -609,7 +609,7 @@ $(document).ready(function() {
   }
 }
 </style>
-<div class="container" ng-controller="consultation" ng-init="init()">
+<div class="container" ng-controller="consultation" ng-init="uid='<?=$uid?>';init()">
   <div class="row">
     <div class="col-xs-12 ">
       <table id="table" class="table table-hover  table-mc-light-blue" >
