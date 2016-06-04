@@ -491,11 +491,12 @@ nav{
 
 .animate-show {
   transition: all ease 0.5s;
+  max-height:800px;
 }
 
 .animate-show.ng-hide {
   opacity: 0;
-  height:0px;
+  max-height:0px;
 }
 
 .embedded_input{
