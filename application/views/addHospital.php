@@ -133,7 +133,7 @@
           <div class="profile_area text-center" style="border-radius:50%; background:#dedede; height: 100px;
           width: 100px;display:table; position: relative;
           overflow: hidden">
-          <img ng-src="{{doctor_info.pic}}" style="    position: absolute;
+          <img id="add_doctor_image_temp" ng-src="{{doctor_info.pic}}" style="    position: absolute;
           top: 0;
           left: 0;
           width: 100px;"/>
@@ -167,7 +167,6 @@
 </div>
 </div>
 
-<div class="search-result-footer"></div>
 
 <div class="row text-center" style="margin-bottom:50px;">
   <button class=" write-review-button" style="width:50px;height:50px; border-radius:50%;" type="button" ng-click="addHospital(hospital_data)">ADD</button>

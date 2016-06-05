@@ -393,6 +393,7 @@ app.controller("add_hospital",function($scope,$http,image){
   }
   $scope.doctor_add_open=function(){
     $scope.doctor_info={};
+    $("#add_doctor_image_temp").attr("src",'');
     $scope.add_doctor=true;
   }
   //doctor profile image
@@ -403,19 +404,13 @@ app.controller("add_hospital",function($scope,$http,image){
   $scope.profileSelect=function(id){
     // console.log(document.getElementById(id));
     $("#doctor_pic_modal").modal('hide');
-    $scope.$apply();
-    // image.toDataURI(document.getElementById(id),function(data){
-    //   // $scope.doctor_info.pic=data;
-    //   // // console.log(data); //returned data for image
-    //   // console.log($scope.doctor_info);
-    //
-    // });
+    $scope.doctor_info.pic=$scope.myCroppedImage;
   }
 
   $scope.myImage='';
   $scope.myCroppedImage='';
   $scope.logg=function(){
-    $scope.doctor_info.pic=$scope.myCroppedImage;
+    // $scope.doctor_info.pic=$scope.myCroppedImage;
   }
   var handleFileSelect=function(evt) {
     var file=evt.currentTarget.files[0];
@@ -437,8 +432,12 @@ app.controller("add_hospital",function($scope,$http,image){
       //new doctor info checked
       $scope.hospital_data.doctor.push(data);
       // $scope.doctor_info.pic="";
-      //TODO profile image on adding doctor still remaining
+      // profile image on adding doctor still remaining
       $scope.doctor_info={};
+      $scope.doctor_info.pic='';
+      $scope.myImage='';
+      $scope.myCroppedImage='';
+      $("#fileInput").val('');
       $scope.add_doctor=false;
       console.log($scope.hospital_data);
     }else{
@@ -470,15 +469,11 @@ app.controller("add_hospital",function($scope,$http,image){
         data.doctor[i].d_description=data.doctor[i].d_description.trim();
       }
       //post data and save data respectatively
-      alert('Uploading data... Do not exit this page until noticed. Click Okay and WAIT!');
+      // alert('Uploading data... Do not exit this page until noticed. Click Okay and WAIT!');
       $http.post("/data/addHospital",data).then(function(res){
-        console.log(res.data);
-        if(res.data.result=="true"){
-          alert('upload complete');
-          location.href="/hospital";
-        }else{
-          alert('upload failed. please alert admin');
-        }
+        console.log(res);
+        alert('upload complete');
+        location.href="/search";
       });
     }
 
