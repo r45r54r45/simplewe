@@ -1,4 +1,4 @@
-var app = angular.module("app",["ngRoute","ngSanitize","ngAnimate"]);
+var app = angular.module("app",["ngRoute","ngSanitize","ngAnimate",'ngImgCrop']);
 // ["ngCookies",]
 app.service('rating', function(){
   this.draw= function(num){

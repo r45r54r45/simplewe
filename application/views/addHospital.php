@@ -24,103 +24,103 @@
               <div class="">
                 <div style="display:inline-block; width:100%"  class="search-result-body">
                   <div style="display: inline-block;
-    width: 90%;">
+                  width: 90%;">
                   <textarea  class="embedded_input"  type="text" id="hos_description"
                   style="width: 100%;height: 100px;resize:none;"
                   placeholder="HOSPITAL DESCRIPTION" ng-model="hospital_data.hos_description"></textarea>
                 </div>
 
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row" >
+      <div class="col-xs-12 col-sm-6" style="margin-bottom:20px;">
+        <div class="relative" style="padding-top:50%; overflow:hidden;">
+          <div class="row absolute width-100 height-100" style="left: 15px;top:0; overflow:hidden;">
+            <div class="col-xs-6 grey-back height-100" style="padding:15px 0 0 15px;">
+              <div class="">
+                <div class="text-center" style="font-weight:600; font-size:15px; color:white;">POSITION</div>
+
+              </div>
+            </div>
+            <div class="col-xs-6 grey-back height-100" style="padding:15px 10px 0 0px;">
+              <div class="">
+                <div class="text-center" style="font-weight:600; font-size:15px; color:white;">
+                  <input class="form-control embedded_input"
+                  type="number" placeholder="position"  ng-model="hospital_data.ordering">
+
+
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="row" >
-        <div class="col-xs-12 col-sm-6" style="margin-bottom:20px;">
-          <div class="relative" style="padding-top:50%; overflow:hidden;">
-            <div class="row absolute width-100 height-100" style="left: 15px;top:0; overflow:hidden;">
-              <div class="col-xs-6 grey-back height-100" style="padding:15px 0 0 15px;">
-                <div class="">
-                  <div class="text-center" style="font-weight:600; font-size:15px; color:white;">POSITION</div>
-
-                </div>
-              </div>
-              <div class="col-xs-6 grey-back height-100" style="padding:15px 10px 0 0px;">
-                <div class="">
-                  <div class="text-center" style="font-weight:600; font-size:15px; color:white;">
-                    <input class="form-control embedded_input"
-                    type="number" placeholder="position"  ng-model="hospital_data.ordering">
-
-
-                  </div>
-                </div>
-              </div>
+      <div class="col-xs-12 col-sm-6" style="margin-bottom:20px;">
+        <div class="relative" style="padding-top:50%; overflow:hidden;">
+          <div class="row absolute width-100 height-100" style="left: 15px;top:0; overflow:hidden;">
+            <div class="col-xs-6 grey-back height-100 text-center relative" style="padding:0;display:table; text-align:center" >
+              <div class="absolute" style="top:15px; left: 50%;
+              margin-left: -32px; font-weight:600; font-size:15px; color:white;
+              ">GALLERY</div>
+              <i class="glyphicon glyphicon-plus" style="display: table-cell;  vertical-align: middle;  font-size: 20px; color: white;"></i>
+            </div>
+            <div class="col-xs-6 blue-back height-100 text-center relative" style="padding:0px 0 0 0px;display:table; text-align:center">
+              <div class="absolute" style="top:15px; left: 50%;
+              margin-left: -46px; font-weight:600; font-size:15px; color:white;
+              ">PROMOTION</div>
+              <i class="glyphicon glyphicon-plus" style="display: table-cell;  vertical-align: middle;  font-size: 20px; color: white;" ng-click="addPromotion()"></i>
             </div>
           </div>
         </div>
-        <div class="col-xs-12 col-sm-6" style="margin-bottom:20px;">
-          <div class="relative" style="padding-top:50%; overflow:hidden;">
-            <div class="row absolute width-100 height-100" style="left: 15px;top:0; overflow:hidden;">
-              <div class="col-xs-6 grey-back height-100 text-center relative" style="padding:0;display:table; text-align:center" >
-                <div class="absolute" style="top:15px; left: 50%;
-                margin-left: -32px; font-weight:600; font-size:15px; color:white;
-                ">GALLERY</div>
-                <i class="glyphicon glyphicon-plus" style="display: table-cell;  vertical-align: middle;  font-size: 20px; color: white;"></i>
-              </div>
-              <div class="col-xs-6 blue-back height-100 text-center relative" style="padding:0px 0 0 0px;display:table; text-align:center">
-                <div class="absolute" style="top:15px; left: 50%;
-                margin-left: -46px; font-weight:600; font-size:15px; color:white;
-                ">PROMOTION</div>
-                <i class="glyphicon glyphicon-plus" style="display: table-cell;  vertical-align: middle;  font-size: 20px; color: white;" ng-click="addPromotion()"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-        <div class="col-xs-12 col-sm-3" style="margin-bottom:20px;" ng-repeat="i in promotion_data">
-          <div class="relative blue-back" style="padding-top:100%; overflow:hidden;">
-            <!-- <div class="col-xs-6 height-100 text-center relative" style="padding:0;display:table; text-align:center" >
-            <i class="glyphicon glyphicon-plus" style="display: table-cell;  vertical-align: middle;  font-size: 40px; color: white;"></i>
-          </div> -->
-        </div>
       </div>
 
 
-    </div>
-    <div class="row page-title" style="margin-top:-10px;">
-      <div class="col-xs-12 text-center">
-        <span>Add Doctors</span>
-      </div>
-    </div>
-    <div class="row" style="padding: 0 50px; margin-bottom:20px;">
-
-      <!-- add doctor -->
-      <div class="col-xs-6 col-sm-3" style="margin-bottom: 15px;">
-        <div class="profile_area text-center" style="border-radius:50%; background:#dedede; height: 100px;
-        width: 100px;display:table;margin: auto;">
-        <i class="glyphicon glyphicon-plus" style="display: table-cell;  vertical-align: middle;  font-size: 20px; color: #39bbcf;" ng-click="doctor_add_open()"></i>
-      </div>
-      <div style="margin-top:5px; font-size:12px;" class="text-center">
-        <span>Add doctor</span>
+      <div class="col-xs-12 col-sm-3" style="margin-bottom:20px;" ng-repeat="i in promotion_data">
+        <div class="relative blue-back" style="padding-top:100%; overflow:hidden;">
+          <!-- <div class="col-xs-6 height-100 text-center relative" style="padding:0;display:table; text-align:center" >
+          <i class="glyphicon glyphicon-plus" style="display: table-cell;  vertical-align: middle;  font-size: 40px; color: white;"></i>
+        </div> -->
       </div>
     </div>
 
-    <!-- added doctor -->
-    <div class="col-xs-6 col-sm-3" ng-repeat="i in hospital_data.doctor" style="margin-bottom: 15px;">
-      <div class="profile_area text-center" style="border-radius:50%; height: 100px;
-      width: 100px;position: relative;
-      overflow: hidden;">
-      <img ng-src="{{i.pic}}" class="img img-circle" style="position: absolute;
-      left: 0;
-      top: 0;
-      width: 100px;"/>
-    </div>
-    <div style="margin-top:5px; font-size:12px;" class="text-center">
-      <span>{{i.d_name}}</span>
+
+  </div>
+  <div class="row page-title" style="margin-top:-10px;">
+    <div class="col-xs-12 text-center">
+      <span>Add Doctors</span>
     </div>
   </div>
+  <div class="row" style="padding: 0 50px; margin-bottom:20px;">
+
+    <!-- add doctor -->
+    <div class="col-xs-6 col-sm-3" style="margin-bottom: 15px;">
+      <div class="profile_area text-center" style="border-radius:50%; background:#dedede; height: 100px;
+      width: 100px;display:table;margin: auto;">
+      <i class="glyphicon glyphicon-plus" style="display: table-cell;  vertical-align: middle;  font-size: 20px; color: #39bbcf;" ng-click="doctor_add_open()"></i>
+    </div>
+    <div style="margin-top:5px; font-size:12px;" class="text-center">
+      <span>Add doctor</span>
+    </div>
+  </div>
+
+  <!-- added doctor -->
+  <div class="col-xs-6 col-sm-3" ng-repeat="i in hospital_data.doctor" style="margin-bottom: 15px;">
+    <div class="profile_area text-center" style="border-radius:50%; height: 100px;
+    width: 100px;position: relative;
+    overflow: hidden;">
+    <img ng-src="{{i.pic}}" class="img img-circle" style="position: absolute;
+    left: 0;
+    top: 0;
+    width: 100px;"/>
+  </div>
+  <div style="margin-top:5px; font-size:12px;" class="text-center">
+    <span>{{i.d_name}}</span>
+  </div>
+</div>
 
 </div>
 
@@ -150,7 +150,7 @@
 
       <div style="font-size: 12px; color:white; margin-top:10px;margin-right:10px;">
         <textarea class="embedded_input"  type="text" id="d_description"  placeholder="DOCTOR DESCRIPTION" style="width: 80%;
-    height: 100px;"  ng-model="doctor_info.d_description"></textarea>
+        height: 100px;"  ng-model="doctor_info.d_description"></textarea>
 
       </div>
 
@@ -179,8 +179,11 @@
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class="modal-body" style="text-align: center;padding: 20px 10px;">
-        <input class="form-control" type="file" id="doctor_pic_id">
-        <button class=" write-review-button" style="margin-top:10px;" type="button" ng-click="profileSelect('doctor_pic_id')">Select File</button>
+        <input class="form-control" type="file" id="fileInput">
+        <div class="cropArea">
+          <img-crop image="myImage" result-image="myCroppedImage" on-change="logg()"></img-crop>
+        </div>
+        <button class=" write-review-button" style="margin-top:10px;" type="button" ng-click="profileSelect('fileInput')">Select File</button>
       </div>
     </div>
   </div>

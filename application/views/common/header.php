@@ -26,6 +26,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-route.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-sanitize.min.js" charset="utf-8"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-animate.min.js"></script>
+  <script src="/src/ng-img-crop.js"></script>
+<link rel="stylesheet" type="text/css" href="/src/ng-img-crop.scss">
   <script src="/src/app.js" charset="utf-8"></script>
   <script src="/src/controller.js" charset="utf-8"></script>
   <script src="/src/ninja-slider.js" charset="utf-8"></script>

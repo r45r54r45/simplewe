@@ -271,7 +271,7 @@ app.controller("hospital",function($scope,rating,$http){
   }
 
   $scope.toggleGallery=function(){
-      $scope.gallery=!$scope.gallery;
+    $scope.gallery=!$scope.gallery;
   }
 
 
@@ -400,15 +400,36 @@ app.controller("add_hospital",function($scope,$http,image){
     $("#doctor_pic_modal").modal('show');
   }
   $scope.profileSelect=function(id){
-    console.log(document.getElementById(id));
-    image.toDataURI(document.getElementById(id),function(data){
-      $scope.doctor_info.pic=data;
-      // console.log(data); //returned data for image
-      console.log($scope.doctor_info);
-      $("#doctor_pic_modal").modal('hide');
-      $scope.$apply();
-    });
+    // console.log(document.getElementById(id));
+    $("#doctor_pic_modal").modal('hide');
+    $scope.$apply();
+    // image.toDataURI(document.getElementById(id),function(data){
+    //   // $scope.doctor_info.pic=data;
+    //   // // console.log(data); //returned data for image
+    //   // console.log($scope.doctor_info);
+    //
+    // });
   }
+
+  $scope.myImage='';
+  $scope.myCroppedImage='';
+  $scope.logg=function(){
+    $scope.doctor_info.pic=$scope.myCroppedImage;
+  }
+  var handleFileSelect=function(evt) {
+    var file=evt.currentTarget.files[0];
+    var reader = new FileReader();
+    reader.onload = function (evt) {
+      $scope.$apply(function($scope){
+        $scope.myImage=evt.target.result;
+      });
+    };
+    reader.readAsDataURL(file);
+  };
+  angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
+
+
+
   $scope.addDoctor=function(){
     var data=$scope.doctor_info;
     if(data.d_name&&data.d_description&&data.pic){
