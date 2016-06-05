@@ -383,6 +383,7 @@ app.controller("add_hospital",function($scope,$http,image){
   $scope.hospital_data={};
   $scope.hospital_data.doctor=[];
   $scope.promotion_data=[];
+  $scope.doctor_info={};
   $scope.edit=function(target){
     $("#"+target).focus();
   }
