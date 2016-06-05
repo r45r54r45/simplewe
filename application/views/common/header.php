@@ -251,4 +251,4 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div class="vertical-text consult-text">CONSULT</div>
   </div>
 
-  <div class="" style="background-color:white;padding-bottom:50px;">
+  <div class="" style="background-color:white;">
