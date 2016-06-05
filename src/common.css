@@ -178,6 +178,7 @@ nav{
   height:100%;
   padding:7px;
   display: table;
+  cursor:pointer;
 }
 
 .arrow-right {
@@ -642,4 +643,8 @@ textarea{
   background: #E4E4E4;
   overflow: hidden;
   height:350px;
+}
+
+.hand{
+  cursor: pointer;
 }

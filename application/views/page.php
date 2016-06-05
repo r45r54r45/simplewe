@@ -89,12 +89,12 @@
           <div class="col-xs-12 col-sm-6" style="margin-bottom:20px;">
             <div class="relative" style="padding-top:50%; overflow:hidden;">
               <div class="row absolute width-100 height-100" style="left: 15px;top:0; overflow:hidden;">
-                <div class="col-xs-6 grey-back height-100 center-table" style="padding:0;" ng-click="toggleGallery()">
+                <div class="col-xs-6 grey-back height-100 center-table hand" style="padding:0;" ng-click="toggleGallery()">
                   <div class="center-cell">
                     <div class="text-center" style="font-weight:600; font-size:15px; color:white;" >GALLERY</div>
                   </div>
                 </div>
-                <div class="col-xs-6 blue-back height-100 center-table" style="padding:0px 0 0 0px;">
+                <div class="col-xs-6 blue-back height-100 center-table hand" style="padding:0px 0 0 0px;">
                   <div class="center-cell" ng-click="promotion()">
                     <div class="text-center margin:auto auto;" style="font-weight:600; font-size:15px; color:white;" >PROMOTION</div>
                   </div>
@@ -124,7 +124,7 @@
         <div class="row" style="padding: 0 50px; margin-bottom:20px;">
 
           <div class="col-xs-6 col-sm-3" ng-repeat="i in doctor" ng-click="openDoctor(i.DID)">
-            <div class="profile_area">
+            <div class="profile_area hand">
               <img class="img-circle img img-responsive" ng-src="{{i.PROFILE}}"/>
             </div>
             <div style="margin-top:5px; font-size:12px;" class="text-center">
