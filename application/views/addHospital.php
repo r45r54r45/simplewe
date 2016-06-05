@@ -111,7 +111,7 @@
   <div class="col-xs-6 col-sm-3" ng-repeat="i in hospital_data.doctor" style="margin-bottom: 15px;">
     <div class="profile_area text-center" style="border-radius:50%; height: 100px;
     width: 100px;position: relative;
-    overflow: hidden;">
+    overflow: hidden;margin:auto;">
     <img ng-src="{{i.pic}}" class="img img-circle" style="position: absolute;
     left: 0;
     top: 0;
