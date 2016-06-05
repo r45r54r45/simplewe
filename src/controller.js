@@ -484,8 +484,9 @@ app.controller("private",function($http,$scope){
     data.BODY=$scope.replydata;
     if($scope.uid=='1'){
       data.AUTHOR='simplwe';
+    }else{
+      data.AUTHOR=$scope.consult.AUTHOR;
     }
-    data.AUTHOR=$scope.consult.AUTHOR;
     $http.post("/data/writeConsultReply",data).then(function(res){
       location.reload();
     });
