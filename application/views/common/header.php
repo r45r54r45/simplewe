@@ -66,9 +66,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <li><a href="/search">HOSPITAL</a></li>
           <li><a href="/consultation">CONSULTATION</a></li>
           <? if(!$login){?>
-          <li><a onclick="$('#login_modal').modal('show')">LOGIN</a></li>
+          <li class="hand"><a onclick="$('#login_modal').modal('show')">LOGIN</a></li>
           <?}else{?>
-          <li><a ng-click="logout()">LOGOUT</a></li>
+          <li  class="hand"><a ng-click="logout()">LOGOUT</a></li>
           <?}?>
         </ul>
       </div><!--/.nav-collapse -->
@@ -131,11 +131,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <img class="form-padding form-control-feedback" src="/src/password2.svg">
           </div>
           <div style="margin-top: -10px;">
-            <span style="font-size: 10px; color:#8a8a8a">Forgot your password? <a onclick="$('#login_modal').modal('hide');$('#reset_modal').modal('show');" style="color:#c8e7f1;">Reset Password</a></span>
+            <span style="font-size: 10px; color:#8a8a8a">Forgot your password? <a  class="hand" onclick="$('#login_modal').modal('hide');$('#reset_modal').modal('show');" style="color:#c8e7f1;">Reset Password</a></span>
           </div>
           <div class="btn btnForm btn-block"  ng-click="loginForm(login)">LOGIN</div>
           <div class="pull-right">
-            <span style="font-size: 10px; color:#8a8a8a">Don't have an account? <a onclick="$('#login_modal').modal('hide');$('#register_modal').modal('show');" style="color:#c8e7f1;">Sign Up</a></span>
+            <span style="font-size: 10px; color:#8a8a8a">Don't have an account? <a onclick="$('#login_modal').modal('hide');$('#register_modal').modal('show');" style="color:#c8e7f1;"  class="hand">Sign Up</a></span>
           </div>
           <div class="clearfix">
 
