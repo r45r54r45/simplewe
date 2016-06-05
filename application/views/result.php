@@ -51,7 +51,7 @@
         </div>
 
         <!-- load more -->
-        <div class="row animate-show" ng-show="hospital_list.length>=num_limit" ng-click="loadMore()">
+        <div class="row animate-show" ng-show="hospital_list.length>num_limit" ng-click="loadMore()">
           <div class="col-xs-12 text-center">
             <div class="review-btn-circle">Load More</div>
             <div class="review-btn-circle small-review-btn"></div>
