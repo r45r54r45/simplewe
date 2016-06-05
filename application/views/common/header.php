@@ -20,7 +20,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.js"></script>
 
   <!-- AngularJS -->
-  <script src="https://code.angularjs.org/1.4.7/angular.js"></script>
+  <script src="/bower_components/angular/angular.js"></script>
 
   <script type="text/javascript" src="https://code.angularjs.org/1.4.7/angular-cookies.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-route.js"></script>
