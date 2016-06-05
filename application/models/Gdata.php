@@ -17,7 +17,7 @@ class Gdata extends CI_Model{
   public function getRatingAllDoctor($hid){
     return $this->q("
     select (SUM(NUM1)+SUM(NUM2)+SUM(NUM3))/(COUNT(*)*3) as RATING_doctor from HOSPITAL h
-    join DOCTOR d on h.HID=d.DID
+    join DOCTOR d on h.HID=d.HID
     join RATING_D rd on rd.DID=d.DID
     where h.HID='$hid'")->row();
     //TODO hospital rating
