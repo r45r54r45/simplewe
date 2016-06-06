@@ -160,12 +160,12 @@ class Gdata extends CI_Model{
     FROM RATING_H r
     WHERE r.HID = h.HID
     ) AS REVIEW, h.HID AS HID,
-    hi.IMAGE as IMAGE
+    (select IMAGE from HOSPITAL_IMAGE hi where  hi.HID=h.HID limit 1) as IMAGE
     FROM HOSPITAL h
     join DOCTOR d on d.HID=h.HID
-    join HOSPITAL_IMAGE hi on hi.HID=h.HID
     WHERE h.NAME LIKE  '%$name%'
-    or d.MAJOR like '%$name%' limit 1
+    or d.MAJOR like '%$name%'
+    order by HID desc
     ")->result_array();
   }
 
