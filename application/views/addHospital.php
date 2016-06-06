@@ -66,25 +66,49 @@
               <div class="absolute" style="top:15px; left: 50%;
               margin-left: -32px; font-weight:600; font-size:15px; color:white;
               ">GALLERY</div>
-              <i class="glyphicon glyphicon-plus" style="display: table-cell;  vertical-align: middle;  font-size: 20px; color: white;"></i>
+              <i class="glyphicon glyphicon-plus" style="display: table-cell;  vertical-align: middle;  font-size: 20px; color: white;"  ng-click="addGallery()"></i>
             </div>
+            <!-- gallery modal start -->
+            <div class="modal fade" id="gallery_add_modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+              <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                  <div class="modal-body" style="text-align: center;padding: 20px 10px;">
+                    <input class="form-control" type="file" id="new_gallery">
+                    <button class=" write-review-button" style="margin-top:10px;" type="button" ng-click="gallerySelect('new_gallery')">Select File</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- gallery modal finish -->
             <div class="col-xs-6 blue-back height-100 text-center relative" style="padding:0px 0 0 0px;display:table; text-align:center">
               <div class="absolute" style="top:15px; left: 50%;
               margin-left: -46px; font-weight:600; font-size:15px; color:white;
               ">PROMOTION</div>
               <i class="glyphicon glyphicon-plus" style="display: table-cell;  vertical-align: middle;  font-size: 20px; color: white;" ng-click="addPromotion()"></i>
             </div>
+            <!-- promotion modal start -->
+            <div class="modal fade" id="promotion_add_modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+              <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                  <div class="modal-body" style="text-align: center;padding: 20px 10px;">
+                    <input class="form-control" type="file" id="new_promotion">
+                    <button class=" write-review-button" style="margin-top:10px;" type="button" ng-click="promotionSelect('new_promotion')">Select File</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- promotion modal finish -->
           </div>
         </div>
       </div>
 
 
-      <div class="col-xs-12 col-sm-3" style="margin-bottom:20px;" ng-repeat="i in promotion_data">
-        <div class="relative blue-back" style="padding-top:100%; overflow:hidden;">
-          <!-- <div class="col-xs-6 height-100 text-center relative" style="padding:0;display:table; text-align:center" >
-          <i class="glyphicon glyphicon-plus" style="display: table-cell;  vertical-align: middle;  font-size: 40px; color: white;"></i>
-        </div> -->
-      </div>
+      <div class="col-xs-12 col-sm-3" style="margin-bottom:20px;" ng-repeat="i in hospital_data.gallery">
+        <div class="relative blue-back" style="padding-top:100%; overflow:hidden;" back-img="{{i.image}}">
+        </div>
+
     </div>
 
 

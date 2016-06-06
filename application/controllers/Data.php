@@ -18,9 +18,17 @@ class Data extends CI_Controller {
 		$this->load->model('gdata');
 		echo json_encode($this->gdata->getGallery($hid));
 	}
+	public function getPromotion($hid){
+		$this->load->model('gdata');
+		echo json_encode($this->gdata->getPromotion($hid));
+	}
 	public function getRatingAllDoctor($hid){
 		$this->load->model('gdata');
 		echo json_encode($this->gdata->getRatingAllDoctor($hid));
+	}
+	public function getRatingAllHospital($hid){
+		$this->load->model('gdata');
+		echo json_encode($this->gdata->getRatingAllHospital($hid));
 	}
 	public function getDoctors($hid){
 		$this->load->model('gdata');
@@ -190,7 +198,12 @@ class Data extends CI_Controller {
 		$this->load->model('gdata');
 		echo json_encode($this->gdata->sendReview($req));
 	}
-
+	public function send_hospital_review(){
+		$postdata = file_get_contents("php://input");
+		$req = json_decode($postdata);
+		$this->load->model('gdata');
+		echo json_encode($this->gdata->send_hospital_review($req));
+	}
 
 
 	//helper function

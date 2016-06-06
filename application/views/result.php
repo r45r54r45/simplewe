@@ -26,7 +26,7 @@
                   <span class="search-result-title" >{{i.NAME}}</span>
                 </div>
                 <div class="">
-                  <span class="search-result-body">{{i.BODY}}
+                  <span class="search-result-body">{{i.DESCRIPTION}}
                   </span>
                 </div>
                 <div class="">

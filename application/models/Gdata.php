@@ -7,12 +7,28 @@ class Gdata extends CI_Model{
   }
 
   //hospital page
+  public function send_hospital_review($req){
+    $this->q("
+    insert into RATING_H
+    (NUM1,NUM2,NUM3,HID,UID)
+    values
+    ('$req->R1','$req->R2','$req->R3','$req->hid','$req->uid')
+    ");
+  }
   public function getGallery($hid){
     return $this->q("select * from HOSPITAL_IMAGE where HID='$hid'")->result_array();
   }
+  public function getPromotion($hid){
+    return $this->q("select * from PROMOTION where HID='$hid'")->row();
+  }
   public function getHosp($hid){
-    return $this->q("select * from HOSPITAL where HID='$hid'")->row();
-    //TODO hospital rating
+    return $this->q("
+    select *
+    from HOSPITAL h
+    join HOSPITAL_IMAGE hi on hi.HID=h.HID
+    where h.HID='$hid'
+    limit 1
+    ")->row();
   }
   public function getRatingAllDoctor($hid){
     return $this->q("
@@ -20,7 +36,12 @@ class Gdata extends CI_Model{
     join DOCTOR d on h.HID=d.HID
     join RATING_D rd on rd.DID=d.DID
     where h.HID='$hid'")->row();
-    //TODO hospital rating
+  }
+  public function getRatingAllHospital($hid){
+    return $this->q("
+    select (SUM(NUM1)+SUM(NUM2)+SUM(NUM3))/(COUNT(*)*3) as RATING from HOSPITAL h
+    join RATING_H rd on rd.HID=h.HID
+    where h.HID='$hid'")->row();
   }
   public function getDoctors($hid){
     return $this->q("
@@ -98,7 +119,9 @@ class Gdata extends CI_Model{
   }
 
   public function getAllHospital(){
-    return $this->q("select HID,NAME as name,IMAGE  from HOSPITAL order by ORDERING")->result_array();
+    return $this->q("select distinct HID,NAME as name,
+    (select IMAGE from HOSPITAL_IMAGE hi where hi.HID=h.HID limit 1) as IMAGE
+    from HOSPITAL h order by ORDERING")->result_array();
   }
 
   //nav
@@ -137,11 +160,12 @@ class Gdata extends CI_Model{
     FROM RATING_H r
     WHERE r.HID = h.HID
     ) AS REVIEW, h.HID AS HID,
-    h.IMAGE as IMAGE
+    hi.IMAGE as IMAGE
     FROM HOSPITAL h
     join DOCTOR d on d.HID=h.HID
+    join HOSPITAL_IMAGE hi on hi.HID=h.HID
     WHERE h.NAME LIKE  '%$name%'
-    or d.MAJOR like '%$name%'
+    or d.MAJOR like '%$name%' limit 1
     ")->result_array();
   }
 
@@ -200,6 +224,7 @@ class Gdata extends CI_Model{
   //add hospital
   public function addHospital($req){
     $doctor=$req->doctor;
+    $gallery=$req->gallery;
     //insert hospital first and get new hid
     // ans insert doctors respectatively
     $this->db->trans_start();
@@ -221,6 +246,23 @@ class Gdata extends CI_Model{
       (HID,NAME, DESCRIPTION, PROFILE)
       values
       ('$new_hid','$data->d_name','$data->d_description','$data->pic')
+      ");
+    }
+    for($i=0; $i<count($gallery); $i++){
+      $data=$gallery[$i];
+      $this->q("
+      insert into HOSPITAL_IMAGE
+      (HID,IMAGE)
+      values
+      ('$new_hid','$data->image')
+      ");
+    }
+    if($req->promotion!=''){
+      $this->q("
+      insert into PROMOTION
+      (HID,PROMOTION)
+      values
+      ('$new_hid','$req->promotion')
       ");
     }
     $this->db->trans_complete();

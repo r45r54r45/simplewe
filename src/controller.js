@@ -245,15 +245,12 @@ app.controller("hospital",function($scope,rating,$http){
         $scope.D_R=rating.draw(num);
         $scope.hospital.RATING_doctor=num;
       });
+      $http.get("/data/getRatingAllHospital/"+$scope.HID).then(function(res){
+        var num=rating.floor(res.data.RATING);
+        $scope.H_R=rating.draw(num);
+        $scope.hospital.RATING_hospital=num;
+      });
     });
-    $http.get("/data/getGallery/"+$scope.HID).then(function(res){
-      $scope.galls=res.data;
-    });
-    //NAME, DESCRIPTION, RATING_hospital,
-    //TODO RATING_hospital (hospital rating)
-
-    // $scope.H_R=rating.draw(data.RATING_hospital);
-
 
     //get doctor info  with hid
     $http.get("/data/getDoctors/"+$scope.HID).then(function(res){
@@ -265,12 +262,40 @@ app.controller("hospital",function($scope,rating,$http){
     //NAME, MAJOR, DID (for downward comments)
 
   }
+  $scope.write_hospital_review=function(){
+    $scope.hospital_review={};
+    $("#hospital_review_modal").modal('show');
+  }
 
-  $scope.promotion=function(){
+  $scope.send_hospital_review=function(){
+    var data=$scope.hospital_review;
+    data.hid=$scope.HID;
+    data.uid=$scope.UID;
+    $http.post("/data/send_hospital_review",data);
+      $("#hospital_review_modal").modal('hide');
+  }
+  $(".major_click2").on("click",function(data){
+    $scope.hospital_review.major=data.target.innerText;
+    var list=$(".major_click2");
+    for(var i=0; i<list.length; i++){
+      list[i].style.background="#494949";
+    }
+    data.target.style.background="#39bbcf";
+  });
+  $scope.openPromotion=function(){
+    $http.get("/data/getPromotion/"+$scope.HID).then(function(res){
+      $scope.promotion=res.data;
+    });
     $("#promotion_modal").modal('show');
   }
 
   $scope.toggleGallery=function(){
+    if($scope.gallery==false){
+      $http.get("/data/getGallery/"+$scope.HID).then(function(res){
+        $scope.galls=res.data;
+        console.log(res.data);
+      });
+    }
     $scope.gallery=!$scope.gallery;
   }
 
@@ -382,14 +407,37 @@ app.controller("consultation",function($scope,$http){
 app.controller("add_hospital",function($scope,$http,image){
   $scope.hospital_data={};
   $scope.hospital_data.doctor=[];
-  $scope.promotion_data=[];
+  $scope.hospital_data.gallery=[];
+  $scope.hospital_data.promotion='';
   $scope.doctor_info={};
   $scope.edit=function(target){
     $("#"+target).focus();
   }
   $scope.addPromotion=function(){
-    //TODO promotion data add
-    $scope.promotion_data.push(new Date());
+    $("#promotion_add_modal").modal('show');
+  }
+  $scope.promotionSelect=function(data){
+    var target=document.getElementById(data);
+    image.toDataURI(target,function(d){
+      $scope.hospital_data.promotion=d;
+      $("#new_promotion").val('');
+      $("#promotion_add_modal").modal('hide');
+    });
+  }
+
+
+  $scope.addGallery=function(){
+    $("#gallery_add_modal").modal('show');
+
+  }
+  $scope.gallerySelect=function(data){
+    var target=document.getElementById(data);
+    image.toDataURI(target,function(d){
+      $scope.hospital_data.gallery.push({image:d});
+      $scope.$apply();
+      $("#new_gallery").val('');
+      $("#gallery_add_modal").modal('hide');
+    });
   }
   $scope.doctor_add_open=function(){
     $scope.doctor_info={};
@@ -452,6 +500,9 @@ app.controller("add_hospital",function($scope,$http,image){
     console.log(data);
     if(data.doctor.length==0){
       alert('insert at least one doctor');
+      return;
+    }else if(data.gallery.length==0){
+      alert('insert at least one gallery picture');
       return;
     }else if(!data.hos_title||!data.hos_description){
       alert('fill hospital information');

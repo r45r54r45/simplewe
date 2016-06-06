@@ -10,22 +10,37 @@
   <div class="container-fluid" style="background: #494949;color: transparent;">
     <div class="container-fluid animate-show" ng-show="gallery">
       <div class="row" style="background: #494949;">
-        <div class="col-xs-12 text-center" style="padding-top:30px;">
+        <div class="col-xs-12 text-center" style="padding:30px;">
           <span style="color:white; font-size:20px; font-weight:500;">Gallery</span>
         </div>
-        <div class="col-xs-12" style="color:transparent;">
-          <div id="ninja-slider" style="background: #494949;">
-            <div class="slider-inner">
-              <ul>
-                <li ng-repeat="g in galls">
-                  <img class="ns-img" ng-src="{{g.IMAGE}}" />
-                </li>
-              </ul>
-              <div class="fs-icon" title="Expand/Close"></div>
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+          <!-- Indicators -->
+          <ol class="carousel-indicators">
+            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+          </ol>
+
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner" role="listbox">
+            <div class="item {{$index==0?'active':''}}" ng-repeat="g in galls">
+              <img ng-src="{{g.IMAGE}}">
             </div>
+
           </div>
+
+          <!-- Controls -->
+          <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
         </div>
-        <div class="col-xs-12 text-center" style="padding-bottom:30px;" ng-click="toggleGallery()">
+
+        <div class="col-xs-12 text-center" style="padding:30px;" ng-click="toggleGallery()">
           <div><i class="glyphicon glyphicon-remove" style="font-size: 15px; color:white"></i></div>
           <span style="color:white; font-size:8px; font-weight:300;">Close</span>
         </div>
@@ -41,13 +56,80 @@
         <div class="row">
           <div class="col-xs-12">
             <div class="search-result-block background-img"
-              ng-style="{'background-image': 'linear-gradient(to bottom, rgba(0,0,0,0.4) 0%,rgba(0,0,0,0.6) 100%),url(' +hospital.IMAGE + ')'}"
+            ng-style="{'background-image': 'linear-gradient(to bottom, rgba(0,0,0,0.4) 0%,rgba(0,0,0,0.6) 100%),url(' +hospital.IMAGE + ')'}"
             >
             <?if($login){?>
               <div class="write_review">
-                <button class=" write-review-button" type="button" >WRITE A REVIEW</button>
+                <button class=" write-review-button" type="button" ng-click="write_hospital_review()">WRITE A REVIEW</button>
               </div>
               <?}?>
+
+              <!-- write review start-->
+              <div class="modal fade" id="hospital_review_modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true" ng-init="hospital_review={};">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-body">
+                      <div class="row">
+                        <div class="col-xs-12" style="padding: 20px 20px 0px; font-size: 18px; font-weight: 500;">
+                          <div class="">
+                            Review for {{hospital.NAME}}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="media">
+                          <div class="media-body" style="padding: 20px;">
+                            <div>
+                              <span class="review_label major_click2">Dermatology</span>
+                              <span class=" major_click2 review_label">Eyeplasty</span>
+                              <span class="major_click2 review_label">Rhinoplasty</span>
+                              <span class="major_click2 review_label">Face</span>
+                              <span class="major_click2 review_label">Breast</span>
+                              <span class="major_click2 review_label">Body Contour</span>
+                              <span class="major_click2 review_label">Hair Implant</span>
+                              <span class="major_click2 review_label">Dentistry</span>
+                              <br/>
+                              <span class="major_click2 review_label">Medical Examination</span>
+                              <span class="major_click2 review_label">Other</span>
+                            </div>
+
+                          </div>
+                          <div class="media-right" style="padding: 10px 10px;  width: 25%;  min-width: 120px;">
+                            <div class="row" style="">
+                              <div class="col-xs-12" style="margin-bottom:10px;">
+                                <div style="font-weight:600; color:#494949; font-size:12px;">Overall Rating</div>
+                                <div >
+                                  <input type="number" name="your_awesome_parameter" id="some_id1" ng-model="hospital_review.R1" class="rating"  data-icon-lib="fa" data-active-icon="fa-circle" data-inactive-icon="fa-circle-o" />
+                                </div>
+                              </div>
+                              <div class="col-xs-12" style="margin-bottom:10px;">
+                                <div style="font-weight:600; color:#494949; font-size:12px;">Bedside Manner</div>
+                                <div >
+                                  <input type="number" name="your_awesome_parameter" id="some_id2" ng-model="hospital_review.R2" class="rating"  data-icon-lib="fa" data-active-icon="fa-circle" data-inactive-icon="fa-circle-o" />
+                                </div>
+                              </div>
+                              <div class="col-xs-12">
+                                <div style="font-weight:600; color:#494949; font-size:12px;">Expertise</div>
+                                <div >
+                                  <input type="number" name="your_awesome_parameter" id="some_id3" ng-model="hospital_review.R3" class="rating"  data-icon-lib="fa" data-active-icon="fa-circle" data-inactive-icon="fa-circle-o" />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+
+                      </div>
+                      <div class="row" style="text-align: center;">
+                        <button class=" write-review-button" type="button"  ng-click="send_hospital_review()">SUBMIT REVIEW</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- write review finish-->
+
               <div class="search-result-area col-xs-12 col-sm-5">
                 <div class="" style="margin-bottom:15px;">
                   <span class="search-result-title">{{hospital.NAME}}</span>
@@ -67,7 +149,8 @@
               <div class="row absolute width-100 height-100" style="left: 15px;top:0; overflow:hidden;">
                 <div class="col-xs-6 grey-back height-100 center-table">
                   <div class="center-cell">
-                    <div class="text-center" style="font-weight:600; font-size:15px; color:white;">HOSPITAL RATING</div>
+                    <div class="text-center" style="font-weight:600; font-size:14px; color:white;">HOSPITAL RATING</div>
+
                     <div class="text-center" style="font-weight:600; font-size:49px; color:white;">{{hospital.RATING_hospital}}</div>
                     <div class="text-center" style="    margin-top: -10px;" ng-bind-html="H_R">
 
@@ -95,7 +178,7 @@
                   </div>
                 </div>
                 <div class="col-xs-6 blue-back height-100 center-table hand" style="padding:0px 0 0 0px;">
-                  <div class="center-cell" ng-click="promotion()">
+                  <div class="center-cell" ng-click="openPromotion()">
                     <div class="text-center margin:auto auto;" style="font-weight:600; font-size:15px; color:white;" >PROMOTION</div>
                   </div>
                 </div>
@@ -106,7 +189,7 @@
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-body" style="padding: 30px;">
-                      promotion image
+                      <img class="img img-responsive" ng-src="{{promotion.PROMOTION}}">
                     </div>
                   </div>
                 </div>
@@ -209,7 +292,7 @@
               </div>
             </div>
           </div>
-            <?if($login=="true"){?>
+          <?if($login=="true"){?>
 
             <div class="row" ng-show="doctor_info">
               <div class="col-xs-12">
