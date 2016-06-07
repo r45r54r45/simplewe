@@ -81,7 +81,11 @@
             </div>
 
             <!-- gallery modal finish -->
-            <div class="col-xs-6 blue-back height-100 text-center relative" style="padding:0px 0 0 0px;display:table; text-align:center">
+            <div class="col-xs-6 blue-back height-100 text-center relative" style="padding:0px 0 0 0px;display:table; text-align:center; background-size: cover;" id="promotion_block">
+              <img ng-src="{{promotion_img_block_back}}" style="    position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%; height:100%;"/>
               <div class="absolute" style="top:15px; left: 50%;
               margin-left: -46px; font-weight:600; font-size:15px; color:white;
               ">PROMOTION</div>
@@ -107,6 +111,10 @@
 
       <div class="col-xs-12 col-sm-3" style="margin-bottom:20px;" ng-repeat="i in hospital_data.gallery">
         <div class="relative blue-back" style="padding-top:100%; overflow:hidden;" back-img="{{i.image}}">
+        </div>
+        <div class="absolute" style="top: 0.2em;
+    right: 1.4em; " ng-click="removeGallery(i)">
+          <i class="glyphicon glyphicon-remove" style="font-size: 1em;"></i>
         </div>
 
     </div>

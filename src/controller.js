@@ -420,11 +420,16 @@ app.controller("add_hospital",function($scope,$http,image){
     var target=document.getElementById(data);
     image.toDataURI(target,function(d){
       $scope.hospital_data.promotion=d;
+      $scope.promotion_img_block_back=d;
+      $scope.$apply();
       $("#new_promotion").val('');
       $("#promotion_add_modal").modal('hide');
     });
   }
-
+  $scope.removeGallery=function(target){
+    var index=$scope.hospital_data.gallery.indexOf(target);
+    $scope.hospital_data.gallery.splice(index,1);
+  }
 
   $scope.addGallery=function(){
     $("#gallery_add_modal").modal('show');
