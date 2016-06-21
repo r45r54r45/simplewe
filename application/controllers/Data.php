@@ -9,7 +9,7 @@ class Data extends CI_Controller {
 		$this->load->library('session');
 		$this->load->helper('url');
 	}
-// hospital page
+	// hospital page
 	public function getHosp($hid){
 		$this->load->model('gdata');
 		echo json_encode($this->gdata->getHosp($hid));
@@ -101,15 +101,15 @@ class Data extends CI_Controller {
 		echo json_encode($success);
 	}
 	public function reset_pw($code,$pw){
-		 $email=$this->encrypt_decrypt('decrypt',urldecode($code));
-		 $this->load->model('gdata');
-		 $this->gdata->reset_pw($email,$pw);
-		 echo "
- 		<script>
+		$email=$this->encrypt_decrypt('decrypt',urldecode($code));
+		$this->load->model('gdata');
+		$this->gdata->reset_pw($email,$pw);
+		echo "
+		<script>
 		alert('Password has changed');
- 		location.href='/';
- 		</script>
- 		";
+		location.href='/';
+		</script>
+		";
 	}
 
 	public function logout(){
@@ -171,11 +171,11 @@ class Data extends CI_Controller {
 	}
 	public function getConsult($cid){
 		$this->load->model('gdata');
-		 echo json_encode($this->gdata->getConsult($cid));
+		echo json_encode($this->gdata->getConsult($cid));
 	}
 	public function getConsultReply($cid){
 		$this->load->model('gdata');
-		 echo json_encode($this->gdata->getConsultReply($cid));
+		echo json_encode($this->gdata->getConsultReply($cid));
 	}
 	public function writeConsultReply(){
 		$postdata = file_get_contents("php://input");
@@ -203,7 +203,26 @@ class Data extends CI_Controller {
 		$result['result']=true;
 		echo json_encode($result);
 	}
+	public function sendHospitalConsult(){
+		$postdata = file_get_contents("php://input");
+		$req = json_decode($postdata);
+		$req->email;
+		$req->body;
+		$req->name;
+		$req->hospital;
 
+		$this->load->library('email');
+
+		$this->email->from('admin@simplwe.com', 'simplwe');
+		$this->email->to('r54r45r54@gmail.com');
+		$this->email->subject('Hospital Consult');
+		$data.="hospital: ".$req->hospital."\n";
+		$data.="email: ".$req->email."\n";
+		$data.="name: ".$req->name."\n";
+		$data.="body: ".$req->body."\n";
+		$this->email->message($data);
+		$this->email->send();
+	}
 
 	//hospital page
 	public function sendReview(){
@@ -222,28 +241,28 @@ class Data extends CI_Controller {
 
 	//helper function
 	private function encrypt_decrypt($action, $string) {
-    $output = false;
+		$output = false;
 
-    $encrypt_method = "AES-256-CBC";
-    $secret_key = 'This is my secret key';
-    $secret_iv = 'This is my secret iv';
+		$encrypt_method = "AES-256-CBC";
+		$secret_key = 'This is my secret key';
+		$secret_iv = 'This is my secret iv';
 
-    // hash
-    $key = hash('sha256', $secret_key);
+		// hash
+		$key = hash('sha256', $secret_key);
 
-    // iv - encrypt method AES-256-CBC expects 16 bytes - else you will get a warning
-    $iv = substr(hash('sha256', $secret_iv), 0, 16);
+		// iv - encrypt method AES-256-CBC expects 16 bytes - else you will get a warning
+		$iv = substr(hash('sha256', $secret_iv), 0, 16);
 
-    if( $action == 'encrypt' ) {
-        $output = openssl_encrypt($string, $encrypt_method, $key, 0, $iv);
-        $output = base64_encode($output);
-    }
-    else if( $action == 'decrypt' ){
-        $output = openssl_decrypt(base64_decode($string), $encrypt_method, $key, 0, $iv);
-    }
+		if( $action == 'encrypt' ) {
+			$output = openssl_encrypt($string, $encrypt_method, $key, 0, $iv);
+			$output = base64_encode($output);
+		}
+		else if( $action == 'decrypt' ){
+			$output = openssl_decrypt(base64_decode($string), $encrypt_method, $key, 0, $iv);
+		}
 
-    return $output;
-}
+		return $output;
+	}
 
 
 

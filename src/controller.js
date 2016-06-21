@@ -246,6 +246,7 @@ app.controller("hospital",function($scope,rating,$http){
   $scope.init=function(){
     $scope.gallery=false;
     $scope.doctor_info=false;//false
+    $scope.consult={};
     //get hospital info. by hid
     $http.get("/data/getHosp/"+$scope.HID).then(function(res){
       $scope.hospital=res.data;
@@ -270,6 +271,14 @@ app.controller("hospital",function($scope,rating,$http){
 
     //NAME, MAJOR, DID (for downward comments)
 
+  }
+  $scope.consultForm=function(data){
+    data.hospital=$scope.hospital.NAME;
+    console.log(data);
+    $http.post("/data/sendHospitalConsult",data).then(function(res){
+      $('#hospital_contact_modal').modal('hide');
+      $scope.consult={};
+    });
   }
   $scope.write_hospital_review=function(){
     $scope.hospital_review={};
