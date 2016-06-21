@@ -222,7 +222,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   </div>
 
   <div class="modal fade" id="consult_modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true" ng-controller="consult" ng-init="consult={}">
-    <div class="modal-dialog modal-sm">
+    <div class="modal-dialog modal-sm" style="width:375px;">
       <div class="modal-content">
         <div class="modal-header text-center">
           <span class="modal-title">CONSULT</span>
@@ -237,7 +237,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <img class="form-padding form-control-feedback" src="/src/email.svg">
           </div>
           <div class="form-group has-feedback has-feedback-left">
-            <textarea class="placeholder form-control" rows="5" id="consult_body" style="resize:none;border:none; box-shadow:none;" placeholder="Message" ng-model="consult.body" ></textarea>
+            <textarea class="placeholder form-control" rows="8" id="consult_body" style="resize:none;border:none; box-shadow:none;" placeholder="Message" ng-model="consult.body" ></textarea>
             <i class="form-control-feedback glyphicon "></i>
           </div>
           <div class="btn btnForm btn-block" ng-click="consultForm(consult)">SEND</div>
