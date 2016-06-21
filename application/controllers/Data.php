@@ -26,10 +26,6 @@ class Data extends CI_Controller {
 		$this->load->model('gdata');
 		echo json_encode($this->gdata->getRatingAllDoctor($hid));
 	}
-	public function getEditData($hid){
-		$this->load->model('gdata');
-		echo json_encode($this->gdata->getEditData($hid));
-	}
 	public function getRatingAllHospital($hid){
 		$this->load->model('gdata');
 		echo json_encode($this->gdata->getRatingAllHospital($hid));
@@ -194,16 +190,6 @@ class Data extends CI_Controller {
 		$result['result']=true;
 		echo json_encode($result);
 	}
-	public function editNewHospital(){
-		$postdata = file_get_contents("php://input");
-		$req = json_decode($postdata);
-		$this->load->model('gdata');
-		$result=[];
-		$result['log']=$this->gdata->editNewHospital($req);
-		$result['result']=true;
-		echo json_encode($result);
-	}
-
 
 	//hospital page
 	public function sendReview(){

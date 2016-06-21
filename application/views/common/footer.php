@@ -2,10 +2,10 @@
 <div class="container-fluid footer">
   <div class="row">
     <div class="col-xs-12 text-center">
-      <span class="partner" style="color:#2e2e2e">PARTNERS</span>
+      <span class="partner">PARTNERS</span>
     </div>
   </div>
-  <div class="row logo hidden" >
+  <div class="row logo">
     <div class="col-sm-2 col-xs-4 text-center">
       <img src="/src/canon.png" class="hand img-responsive">
     </div>
