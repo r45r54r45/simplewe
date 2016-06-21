@@ -134,11 +134,40 @@
               </div>
 
               <!-- write review finish-->
-
+              <!-- hospital contact modal-->
+                <div class="modal fade" id="hospital_contact_modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+                  <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                      <div class="modal-header text-center">
+                        <span class="modal-title">{{hospital.NAME}}</span>
+                      </div>
+                      <div class="modal-body">
+                        <div class="form-group has-feedback has-feedback-left">
+                          <input type="text" class="placeholder form-control no-border" placeholder="Name"  ng-model="consult.name" />
+                          <img class="form-padding form-control-feedback" src="/src/name.svg">
+                        </div>
+                        <div class="form-group has-feedback has-feedback-left">
+                          <input type="email" class="placeholder form-control no-border"  placeholder="Email" ng-model="consult.email" />
+                          <img class="form-padding form-control-feedback" src="/src/email.svg">
+                        </div>
+                        <div class="form-group has-feedback has-feedback-left">
+                          <textarea class="placeholder form-control" rows="5" id="consult_body" style="resize:none;border:none; box-shadow:none;" placeholder="Message" ng-model="consult.body" ></textarea>
+                          <i class="form-control-feedback glyphicon "></i>
+                        </div>
+                        <div class="btn btnForm btn-block" ng-click="consultForm(consult)">SEND</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- hospital contact modal end-->
               <div class="search-result-area col-xs-12 col-sm-5">
-                <div class="" style="margin-bottom:15px;">
+                <div class="" style="margin-bottom:12px;">
                   <span class="search-result-title">{{hospital.NAME}}</span>
                 </div>
+                <div class="contact_hospital">
+                  <button class="contact-hospital-button" type="button" onclick="$('#hospital_contact_modal').modal('show')">CONTACT HOSPITAL</button>
+                </div>
+
                 <div class="">
                   <span class="search-result-body">{{hospital.DESCRIPTION}}
                   </span>
