@@ -14,9 +14,9 @@
           <span style="color:white; font-size:20px; font-weight:500;">Gallery</span>
         </div>
         <style media="screen">
-          .item>img{
-            width: 100%; 
-          }
+        .item>img{
+          width: 100%;
+        }
         </style>
         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
           <!-- Indicators -->
@@ -29,19 +29,19 @@
           <!-- Wrapper for slides -->
           <div class="carousel-inner" role="listbox">
             <div class="item {{$index==0?'active':''}}" ng-repeat="g in galls">
-              <img ng-src="{{g.IMAGE}}">
+              <img ng-src="{{g.IMAGE}}" style="    width: 66%;
+              max-width: 800px;
+              margin: auto;">
             </div>
 
           </div>
 
           <!-- Controls -->
           <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
+            <img src="/src/left.png">
           </a>
           <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
+            <img src="/src/right.png">
           </a>
         </div>
 
@@ -56,7 +56,7 @@
   <div class="container-fluid" >
 
     <div class="row row-eq-height" style="margin-top:10px;">
-      <div class="col-sm-8 col-sm-offset-2">
+      <div class="col-sm-8 col-sm-offset-2" style="max-width:800px; margin:auto;">
         <!-- search result block -->
         <div class="row">
           <div class="col-xs-12">
