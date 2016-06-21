@@ -85,10 +85,10 @@ class Gdata extends CI_Model{
     ('$req->R1','$req->R2','$req->R3','$req->did','$req->uid')
     ");
     $this->q("
-      insert into REVIEW
-      (BODY,MAJOR,UID,DID)
-      values
-      ('$req->body','$req->major','$req->uid','$req->did')
+    insert into REVIEW
+    (BODY,MAJOR,UID,DID)
+    values
+    ('$req->body','$req->major','$req->uid','$req->did')
     ");
     return $this->q("
     select u.NAME as NAME, r.MAJOR as MAJOR,
@@ -160,6 +160,12 @@ class Gdata extends CI_Model{
     FROM RATING_H r
     WHERE r.HID = h.HID
     ) AS REVIEW, h.HID AS HID,
+
+    (select (SUM(NUM1)+SUM(NUM2)+SUM(NUM3))/(COUNT(*)*3)
+    from RATING_H rd
+    where rd.HID=h.HID) as RATING
+
+    ,
     (select IMAGE from HOSPITAL_IMAGE hi where  hi.HID=h.HID limit 1) as IMAGE
     FROM HOSPITAL h
     join DOCTOR d on d.HID=h.HID
@@ -168,7 +174,31 @@ class Gdata extends CI_Model{
     order by HID desc
     ")->result_array();
   }
+  public function getEditData($hid){
 
+
+    $data['hospital']=$this->q(
+    "
+    select * from HOSPITAL where HID='$hid'
+    "
+    )->result_array();
+    $data['doctor']=$this->q(
+    "
+    select * from DOCTOR where HID='$hid'
+    "
+    )->result_array();
+    $data['promotion']=$this->q(
+    "
+    select * from PROMOTION where HID='$hid'
+    "
+    )->result_array();
+    $data['gallery']=$this->q(
+    "
+    select * from HOSPITAL_IMAGE where HID='$hid'
+    "
+    )->result_array();
+    return $data;
+  }
   //register
   public function register($req){
     return $this->q("
@@ -220,7 +250,60 @@ class Gdata extends CI_Model{
     ('$req->title','$req->author','$req->password','$req->body')
     ");
   }
+  public function editNewHospital($req){
+    $hid=$req->hid;
+    $doctor=$req->doctor;
+    $gallery=$req->gallery;
+    $hospital=$req->hospital[0];
+    $promotion=$req->promotion;
 
+    $this->db->trans_start();
+    $this->q("
+    delete from HOSPITAL where HID='$hid'
+    ");
+    $this->q("
+    delete from HOSPITAL_IMAGE where HID='$hid'
+    ");
+    $this->q("
+    delete from HOSPITAL_IMAGE where HID='$hid'
+    ");
+    $this->q("
+    delete from PROMOTION where HID='$hid'
+    ");
+    $this->q("
+    delete from DOCTOR where HID='$hid'
+    ");
+    for($i=0; $i<count($doctor); $i++){
+      $data=$doctor[$i];
+      $this->q("
+      insert into DOCTOR
+      (DID,HID,NAME, DESCRIPTION, PROFILE)
+      values
+      ('$data->DID','$hid','$data->NAME','$data->DESCRIPTION','$data->PROFILE')
+      ");
+    }
+    $this->q("
+    insert into HOSPITAL
+    (HID, NAME, DESCRIPTION, ORDERING)
+    values
+    ('$hid','$hospital->NAME','$hospital->DESCRIPTION','$hospital->ORDERING')
+    ");
+    for($i=0; $i<count($gallery); $i++){
+      $data=$gallery[$i];
+      $this->q("
+      insert into HOSPITAL_IMAGE
+      (HID,IMAGE)
+      values
+      ('$hid','$data->IMAGE')
+      ");
+    }
+    $this->db->trans_complete();
+    if ($this->db->trans_status() === FALSE)
+    {
+      // generate an error... or use the log_message() function to log your error
+      return log_message();
+    }
+  }
   //add hospital
   public function addHospital($req){
     $doctor=$req->doctor;

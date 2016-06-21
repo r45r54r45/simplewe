@@ -185,7 +185,7 @@
                   <div class="center-cell">
                     <div class="text-center" style="font-weight:600; font-size:14px; color:white;">HOSPITAL RATING</div>
 
-                    <div class="text-center" style="font-weight:600; font-size:49px; color:white;">{{hospital.RATING_hospital}}</div>
+                    <div class="text-center" style="font-weight:600; font-size:40px; color:white;">{{hospital.RATING_hospital}}</div>
                     <div class="text-center" style="    margin-top: -10px;" ng-bind-html="H_R">
 
                     </div>
@@ -194,7 +194,7 @@
                 <div class="col-xs-6 grey-back height-100 center-table" style="">
                   <div class="center-cell">
                     <div class="text-center" style="font-weight:600; font-size:15px; color:white;">DOCTOR RATING</div>
-                    <div class="text-center" style="font-weight:600; font-size:49px; color:white;">{{hospital.RATING_doctor}}</div>
+                    <div class="text-center" style="font-weight:600; font-size:40px; color:white;">{{hospital.RATING_doctor}}</div>
                     <div class="text-center" style="    margin-top: -10px;" ng-bind-html="D_R">
 
                     </div>
