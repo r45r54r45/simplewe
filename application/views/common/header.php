@@ -249,7 +249,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <!-- consult button -->
   <div class="consult-button hidden-xs hand" onclick="$('#consult_modal').modal('show')" style="z-index: 9000;
     border: 1px solid white;">
-    <div class="vertical-text consult-text">CONSULT</div>
+    <div class="consult-text">CONSULT</div>
   </div>
 
   <div class="" style="background-color:white;">
