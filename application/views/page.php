@@ -38,10 +38,10 @@
 
           <!-- Controls -->
           <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-            <img src="/src/left.png">
+            <img class="icon-prev" src="/src/left.png">
           </a>
           <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-            <img src="/src/right.png">
+            <img class="icon-next" src="/src/right.png">
           </a>
         </div>
 
