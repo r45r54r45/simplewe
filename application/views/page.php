@@ -13,6 +13,11 @@
         <div class="col-xs-12 text-center" style="padding:30px;">
           <span style="color:white; font-size:20px; font-weight:500;">Gallery</span>
         </div>
+        <style media="screen">
+          .item>img{
+            width: 100%; 
+          }
+        </style>
         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
           <!-- Indicators -->
           <ol class="carousel-indicators">

@@ -294,9 +294,12 @@ app.controller("hospital",function($scope,rating,$http){
       $http.get("/data/getGallery/"+$scope.HID).then(function(res){
         $scope.galls=res.data;
         console.log(res.data);
+          $scope.gallery=!$scope.gallery;
       });
+    }else{
+        $scope.gallery=!$scope.gallery;
     }
-    $scope.gallery=!$scope.gallery;
+
   }
 
 
