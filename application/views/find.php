@@ -22,6 +22,7 @@
               <div>{{block_title[0].name}}</div>
             </div>
           </div>
+
         </div>
         <div class="col-xs-6 col-sm-3 result-block" ng-click="moveTo(block_title[1])">
           <div class="dummy_for_height"></div>

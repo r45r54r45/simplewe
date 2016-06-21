@@ -71,6 +71,11 @@ class Welcome extends CI_Controller {
 		$this->load->view('addHospital');
 		$this->load->view('common/footer');
 	}
+	public function editHospital($num){
+		$data['hid']=$num;
+		$this->load->view('editHospital',$data);
+		$this->load->view('common/footer');
+	}
 	public function github(){
 		$this->load->view('github');
 	}

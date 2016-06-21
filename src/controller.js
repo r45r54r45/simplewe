@@ -206,7 +206,7 @@ app.controller("main_veri_review",function($scope,$http){
   };
 });
 
-app.controller("search",function($scope,$http){
+app.controller("search",function(rating,$scope,$http){
   $scope.num_limit=2;
   $scope.addHospital=function(){
     console.log("add hospital clicked");
@@ -220,7 +220,16 @@ app.controller("search",function($scope,$http){
     $http.get("/data/getHospitalWithName/"+query).then(function(res){
       console.log(res.data);
       $scope.hospital_list=res.data;
+      for(var i=0; i<$scope.hospital_list.length; i++){
+        var num=rating.floor(res.data[i].RATING);
+        $scope.hospital_list[i].H_R=rating.draw(num);
+      }
+
     });
+  }
+  $scope.editHospital=function(hid){
+    // link to hospital page
+    location.href="/editHospital/"+hid;
   }
   $scope.linkToHospital=function(hid){
     // link to hospital page
@@ -532,6 +541,147 @@ app.controller("add_hospital",function($scope,$http,image){
       $http.post("/data/addHospital",data).then(function(res){
         console.log(res);
         alert('upload complete');
+        location.href="/search";
+      });
+    }
+
+  }
+
+});
+app.controller("edit_hospital",function($scope,$http,image){
+  $scope.init=function(hid){
+    $http.get("/data/getEditData/"+hid).then(function(res){
+      console.log(res.data);
+      $scope.hospital_data=res.data;
+      $scope.hospital_data.hid=hid;
+    });
+  }
+  $scope.doctor_info={};
+  $scope.edit=function(target){
+    $("#"+target).focus();
+  }
+  $scope.addPromotion=function(){
+    $("#promotion_add_modal").modal('show');
+  }
+
+  $scope.promotionSelect=function(data){
+    var target=document.getElementById(data);
+    image.toDataURI(target,function(d){
+      $scope.hospital_data.promotion=d;
+      $scope.promotion_img_block_back=d;
+      $scope.$apply();
+      $("#new_promotion").val('');
+      $("#promotion_add_modal").modal('hide');
+    });
+  }
+  $scope.removeGallery=function(target){
+    var index=$scope.hospital_data.gallery.indexOf(target);
+    $scope.hospital_data.gallery.splice(index,1);
+  }
+
+  $scope.addGallery=function(){
+    $("#gallery_add_modal").modal('show');
+
+  }
+  $scope.gallerySelect=function(data){
+    var target=document.getElementById(data);
+    image.toDataURI(target,function(d){
+      $scope.hospital_data.gallery.push({IMAGE:d});
+      $scope.$apply();
+      $("#new_gallery").val('');
+      $("#gallery_add_modal").modal('hide');
+    });
+  }
+  $scope.doctor_add_open=function(){
+    $scope.doctor_info={};
+    $("#add_doctor_image_temp").attr("src",'');
+    $scope.add_doctor=true;
+  }
+  $scope.edit_doctor=function(d){
+    $scope.hospital_data.doctor.splice($scope.hospital_data.doctor.indexOf(d),1);
+    $scope.doctor_info=d;
+    $scope.add_doctor=true;
+  }
+  //doctor profile image
+
+  $scope.addProfile=function(){
+    $("#doctor_pic_modal").modal('show');
+  }
+  $scope.profileSelect=function(id){
+    // console.log(document.getElementById(id));
+    $("#doctor_pic_modal").modal('hide');
+    $scope.doctor_info.pic=$scope.myCroppedImage;
+  }
+
+
+  $scope.myImage='';
+  $scope.myCroppedImage='';
+  $scope.logg=function(){
+    // $scope.doctor_info.pic=$scope.myCroppedImage;
+  }
+  var handleFileSelect=function(evt) {
+    var file=evt.currentTarget.files[0];
+    var reader = new FileReader();
+    reader.onload = function (evt) {
+      $scope.$apply(function($scope){
+        $scope.myImage=evt.target.result;
+      });
+    };
+    reader.readAsDataURL(file);
+  };
+  angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
+
+
+
+  $scope.addDoctor=function(){
+    var data=$scope.doctor_info;
+    if(data.NAME&&data.DESCRIPTION&&data.PROFILE){
+      //new doctor info checked
+      $scope.hospital_data.doctor.push(data);
+      // $scope.doctor_info.pic="";
+      // profile image on adding doctor still remaining
+      $scope.doctor_info={};
+      $scope.doctor_info.pic='';
+      $scope.myImage='';
+      $scope.myCroppedImage='';
+      $("#fileInput").val('');
+      $scope.add_doctor=false;
+      console.log($scope.hospital_data);
+    }else{
+      alert('please fill in all infomation of doctor');
+    }
+
+  }
+
+
+  $scope.addHospital=function(data){
+    //check if info is filled
+    console.log(data);
+    if(data.doctor.length==0){
+      alert('insert at least one doctor');
+      return;
+    }else if(data.gallery.length==0){
+      alert('insert at least one gallery picture');
+      return;
+    }else if(!data.hospital[0].NAME||!data.hospital[0].DESCRIPTION){
+      alert('fill hospital information');
+      return;
+    }else if(!data.hospital[0].ORDERING){
+      alert('fill hospital location in main page');
+      return;
+    }else{
+      //success
+      //trim data
+      data.hospital[0].NAME=data.hospital[0].NAME.trim();
+      data.hospital[0].DESCRIPTION=data.hospital[0].DESCRIPTION.trim();
+      for(var i=0; i<data.doctor.length;i++){
+        data.doctor[i].NAME=data.doctor[i].NAME.trim();
+        data.doctor[i].DESCRIPTION=data.doctor[i].DESCRIPTION.trim();
+      }
+      console.log(data);
+      $http.post("/data/editNewHospital",data).then(function(res){
+
+        alert('edit complete');
         location.href="/search";
       });
     }

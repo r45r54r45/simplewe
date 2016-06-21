@@ -69,7 +69,7 @@ app.service("image",function(){
 
 app.filter('Cdate', function() {
   return function(input) {
-    return moment(moment(input)).format('YYYY-MM-DD');
+    return moment(moment(input)).format('YYYY.MM.DD');
     // return d.toLocaleDateString('en-GB', {
     //   day : 'numeric',
     //   month : 'short',

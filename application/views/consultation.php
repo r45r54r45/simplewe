@@ -610,7 +610,7 @@ $(document).ready(function() {
 }
 </style>
 <div class="container" ng-controller="consultation" ng-init="uid='<?=$uid?>';init()">
-  <div class="row">
+  <div class="row" style="max-width:1000px; margin:auto; margin-bottom:20px;">
     <div class="col-xs-12 ">
       <table id="table" class="table table-hover  table-mc-light-blue" >
         <thead>
@@ -623,13 +623,13 @@ $(document).ready(function() {
         </thead>
         <tbody>
 
-          <tr ng-repeat="i in consultList" ng-click="openConsult(i)">
-            <td data-title="Number"  class="hidden-xs">{{$index+1}}</td>
-            <td data-title="Title">{{i.TITLE}} ({{i.count}})</td>
-            <td data-title="Author" class="hidden-xs">
+          <tr ng-repeat="i in consultList" ng-click="openConsult(i)" style="color:#9d9d9d">
+            <td data-title="Number"  style="width:50px;" class="hidden-xs">{{$index+1}}</td>
+            <td data-title="Title" style="color:#525252">{{i.TITLE}} ({{i.count}})</td>
+            <td data-title="Author" class="hidden-xs" style="width:150px;">
               {{i.AUTHOR}}
             </td>
-            <td data-title="Date">
+            <td data-title="Date" style="width:150px;">
               {{i.TIME|Cdate}}
             </td>
           </tr>
@@ -637,30 +637,42 @@ $(document).ready(function() {
         </tbody>
       </table>
     </div>
-  </div>
-  <div class="row" style="margin-top:20px">
     <div class="col-xs-12">
-      <div class="well" ng-init="consult={}">
-        <!-- <div class="text-center page-title">
-          <span >Consultation</span>
-        </div> -->
-        <div class="form-group has-feedback-none has-feedback-left-none">
-          <input type="text" class="placeholder form-control no-border" placeholder="Name"  ng-model="consult.author" />
+      <div onclick="$('#write_new').modal('show')" class="pull-right banner-button" >WRITE
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="write_new" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body" style="padding:0">
+          <div class="row" >
+            <div class="col-xs-12">
+              <div class="well" ng-init="consult={}" style="margin-bottom:0;">
+                <!-- <div class="text-center page-title">
+                  <span >Consultation</span>
+                </div> -->
+                <div class="form-group has-feedback-none has-feedback-left-none">
+                  <input type="text" class="placeholder form-control no-border" placeholder="Name"  ng-model="consult.author" />
 
-        </div>
-        <div class="form-group has-feedback-none has-feedback-left-none">
-          <input type="text" class="placeholder form-control no-border" placeholder="Title" ng-model="consult.title" />
+                </div>
+                <div class="form-group has-feedback-none has-feedback-left-none">
+                  <input type="text" class="placeholder form-control no-border" placeholder="Title" ng-model="consult.title" />
 
-        </div>
-        <div class="form-group has-feedback-none has-feedback-left-none">
-          <input type="password" class=" placeholder form-control no-border" placeholder="Password" ng-model="consult.password"/>
+                </div>
+                <div class="form-group has-feedback-none has-feedback-left-none">
+                  <input type="password" class=" placeholder form-control no-border" placeholder="Password" ng-model="consult.password"/>
 
-        </div>
-        <div class="form-group has-feedback-none has-feedback-left-none">
-          <textarea  style="resize:none;border:none;"class="placeholder form-control" rows="5" style="border:none; box-shadow:none;" placeholder="Message" ng-model="consult.body" ></textarea>
+                </div>
+                <div class="form-group has-feedback-none has-feedback-left-none">
+                  <textarea  style="resize:none;border:none;"class="placeholder form-control" rows="5" style="border:none; box-shadow:none;" placeholder="Message" ng-model="consult.body" ></textarea>
 
+                </div>
+                <div class="btn btnForm btn-block" ng-click="consultForm(consult)">SEND</div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="btn btnForm btn-block" ng-click="consultForm(consult)">SEND</div>
       </div>
     </div>
   </div>
