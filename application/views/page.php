@@ -254,7 +254,7 @@
 
         </div>
 
-        <!-- <div  id="bottom-bar" style="background-color:#808080;height:40px;margin-bottom:60px;" ></div> -->
+        <div  id="bottom-bar" style="background-color:#808080;height:40px;margin-bottom:60px;" ></div>
 
         <script>
         function hide(target) {
