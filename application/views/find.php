@@ -154,7 +154,7 @@
           <div class="row item {{$index==0 && 'active' ||''}}" style="padding: 0 5%;" ng-repeat="i in patient_review">
             <div class="col-xs-12" >
               <div class="profile_area">
-                <img class="img-circle-profile img img-responsive" src="/src/user_profile.jpg"/>
+                <img class="img-circle-profile img img-responsive" ng-src="{{i.PROFILE}}"/>
               </div>
               <div style="margin-top:-5px; font-size:12px;" class="text-center">
                 <span>{{i.NAME}}</span>
