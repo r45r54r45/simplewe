@@ -206,7 +206,7 @@
           </div>
 
 
-          <div class="row item" style="padding: 0 5%;">
+          <!--<div class="row item" style="padding: 0 5%;">
             <div class="col-sm-4" ng-repeat="i in patient_review" ng-show="$index>2">
               <div class="profile_area">
                 <img class="img-circle-profile img img-responsive" ng-src="{{i.PROFILE}}"/>
@@ -217,7 +217,7 @@
               <div style="margin-top:7px; font-size:10px;" class="text-center">
                 <span>{{i.BODY}}</span>
               </div>
-            </div>
+            </div>-->
 
 
           </div>
