@@ -28,12 +28,12 @@
   <div class="row" style="margin-top:40px;">
     <div class="col-xs-12 ">
       <div class="text-center">
-        <img src="/src/facebookRound.svg" style="width:40px; height:40px; margin-right:17px;"  class="hand">
-        <img src="/src/instagramRound.svg" style="width:40px; height:40px; margin-right:17px;"  class="hand">
-        <img src="/src/youtubeRound.svg" style="width:40px; height:40px;"  class="hand">
+        <a href="http://www.facebook.com/simplwe"><img src="/src/facebookRound.svg" style="width:40px; height:40px; margin-right:17px;"  class="hand"></a>
+        <!--<img src="/src/instagramRound.svg" style="width:40px; height:40px; margin-right:17px;"  class="hand">
+        <img src="/src/youtubeRound.svg" style="width:40px; height:40px;"  class="hand">-->
       </div>
       <div class="text-center" style="margin-top:10px;">
-        <span style="color:#eaeaea;font-size:10px;">© simplewe 2016. All Rights Reserved.</span>
+        <span style="color:#eaeaea;font-size:10px;">© simplwe 2016. All Rights Reserved.</span>
       </div>
     </div>
   </div>

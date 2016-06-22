@@ -240,7 +240,7 @@
         </div>
         <div class="row" style="padding: 0 50px; margin-bottom:20px;">
 
-          <div class="col-xs-6 col-sm-3" ng-repeat="i in doctor" ng-click="openDoctor(i.DID)">
+          <div class="col-xs-6 col-sm-3" ng-repeat="i in doctor" onclick="hide('bottom-bar')" ng-click="openDoctor(i.DID)">
             <div class="profile_area hand">
               <img class="img-circle img img-responsive" ng-src="{{i.PROFILE}}"/>
             </div>
@@ -254,7 +254,16 @@
 
         </div>
 
+        <div  id="bottom-bar" style="background-color:#808080;height:40px;margin-bottom:60px;" ></div>
 
+        <script>
+        function hide(target) {
+            document.getElementById(target).style.display = 'none';
+        }
+        function show(target) {
+            document.getElementById(target).style.display = 'block';
+        }
+        </script>
 
         <div class="row animate-show" ng-show="doctor_info" style="
         <?if($login==false){?>
@@ -264,7 +273,7 @@
           <div class="col-xs-12">
             <div class="search-result-block relative" style="height: auto; margin-bottom:0px;">
               <div class="absolute hidden-xs" style="right:-30px; top:5px; width:10px; hight:10px;">
-                <i class="glyphicon glyphicon-remove" style="font-size: 20px; cursor:pointer;" ng-click="closeDoctor()"></i>
+                <i class="glyphicon glyphicon-remove" style="font-size: 20px; cursor:pointer;" onclick="show('bottom-bar')" ng-click="closeDoctor()"></i>
               </div>
               <div class="media">
                 <div class="media-left" style="padding: 30px 20px;min-width: 135px;">

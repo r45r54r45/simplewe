@@ -76,6 +76,7 @@ nav{
   margin-left: 4px !important;
   border:none;
   height: 34px;
+  line-height: 17px;
 }
 .banner-button:hover {
   text-decoration: none;

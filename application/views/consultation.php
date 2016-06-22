@@ -610,7 +610,7 @@ $(document).ready(function() {
 }
 </style>
 <div class="container" ng-controller="consultation" ng-init="uid='<?=$uid?>';init()">
-  <div class="row" style="max-width:1000px; margin:auto; margin-bottom:20px;">
+  <div class="row" style="max-width:1000px; margin:auto; margin-bottom:70px;">
     <div class="col-xs-12 ">
       <table id="table" class="table table-hover  table-mc-light-blue" >
         <thead>

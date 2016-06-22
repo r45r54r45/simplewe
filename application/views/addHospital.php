@@ -157,7 +157,7 @@
 </div>
 
 
-<div class="row animate-show" style="margin-bottom:20px;"  ng-show="add_doctor">
+<div class="row animate-show" style="margin-bottom:0px;"  ng-show="add_doctor">
   <div class="col-xs-12">
     <div class="search-result-block relative" style="height: auto; margin-bottom:0px;">
       <div class="media">
@@ -199,6 +199,7 @@
 </div>
 </div>
 
+<div id="bottom-bar-add" style="background-color:#808080;height:40px;margin-bottom:20px;" ></div>
 
 <div class="row text-center" style="margin-bottom:50px;">
   <button class=" write-review-button" style="width:50px;height:50px; border-radius:50%;" type="button" ng-click="addHospital(hospital_data)">ADD</button>
