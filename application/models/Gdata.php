@@ -123,7 +123,11 @@ class Gdata extends CI_Model{
     (select IMAGE from HOSPITAL_IMAGE hi where hi.HID=h.HID limit 1) as IMAGE
     from HOSPITAL h order by ORDERING")->result_array();
   }
-
+  public function getHospitalByNum($num){
+    return $this->q("select distinct HID,NAME as name,
+    (select IMAGE from HOSPITAL_IMAGE hi where hi.HID=h.HID limit 1) as IMAGE
+    from HOSPITAL h order by ORDERING limit $num ,1")->result_array();
+  }
   //nav
   //login
   public function login($req){

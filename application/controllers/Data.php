@@ -61,6 +61,12 @@ class Data extends CI_Controller {
 		echo json_encode($this->gdata->getAllHospital());
 
 	}
+	public function getHospitalByNum($num){
+		$this->load->model('gdata');
+		$result=$this->gdata->getHospitalByNum($num);
+		$result['num']=$num;
+		return json_encode($result);
+	}
 
 	//nav
 	public function login(){

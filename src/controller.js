@@ -119,22 +119,40 @@ app.controller("main",function($scope,$http){
     "Medical Examination",
     "Other"
   ];
+
+  //hack
+  /*
+  한번에 사진들을 다 끌고 오니까 시간이 오래걸린다.
+  해결책.
+    1. 비동기로 전체를 하나씩 가져온다.
+    2. 배열로 캐시해놓고 그 안에서 움직인다.
+  */
   $scope.init=function(){
     $scope.block_title=[];
     $scope.currentHosNum=0;
     $scope.maxHospital;
 
     $scope.mode="Hospital";
-    $http.get("/data/getAllHospital").then(function(res){
-      var data=res.data;
-      $scope.maxHospital=data.length;
-      for(var i=0; i<9; i++){
-        $scope.block_title[i]={};
-        $scope.block_title[i]=data[i+$scope.currentHosNum];
-      }
-    });
+    asyncGet(0,9);
+    // $http.get("/data/getAllHospital").then(function(res){
+    //   var data=res.data;
+    //   $scope.maxHospital=data.length;
+    //   for(var i=0; i<9; i++){
+    //     $scope.block_title[i]={};
+    //     $scope.block_title[i]=data[i+$scope.currentHosNum];
+    //   }
+    // });
   }
 
+  var asyncGet=function(start,number){
+    //target은 캐시되는 배열
+    for(var i=start; i<start+number; i++ ){
+      $http.get("/data/getHospitalByNum/"+i).then(function(res){
+        //return also its number
+        $scope.block_title[res.data.num]=res.data;
+      });
+    }
+  }
 
   $scope.changeMode=function(){
     if($scope.mode=="Hospital"){
