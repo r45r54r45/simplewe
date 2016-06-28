@@ -77,10 +77,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost', 
-	'username' => 'cocodingtest1',
-	'password' => 'e34e43E34!!',
-	'database' => 'cocodingtest1',
+	'hostname' => 'localhost',
+	'username' => 'simplwe',
+	'password' => 'simple12!@',
+	'database' => 'simplwe',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
