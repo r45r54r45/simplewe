@@ -64,7 +64,7 @@ class Data extends CI_Controller {
 	public function getHospitalByNum($num){
 		$this->load->model('gdata');
 		$result=$this->gdata->getHospitalByNum($num);
-		$result['num']=$num;
+		$result->num=$num;
 		echo json_encode($result);
 	}
 
