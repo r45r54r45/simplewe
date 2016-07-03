@@ -156,8 +156,8 @@ class Gdata extends CI_Model{
 
 
   //search
-  public function getHospitalWithName($name){
-    $name=urldecode($name);
+  public function getHospitalWithName($req){
+    $name=urldecode($req->query);
     return $this->q("
     SELECT distinct h.NAME AS NAME, h.DESCRIPTION AS DESCRIPTION, (
     SELECT COUNT( * )
@@ -176,6 +176,7 @@ class Gdata extends CI_Model{
     WHERE h.NAME LIKE  '%$name%'
     or d.MAJOR like '%$name%'
     order by HID desc
+    limit $req->start, $req->num
     ")->result_array();
   }
   public function getEditData($hid){

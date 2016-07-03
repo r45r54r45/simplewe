@@ -129,9 +129,11 @@ class Data extends CI_Controller {
 
 
 	//search
-	public function getHospitalWithName($name=NULL){
+	public function getHospitalWithName(){
+		$postdata = file_get_contents("php://input");
+		$req = json_decode($postdata);
 		$this->load->model('gdata');
-		echo json_encode($this->gdata->getHospitalWithName($name));
+		echo json_encode($this->gdata->getHospitalWithName($req));
 	}
 
 	//consult

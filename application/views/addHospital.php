@@ -7,7 +7,7 @@
 </div>
 
 <div class="container" ng-controller="add_hospital">
-  <div ng-show="loading" style="position:absolute; left:0; top:0; width:100%; height:{{loadingHeight}}; z-index:9999; background:rgb(0,0,0); opacity:0.7;display:table;">
+  <div ng-show="loading" style="position:absolute; left:0; top:0; height:{{loadingHeight}}; width:100%;; z-index:9999; background:rgb(0,0,0); opacity:0.7;display:table;">
     <div style="text-align: center;
     vertical-align: middle;
     display: table-cell; color:#D3D3D3; margin-top:{{loadingTop}}">

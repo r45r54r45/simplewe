@@ -225,18 +225,36 @@ app.controller("search",function(rating,$scope,$http){
   }
   //get hospital list by option (if any)
   //NAME, BODY, REVIEW(num), HID (for redirect purpose)
+  var data={};
   $scope.init=function(){
+    $scope.hospital_list=[];
     var query=encodeURIComponent($scope.query);
-    $http.get("/data/getHospitalWithName/"+query).then(function(res){
-      console.log(res.data);
-      $scope.hospital_list=res.data;
-      for(var i=0; i<$scope.hospital_list.length; i++){
-        var num=rating.floor(res.data[i].RATING);
-        $scope.hospital_list[i].H_R=rating.draw(num);
-      }
+    data.query=query;
+    data.start=0;
+    data.num=2;
+    asyncGet(data);
+  }
 
+  var asyncGet=function(data){
+    $http.post("/data/getHospitalWithName",data).then(function(res){
+      var datum=res.data;
+      if(datum.length==0&&data.start==0){
+        $scope.empty_result=true;
+        return;
+      }else if(datum.length==0&&data.start!=0){
+        $scope.more_result=false;
+        return;
+      }
+      $scope.more_result=true;
+      for(var i=0; i<datum.length; i++){
+        var num=rating.floor(datum[i].RATING);
+        datum[i].H_R=rating.draw(num);
+      }
+      $scope.hospital_list=$scope.hospital_list.concat(datum);
     });
   }
+
+
   $scope.editHospital=function(hid){
     // link to hospital page
     location.href="/editHospital/"+hid;
@@ -246,9 +264,8 @@ app.controller("search",function(rating,$scope,$http){
     location.href="/hospital/"+hid;
   }
   $scope.loadMore=function(){
-    //add element to $scope.hospital_list
-    console.log("load more");
-    $scope.num_limit+=2;
+    data.start=data.start+data.num;
+    asyncGet(data);
   }
 });
 
@@ -550,7 +567,8 @@ app.controller("add_hospital",function($scope,$http,image){
       //success
       disableScroll();
       $scope.loading=true;
-      $scope.loadingTop=$(window).height()+50+"px";
+      $scope.loadingTop=$(window).height()+screen.height/2+"px";
+      $scope.loadingHeight=$(document).height()+"px";
       //trim data
       data.hos_title=data.hos_title.trim();
       data.hos_description=data.hos_description.trim();
@@ -562,8 +580,6 @@ app.controller("add_hospital",function($scope,$http,image){
       // alert('Uploading data... Do not exit this page until noticed. Click Okay and WAIT!');
 
       $http.post("/data/addHospital",data).then(function(res){
-        $scope.loading=false;
-        enableScroll();
         location.href="/search";
       });
     }
@@ -728,12 +744,11 @@ app.controller("edit_hospital",function($scope,$http,image){
     }else{
       //success
       //loading screen
-      // disableScroll();
+      disableScroll();
       $scope.loading=true;
       $scope.loadingTop=$(window).height()+screen.height/2+"px";
       $scope.loadingHeight=$(document).height()+"px";
       //trim data
-      return;
       data.hospital[0].NAME=data.hospital[0].NAME.trim();
       data.hospital[0].DESCRIPTION=data.hospital[0].DESCRIPTION.trim();
       for(var i=0; i<data.doctor.length;i++){
@@ -742,8 +757,6 @@ app.controller("edit_hospital",function($scope,$http,image){
       }
       $http.post("/data/editNewHospital",data).then(function(res){
         //cancel rounded spinning
-        $scope.loading=false;
-        enableScroll();
         location.href="/search";
       });
     }

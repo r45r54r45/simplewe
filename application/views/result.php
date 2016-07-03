@@ -18,7 +18,7 @@
           </div>
           <?}?>
           <!-- search result block -->
-          <div class="row" ng-repeat="i in hospital_list" ng-show="$index < num_limit"
+          <div class="row" ng-repeat="i in hospital_list"
           <? if(!$authorized){?>
            ng-click="linkToHospital(i.HID)"
            <?}?>
@@ -52,7 +52,7 @@
             </div>
 
             <!-- empty block -->
-            <div class="row" ng-show="hospital_list.length==0">
+            <div class="row" ng-show="empty_result">
               <div class="col-xs-12">
                 <div class="search-result-block" style="background:#ececec; display: table; text-align: center;">
                   <div style="display: table-cell; vertical-align: middle;  font-size: 20px; color: #39bbcf;">NO RESULT</div>
@@ -61,7 +61,7 @@
             </div>
 
             <!-- load more -->
-            <div class="row animate-show" ng-show="hospital_list.length>num_limit" ng-click="loadMore()">
+            <div class="row animate-show" ng-show="more_result" ng-click="loadMore()">
               <div class="col-xs-12 text-center">
                 <div class="review-btn-circle">Load More</div>
                 <div class="review-btn-circle small-review-btn"></div>
