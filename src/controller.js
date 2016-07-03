@@ -728,10 +728,12 @@ app.controller("edit_hospital",function($scope,$http,image){
     }else{
       //success
       //loading screen
-      disableScroll();
+      // disableScroll();
       $scope.loading=true;
-      $scope.loadingTop=$(window).height()+50+"px";
+      $scope.loadingTop=$(window).height()+screen.height/2+"px";
+      $scope.loadingHeight=$(document).height()+"px";
       //trim data
+      return;
       data.hospital[0].NAME=data.hospital[0].NAME.trim();
       data.hospital[0].DESCRIPTION=data.hospital[0].DESCRIPTION.trim();
       for(var i=0; i<data.doctor.length;i++){
