@@ -608,6 +608,17 @@ $(document).ready(function() {
     background-color: #ffccbc;
   }
 }
+.new{
+  color: #49c4d5;
+  background-color: white;
+  border: 1px solid #49c4d5;
+  font-weight: 400;
+  margin-left: 10px;
+}
+.page-link{
+  color: rgb(157, 157, 157) !important;
+font-size: 10px;
+}
 </style>
 <div class="container" ng-controller="consultation" ng-init="uid='<?=$uid?>';init()">
   <div class="row" style="max-width:1000px; margin:auto; margin-bottom:70px;">
@@ -624,8 +635,8 @@ $(document).ready(function() {
         <tbody>
 
           <tr ng-repeat="i in consultList" ng-click="openConsult(i)" style="color:#9d9d9d">
-            <td data-title="Number"  style="width:50px;" class="hidden-xs">{{$index+1}}</td>
-            <td data-title="Title" style="color:#525252">{{i.TITLE}} ({{i.count}})</td>
+            <td data-title="Number"  style="width:50px;" class="hidden-xs">{{$index+(start)+1}}</td>
+            <td data-title="Title" style="color:#525252">{{i.TITLE}} ({{i.count}}) <div class="label label-default new" ng-show="i.TIME|new">new</div></td>
             <td data-title="Author" class="hidden-xs" style="width:150px;">
               {{i.AUTHOR}}
             </td>
@@ -636,6 +647,25 @@ $(document).ready(function() {
 
         </tbody>
       </table>
+    </div>
+    <div class="col-xs-12" style="text-align:center">
+      <ul class="pagination">
+        <!-- <li class="page-item">
+          <a class="page-link" href="#" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+            <span class="sr-only">Previous</span>
+          </a>
+        </li> -->
+        <li class="page-item" ng-repeat="i in consultRange">
+          <a class="page-link" ng-click="goConsult(i)">{{i}}</a>
+        </li>
+        <!-- <li class="page-item">
+          <a class="page-link" href="#" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+            <span class="sr-only">Next</span>
+          </a>
+        </li> -->
+      </ul>
     </div>
     <div class="col-xs-12">
       <div onclick="$('#write_new').modal('show')" class="pull-right banner-button" >WRITE
@@ -650,30 +680,30 @@ $(document).ready(function() {
             <div class="col-xs-12">
               <div class="well" ng-init="consult={}" style="margin-bottom:0;">
                 <!-- <div class="text-center page-title">
-                  <span >Consultation</span>
-                </div> -->
-                <div class="form-group has-feedback-none has-feedback-left-none">
-                  <input type="text" class="placeholder form-control no-border" placeholder="Name"  ng-model="consult.author" />
+                <span >Consultation</span>
+              </div> -->
+              <div class="form-group has-feedback-none has-feedback-left-none">
+                <input type="text" class="placeholder form-control no-border" placeholder="Name"  ng-model="consult.author" />
 
-                </div>
-                <div class="form-group has-feedback-none has-feedback-left-none">
-                  <input type="text" class="placeholder form-control no-border" placeholder="Title" ng-model="consult.title" />
-
-                </div>
-                <div class="form-group has-feedback-none has-feedback-left-none">
-                  <input type="password" class=" placeholder form-control no-border" placeholder="Password" ng-model="consult.password"/>
-
-                </div>
-                <div class="form-group has-feedback-none has-feedback-left-none">
-                  <textarea  style="resize:none;border:none;"class="placeholder form-control" rows="5" style="border:none; box-shadow:none;" placeholder="Message" ng-model="consult.body" ></textarea>
-
-                </div>
-                <div class="btn btnForm btn-block" ng-click="consultForm(consult)">SEND</div>
               </div>
+              <div class="form-group has-feedback-none has-feedback-left-none">
+                <input type="text" class="placeholder form-control no-border" placeholder="Title" ng-model="consult.title" />
+
+              </div>
+              <div class="form-group has-feedback-none has-feedback-left-none">
+                <input type="password" class=" placeholder form-control no-border" placeholder="Password" ng-model="consult.password"/>
+
+              </div>
+              <div class="form-group has-feedback-none has-feedback-left-none">
+                <textarea  style="resize:none;border:none;"class="placeholder form-control" rows="5" style="border:none; box-shadow:none;" placeholder="Message" ng-model="consult.body" ></textarea>
+
+              </div>
+              <div class="btn btnForm btn-block" ng-click="consultForm(consult)">SEND</div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 </div>

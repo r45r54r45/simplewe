@@ -213,13 +213,17 @@ class Gdata extends CI_Model{
     ('$req->email','$req->name','$req->password')
     ");
   }
+  public function numConsult(){
+    return $this->q("select count(*) as cnt from CONSULTATION")->row();
+  }
 
   //consultation
-  public function consultation(){
+  public function consultation($start){
     return $this->q("
     select * , (select count(*) from CONSULT_REPLY cr where c.CID=cr.CID) as count from
     CONSULTATION c
     order by time desc
+    limit $start,10
     ")->result_array();
   }
   public function getConsult($cid){

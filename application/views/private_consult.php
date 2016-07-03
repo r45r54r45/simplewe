@@ -1,3 +1,12 @@
+<style>
+.new{
+  color: #49c4d5;
+  background-color: white;
+  border: 1px solid #49c4d5;
+  font-weight: 400;
+  margin-left: 10px;
+}
+</style>
 <div ng-controller="private" ng-init="num=<?=$consult_num?>;uid='<?=$uid?>';init();">
   <div class="container" >
     <div class="row page-title">
@@ -18,6 +27,13 @@
         <div class="padding-10 consult-header pull-left inline-block">
           {{consult.TIME|Cdate}}
         </div>
+        <div class="label new pull-right" style="margin-top: 10px;color:#D3D3D3; border:1px solid #D3D3D3;" ng-click="delete()">
+          delete
+        </div>
+        <div class="label new pull-right" style="margin-top: 10px;" ng-click="edit()">
+          edit
+        </div>
+
         <div class="clearfix">
         </div>
       </div>
@@ -27,7 +43,7 @@
       </div>
       <div class=" padding-20 col-sm-8 col-sm-offset-2 col-xs-12 down_line" style="background:#f5f5f5; padding:10px 20px; margin-bottom: 20px;">
         <textarea class="form-control" style="border-radius:0;" ng-model="replydata"></textarea>
-        <div class="btn btn-primary pull-right" style="margin-top: 10px;" ng-click="submit()">
+        <div class="banner-button pull-right" style="margin-top: 10px;" ng-click="submit()">
           Submit
         </div>
       </div>

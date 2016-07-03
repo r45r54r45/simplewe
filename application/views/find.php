@@ -13,7 +13,12 @@
     </div>
   </div>
   <div class="row row-eq-height" style="margin-top:10px;">
-    <div class="col-sm-8 col-sm-offset-2 moving_list">
+    <div class="col-md-1 col-md-offset-1 vcenter hidden-xs" >
+      <div ng-click="prevHospital()" style="height:30px;" ng-show="prevHospitalFlag">
+        <img class="navArrow" aria-hidden="true" src="src/left.png">
+      </div>
+    </div>
+    <div class="col-sm-8 moving_list">
       <div class="row">
         <div class="col-xs-6 col-sm-6 result-block" ng-click="moveTo(block_title[0])">
           <div class="dummy_for_height_half"></div>
@@ -97,8 +102,8 @@
 
       </div>
     </div>
-    <div class="col-md-1 vcenter hidden-xs" ng-show="mode!='Hospital'||maxHospital>currentHosNum+9">
-      <div ng-click="moreHospital()" style="height:30px;">
+    <div class="col-md-1 vcenter hidden-xs" >
+      <div ng-click="nextHospital()" style="height:30px;" ng-show="moreHospitalFlag">
         <img class="navArrow" aria-hidden="true" src="src/right.png">
       </div>
     </div>
@@ -226,12 +231,14 @@
 
         <!-- Controls -->
         <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev" style="text-align:left">
-          <span class="helper"><img class="navArrow" aria-hidden="true" src="src/left.png"></span>
+          <!-- <span class="helper">
+            <img class="navArrow" aria-hidden="true" src="src/left.png">
+          </span> -->
           <span class="sr-only">Previous</span>
         </a>
         <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next" style="text-align:right">
           <!--<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>-->
-          <span class="helper"><img class="navArrow" aria-hidden="true" src="src/right.png"></span>
+          <!-- <span class="helper"><img class="navArrow" aria-hidden="true" src="src/right.png"></span> -->
           <span class="sr-only">Next</span>
         </a>
       </div>

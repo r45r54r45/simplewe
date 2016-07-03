@@ -127,11 +127,13 @@ app.controller("main",function($scope,$http){
   1. 비동기로 전체를 하나씩 가져온다.
   2. 배열로 캐시해놓고 그 안에서 움직인다.
   */
+  var start=0;
   $scope.init=function(){
     $scope.block_title=[];
     $scope.currentHosNum=0;
     $scope.maxHospital;
-
+    $scope.moreHospitalFlag=true;
+    $scope.prevHospitalFlag=false;
     $scope.mode="Hospital";
     asyncGet(0,9);
   }
@@ -141,7 +143,12 @@ app.controller("main",function($scope,$http){
     for(var i=start; i<start+number; i++ ){
       $http.get("/data/getHospitalByNum/"+i).then(function(res){
         //return also its number
+        if(res.data.HID)
         $scope.block_title[res.data.num]=res.data;
+        else{
+          $scope.block_title[res.data.num]=null;
+          $scope.moreHospitalFlag=false;
+        }
       });
     }
   }
@@ -173,22 +180,31 @@ app.controller("main",function($scope,$http){
     if(data.HID){
       //hospital
       location.href="/hospital/"+data.HID;
+    }else if(data==null){
+      return;
     }else{
       location.href="/search?find="+data.name;
     }
   }
 
-  $scope.moreHospital=function(){
+  $scope.prevHospital=function(){
     if($scope.mode=="Hospital"){
-      // alert("more hospital");
-      $scope.currentHosNum+=9;
-      $http.get("/data/getAllHospital").then(function(res){
-        var data=res.data;
-        for(var i=0; i<9; i++){
-          $scope.block_title[i]={};
-          $scope.block_title[i]=data[i+$scope.currentHosNum];
-        }
-      });
+      $scope.nextHospitalFlag=true;
+      asyncGet(start-=9,9);
+      if(start==0){
+        $scope.prevHospitalFlag=false;
+        $scope.moreHospitalFlag=true;
+      }
+    }else{ //specialty 일 경우
+      //other 메뉴로 연결
+      // alert('other');
+      location.href="/search?find=Other";
+    }
+  }
+  $scope.nextHospital=function(){
+    if($scope.mode=="Hospital"){
+      $scope.prevHospitalFlag=true;
+      asyncGet(start+=9,9);
     }else{ //specialty 일 경우
       //other 메뉴로 연결
       // alert('other');
@@ -423,10 +439,28 @@ app.controller("hospital",function($scope,rating,$http){
 });
 
 app.controller("consultation",function($scope,$http){
+  $scope.start=0;
   $scope.init=function(){
-    $http.get("/data/consultation").then(function(res){
-      $scope.consultList=res.data;
+    $scope.consultRange=[];
+    getCustomNum($scope.start);
+    $http.get("/data/numConsult").then(function(res){
+      var count=res.data.cnt;
+      for (var i = 1; i <= count/10+1; i++) {
+        $scope.consultRange.push(i);
+      }
     });
+  }
+  var getCustomNum=function(start){
+    $scope.consultList=[];
+    setTimeout(function(){
+      $http.get("/data/consultation/"+$scope.start).then(function(res){
+        $scope.consultList=res.data;
+      });
+    },500);
+  }
+  $scope.goConsult=function(num){
+    $scope.start=(num-1)*10;
+    getCustomNum($scope.start);
   }
   $scope.openConsult=function(data){
     if($scope.uid!='1'){
@@ -828,5 +862,13 @@ app.controller("private",function($http,$scope){
     $http.post("/data/writeConsultReply",data).then(function(res){
       location.reload();
     });
+  }
+  $scope.delete=function(){
+    $http.get().then(function(res){
+      
+    });
+  }
+  $scope.edit=function(){
+
   }
 });

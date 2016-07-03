@@ -64,7 +64,7 @@ class Data extends CI_Controller {
 	public function getHospitalByNum($num){
 		$this->load->model('gdata');
 		$result=$this->gdata->getHospitalByNum($num);
-		$result->num=$num;
+		$result->num=$num%9;
 		echo json_encode($result);
 	}
 
@@ -167,9 +167,13 @@ class Data extends CI_Controller {
 	}
 
 	//consultation
-	public function consultation(){
+	public function consultation($start){
 		$this->load->model('gdata');
-		echo json_encode($this->gdata->consultation());
+		echo json_encode($this->gdata->consultation($start));
+	}
+	public function numConsult(){
+		$this->load->model('gdata');
+		echo json_encode($this->gdata->numConsult());
 	}
 	public function writeConsult(){
 		$postdata = file_get_contents("php://input");
