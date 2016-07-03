@@ -7,6 +7,13 @@
 </div>
 
 <div class="container" ng-controller="add_hospital">
+  <div ng-show="loading" style="position:absolute; left:0; top:{{loadingTop}}; width:100%;height:100%;; z-index:9999; background:rgb(0,0,0); opacity:0.7;display:table;">
+    <div style="text-align: center;
+    vertical-align: middle;
+    display: table-cell; color:#D3D3D3">
+    Loading...
+  </div>
+  </div>
   <div class="row row-eq-height" style="margin-top:10px;">
     <div class="col-sm-8 col-sm-offset-2">
       <!-- search result block -->

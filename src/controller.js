@@ -124,8 +124,8 @@ app.controller("main",function($scope,$http){
   /*
   한번에 사진들을 다 끌고 오니까 시간이 오래걸린다.
   해결책.
-    1. 비동기로 전체를 하나씩 가져온다.
-    2. 배열로 캐시해놓고 그 안에서 움직인다.
+  1. 비동기로 전체를 하나씩 가져온다.
+  2. 배열로 캐시해놓고 그 안에서 움직인다.
   */
   $scope.init=function(){
     $scope.block_title=[];
@@ -134,14 +134,6 @@ app.controller("main",function($scope,$http){
 
     $scope.mode="Hospital";
     asyncGet(0,9);
-    // $http.get("/data/getAllHospital").then(function(res){
-    //   var data=res.data;
-    //   $scope.maxHospital=data.length;
-    //   for(var i=0; i<9; i++){
-    //     $scope.block_title[i]={};
-    //     $scope.block_title[i]=data[i+$scope.currentHosNum];
-    //   }
-    // });
   }
 
   var asyncGet=function(start,number){
@@ -308,7 +300,7 @@ app.controller("hospital",function($scope,rating,$http){
     data.hid=$scope.HID;
     data.uid=$scope.UID;
     $http.post("/data/send_hospital_review",data);
-      $("#hospital_review_modal").modal('hide');
+    $("#hospital_review_modal").modal('hide');
   }
   $(".major_click2").on("click",function(data){
     $scope.hospital_review.major=data.target.innerText;
@@ -330,10 +322,10 @@ app.controller("hospital",function($scope,rating,$http){
       $http.get("/data/getGallery/"+$scope.HID).then(function(res){
         $scope.galls=res.data;
         console.log(res.data);
-          $scope.gallery=!$scope.gallery;
+        $scope.gallery=!$scope.gallery;
       });
     }else{
-        $scope.gallery=!$scope.gallery;
+      $scope.gallery=!$scope.gallery;
     }
 
   }
@@ -556,6 +548,9 @@ app.controller("add_hospital",function($scope,$http,image){
       return;
     }else{
       //success
+      disableScroll();
+      $scope.loading=true;
+      $scope.loadingTop=$(window).height()+50+"px";
       //trim data
       data.hos_title=data.hos_title.trim();
       data.hos_description=data.hos_description.trim();
@@ -565,15 +560,50 @@ app.controller("add_hospital",function($scope,$http,image){
       }
       //post data and save data respectatively
       // alert('Uploading data... Do not exit this page until noticed. Click Okay and WAIT!');
+
       $http.post("/data/addHospital",data).then(function(res){
-        console.log(res);
-        alert('upload complete');
+        $scope.loading=false;
+        enableScroll();
         location.href="/search";
       });
     }
 
   }
+  //scroll control
 
+  var keys = {37: 1, 38: 1, 39: 1, 40: 1};
+
+  function preventDefault(e) {
+    e = e || window.event;
+    if (e.preventDefault)
+    e.preventDefault();
+    e.returnValue = false;
+  }
+
+  function preventDefaultForScrollKeys(e) {
+    if (keys[e.keyCode]) {
+      preventDefault(e);
+      return false;
+    }
+  }
+
+  function disableScroll() {
+    if (window.addEventListener) // older FF
+    window.addEventListener('DOMMouseScroll', preventDefault, false);
+    window.onwheel = preventDefault; // modern standard
+    window.onmousewheel = document.onmousewheel = preventDefault; // older browsers, IE
+    window.ontouchmove  = preventDefault; // mobile
+    document.onkeydown  = preventDefaultForScrollKeys;
+  }
+
+  function enableScroll() {
+    if (window.removeEventListener)
+    window.removeEventListener('DOMMouseScroll', preventDefault, false);
+    window.onmousewheel = document.onmousewheel = null;
+    window.onwheel = null;
+    window.ontouchmove = null;
+    document.onkeydown = null;
+  }
 });
 app.controller("edit_hospital",function($scope,$http,image){
   $scope.init=function(hid){
@@ -637,7 +667,7 @@ app.controller("edit_hospital",function($scope,$http,image){
   $scope.profileSelect=function(id){
     // console.log(document.getElementById(id));
     $("#doctor_pic_modal").modal('hide');
-    $scope.doctor_info.pic=$scope.myCroppedImage;
+    $scope.doctor_info.PROFILE=$scope.myCroppedImage;
   }
 
 
@@ -683,7 +713,6 @@ app.controller("edit_hospital",function($scope,$http,image){
 
   $scope.addHospital=function(data){
     //check if info is filled
-    console.log(data);
     if(data.doctor.length==0){
       alert('insert at least one doctor');
       return;
@@ -698,6 +727,10 @@ app.controller("edit_hospital",function($scope,$http,image){
       return;
     }else{
       //success
+      //loading screen
+      disableScroll();
+      $scope.loading=true;
+      $scope.loadingTop=$(window).height()+50+"px";
       //trim data
       data.hospital[0].NAME=data.hospital[0].NAME.trim();
       data.hospital[0].DESCRIPTION=data.hospital[0].DESCRIPTION.trim();
@@ -705,16 +738,53 @@ app.controller("edit_hospital",function($scope,$http,image){
         data.doctor[i].NAME=data.doctor[i].NAME.trim();
         data.doctor[i].DESCRIPTION=data.doctor[i].DESCRIPTION.trim();
       }
-      console.log(data);
       $http.post("/data/editNewHospital",data).then(function(res){
-
-        alert('edit complete');
+        //cancel rounded spinning
+        $scope.loading=false;
+        enableScroll();
         location.href="/search";
       });
     }
 
   }
 
+
+
+  //scroll control
+
+  var keys = {37: 1, 38: 1, 39: 1, 40: 1};
+
+  function preventDefault(e) {
+    e = e || window.event;
+    if (e.preventDefault)
+    e.preventDefault();
+    e.returnValue = false;
+  }
+
+  function preventDefaultForScrollKeys(e) {
+    if (keys[e.keyCode]) {
+      preventDefault(e);
+      return false;
+    }
+  }
+
+  function disableScroll() {
+    if (window.addEventListener) // older FF
+    window.addEventListener('DOMMouseScroll', preventDefault, false);
+    window.onwheel = preventDefault; // modern standard
+    window.onmousewheel = document.onmousewheel = preventDefault; // older browsers, IE
+    window.ontouchmove  = preventDefault; // mobile
+    document.onkeydown  = preventDefaultForScrollKeys;
+  }
+
+  function enableScroll() {
+    if (window.removeEventListener)
+    window.removeEventListener('DOMMouseScroll', preventDefault, false);
+    window.onmousewheel = document.onmousewheel = null;
+    window.onwheel = null;
+    window.ontouchmove = null;
+    document.onkeydown = null;
+  }
 });
 app.controller("private",function($http,$scope){
   $scope.init=function(){
