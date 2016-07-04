@@ -175,6 +175,16 @@ class Data extends CI_Controller {
 		$this->load->model('gdata');
 		echo json_encode($this->gdata->numConsult());
 	}
+	public function deleteConsult($cid){
+		$this->load->model('gdata');
+		echo json_encode($this->gdata->deleteConsult($cid));
+	}
+	public function editConsult($cid){
+		$postdata = file_get_contents("php://input");
+		$req = json_decode($postdata);
+		$this->load->model('gdata');
+		echo json_encode($this->gdata->editConsult($req));
+	}
 	public function writeConsult(){
 		$postdata = file_get_contents("php://input");
 		$req = json_decode($postdata);

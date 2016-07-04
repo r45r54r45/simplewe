@@ -216,7 +216,12 @@ class Gdata extends CI_Model{
   public function numConsult(){
     return $this->q("select count(*) as cnt from CONSULTATION")->row();
   }
-
+  public function deleteConsult($cid){
+    $this->q("delete from CONSULTATION where CID='$cid'");
+  }
+  public function editConsult($req){
+    $this->q("update CONSULTATION set BODY='$req->body', TITLE='$req->title' where CID='$req->CID'");
+  }
   //consultation
   public function consultation($start){
     return $this->q("

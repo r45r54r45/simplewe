@@ -492,6 +492,22 @@ app.controller("add_hospital",function($scope,$http,image){
   $scope.hospital_data.gallery=[];
   $scope.hospital_data.promotion='';
   $scope.doctor_info={};
+  $scope.specialityList=[
+    "Dermatology",
+    "Eyeplasty",
+    "Rhinoplasty",
+    "Face",
+    "Breast",
+    "Body Contour",
+    "Hair Implant",
+    "Dentistry",
+    "Medical Examination",
+    "Other"
+  ];
+  $scope.init=function(){
+    $(".fixedHeight").css("height",$("#useThisHeight").height()+"px");
+
+  }
   $scope.edit=function(target){
     $("#"+target).focus();
   }
@@ -657,6 +673,7 @@ app.controller("add_hospital",function($scope,$http,image){
 });
 app.controller("edit_hospital",function($scope,$http,image){
   $scope.init=function(hid){
+    $(".heightFixed").css("height",$("#useThisHeight").height()+"px");
     $http.get("/data/getEditData/"+hid).then(function(res){
       console.log(res.data);
       $scope.hospital_data=res.data;
@@ -839,7 +856,6 @@ app.controller("private",function($http,$scope){
   $scope.init=function(){
     var num=$scope.num;
     $http.get("/data/getConsult/"+num).then(function(res){
-      console.log(res.data);
       $scope.consult=res.data;
       $http.get("/data/getConsultReply/"+num).then(function(res){
         $scope.replies=res.data;
@@ -864,11 +880,19 @@ app.controller("private",function($http,$scope){
     });
   }
   $scope.delete=function(){
-    $http.get().then(function(res){
-      
+    $http.get("/data/deleteConsult/"+$scope.num).then(function(res){
+      location.href="/consultation";
     });
   }
-  $scope.edit=function(){
-
+  $scope.editing=function(){
+    $scope.edit.body=$scope.consult.BODY;
+    $scope.edit.title=$scope.consult.TITLE;
+    $("#edit_modal").modal('show');
+  }
+  $scope.editForm=function(edit){
+    edit.CID=$scope.num;
+    $http.post("/data/editConsult",edit).then(function(res){
+      location.reload();
+    });
   }
 });

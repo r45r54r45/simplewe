@@ -8,6 +8,28 @@
 }
 </style>
 <div ng-controller="private" ng-init="num=<?=$consult_num?>;uid='<?=$uid?>';init();">
+  <div class="modal fade" id="edit_modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body" style="padding:0">
+          <div class="row" >
+            <div class="col-xs-12">
+              <div class="well" ng-init="edit={}" style="margin-bottom:0;">
+
+              <div class="form-group has-feedback-none has-feedback-left-none">
+                <input type="text" class="placeholder form-control no-border" placeholder="Title" ng-model="edit.title" />
+              </div>
+              <div class="form-group has-feedback-none has-feedback-left-none">
+                <textarea  style="resize:none;border:none;"class="placeholder form-control" rows="5" style="border:none; box-shadow:none;" placeholder="Message" ng-model="edit.body" ></textarea>
+              </div>
+              <div class="btn btnForm btn-block" ng-click="editForm(edit)">EDIT</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
   <div class="container" >
     <div class="row page-title">
       <div class="col-xs-12 text-center">
@@ -30,7 +52,7 @@
         <div class="label new pull-right" style="margin-top: 10px;color:#D3D3D3; border:1px solid #D3D3D3;" ng-click="delete()">
           delete
         </div>
-        <div class="label new pull-right" style="margin-top: 10px;" ng-click="edit()">
+        <div class="label new pull-right" style="margin-top: 10px;" ng-click="editing()">
           edit
         </div>
 
