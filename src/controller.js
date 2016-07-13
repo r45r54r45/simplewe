@@ -713,9 +713,9 @@ app.controller("edit_hospital",function($scope,$http,image){
   $scope.init=function(hid){
     $(".heightFixed").css("height",$("#useThisHeight").height()+"px");
     $http.get("/data/getEditData/"+hid).then(function(res){
-      console.log(res.data);
       $scope.hospital_data=res.data;
       $scope.hospital_data.hid=hid;
+      console.log(res.data);
       $scope.hospital_data.specialty=res.data.hospital[0].SPECIALTY.split(",");
       var lang=res.data.hospital[0].LANGUAGE.split(",");
       $scope.hospital_data.lang={

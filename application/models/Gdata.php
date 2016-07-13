@@ -25,7 +25,7 @@ class Gdata extends CI_Model{
     return $this->q("
     select *
     from HOSPITAL h
-    join HOSPITAL_MAIN_IMAGE hi on hi.HID=h.HID
+    left join HOSPITAL_MAIN_IMAGE hi on hi.HID=h.HID
     where h.HID='$hid'
     limit 1
     ")->row();
@@ -204,11 +204,17 @@ class Gdata extends CI_Model{
     select * from HOSPITAL_IMAGE where HID='$hid'
     "
     )->result_array();
-    $data['HOSPITAL_MAIN_IMAGE']=$this->q(
+    $main_image_temp=$this->q(
     "
     select IMAGE from HOSPITAL_MAIN_IMAGE where HID='$hid'
     "
-    )->row()->IMAGE;
+    )->row();
+    if(isset($main_image_temp->IMAGE)){
+      $data['HOSPITAL_MAIN_IMAGE']=$main_image_temp->IMAGE;
+    }else{
+      $data['HOSPITAL_MAIN_IMAGE']="";
+    }
+
     return $data;
   }
   //register
