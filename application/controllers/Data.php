@@ -2,7 +2,8 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Data extends CI_Controller {
-	private $receiving_email = "fill here";
+	//private $receiving_email = "fill here";
+	private $receiving_email = "consult@simplwe.com";
 
 	public function __construct(){
 		parent::__construct();
@@ -143,8 +144,7 @@ class Data extends CI_Controller {
 		//send email with consult data
 		$this->load->library('email');
 		// $this->email->from('admin@simplwe.com', 'simplwe');
-		//$this->email->to($this->receiving_email);
-		$this->email->to('consult@simplwe.com');
+		$this->email->to($this->receiving_email);
 		$this->email->subject('CONSULT RECEIVED');
 		$str="";
 		$str.="NAME: ";
