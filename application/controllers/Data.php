@@ -143,7 +143,8 @@ class Data extends CI_Controller {
 		//send email with consult data
 		$this->load->library('email');
 		// $this->email->from('admin@simplwe.com', 'simplwe');
-		$this->email->to($this->receiving_email);
+		//$this->email->to($this->receiving_email);
+		$this->email->to('consult@simplwe.com');
 		$this->email->subject('CONSULT RECEIVED');
 		$str="";
 		$str.="NAME: ";
