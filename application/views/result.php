@@ -29,6 +29,7 @@
                 <? if($authorized){?>
                   <div class="write_review pull-right">
                     <button class=" write-review-button" type="button" ng-click="editHospital(i.HID)">EDIT</button>
+                    <button class=" write-review-button" type="button" style="background: grey; margin-left: 10px;"  ng-click="deleteHospital(i.HID)">DELETE</button>
                   </div>
                   <?}?>
                   <div class="search-result-area col-xs-12 col-sm-5">

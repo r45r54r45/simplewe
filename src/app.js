@@ -79,7 +79,7 @@ app.filter('Cdate', function() {
 });
 app.filter('new', function() {
   return function(input) {
-    return new Date(input)>new Date()-86400;
+    return new Date(input)>new Date()-86400000;
   }
 });
 app.directive('backImg', function(){

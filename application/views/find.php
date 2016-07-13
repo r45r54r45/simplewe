@@ -13,7 +13,7 @@
     </div>
   </div>
   <div class="row row-eq-height" style="margin-top:10px;">
-    <div class="col-md-1 col-md-offset-1 vcenter hidden-xs" >
+    <div class="col-sm-1 col-sm-offset-1 vcenter hidden-xs" >
       <div ng-click="prevHospital()" style="height:30px;" ng-show="prevHospitalFlag">
         <img class="navArrow" aria-hidden="true" src="src/left.png">
       </div>
@@ -102,7 +102,7 @@
 
       </div>
     </div>
-    <div class="col-md-1 vcenter hidden-xs" >
+    <div class="col-sm-1 vcenter hidden-xs" >
       <div ng-click="nextHospital()" style="height:30px;" ng-show="moreHospitalFlag">
         <img class="navArrow" aria-hidden="true" src="src/right.png">
       </div>

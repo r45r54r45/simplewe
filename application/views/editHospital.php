@@ -20,6 +20,21 @@
       <div class="row">
         <div class="col-xs-12">
           <div class="search-result-block">
+            <img style="position:absolute; left:0; top:0; width:100%; height:100%;" ng-src="{{hospital_data.HOSPITAL_MAIN_IMAGE}}">
+            <div style="position:absolute; right:10px; top:10px;">
+              <img src="../src/add_hospital_main_image.svg" style="    width: 50px; cursor:pointer;" ng-click="selectMainImage()">
+            </div>
+            <!-- mainimage modal start -->
+            <div class="modal fade" id="mainimage_add_modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+              <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                  <div class="modal-body" style="text-align: center;padding: 20px 10px;">
+                    <input class="form-control" type="file" id="new_mainimage">
+                    <button class=" write-review-button" style="margin-top:10px;" type="button" ng-click="mainimageSelect('new_mainimage')">Select File</button>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div class="search-result-area col-xs-12 col-sm-6">
               <div class="" style="margin-bottom:10px;">
                 <div style="display:inline-block" class="search-result-title" >
@@ -128,6 +143,50 @@
 
 
   </div>
+  <style media="screen">
+  .small_font{
+    font-size: 12px;
+  }
+  .title_white{
+    color:white;
+
+  }
+  </style>
+  <div class="row">
+    <div class="col-xs-4 ">
+      <div style="background-color:#808080;margin-bottom:20px; padding:20px 20px;" class="fixedHeight">
+        <div class="title_white text-center">TRICARE</div>
+        <label class="radio-inline small_font">
+          <input type="radio" name="optradio"  ng-model="hospital_data.tricare" value="true">Have</label>
+          <label class="radio-inline small_font">
+            <input type="radio" name="optradio"  ng-model="hospital_data.tricare" value="false">None</label>
+          </div>
+        </div>
+        <div class="col-xs-4">
+          <div style="background-color:#808080;margin-bottom:20px; padding:20px 20px;" class="fixedHeight">
+            <div class="title_white text-center">LANGUAGE</div>
+            <div class="checkbox small_font">
+              <label><input type="checkbox" value="Japanese" ng-model="hospital_data.lang.jap" ng-true-value="'true'" ng-false-value="'false'">Japanese</label>
+            </div>
+            <div class="checkbox small_font">
+              <label><input type="checkbox" value="English" ng-model="hospital_data.lang.eng" ng-true-value="'true'" ng-false-value="'false'">English</label>
+            </div>
+            <div class="checkbox small_font">
+              <label><input type="checkbox" value="Chinese" ng-model="hospital_data.lang.chi" ng-true-value="'true'" ng-false-value="'false'">Chinese</label>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-4">
+          <div style="background-color:#808080;margin-bottom:20px; padding:20px 20px;" class="fixedHeight">
+            <div class="title_white text-center">SPECIALTY</div>
+            <div class="form-group" style="margin-top:10px;">
+              <select class="form-control" id="sel1" multiple size="3" ng-model="hospital_data.specialty">
+                <option class="small_font" ng-repeat="s in specialityList">{{s}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
   <div class="row page-title" style="margin-top:-10px;">
     <div class="col-xs-12 text-center">
       <span>Add Doctors</span>

@@ -25,7 +25,7 @@ class Gdata extends CI_Model{
     return $this->q("
     select *
     from HOSPITAL h
-    join HOSPITAL_IMAGE hi on hi.HID=h.HID
+    join HOSPITAL_MAIN_IMAGE hi on hi.HID=h.HID
     where h.HID='$hid'
     limit 1
     ")->row();
@@ -125,7 +125,7 @@ class Gdata extends CI_Model{
   }
   public function getHospitalByNum($num){
     return $this->q("select distinct HID,NAME as name,
-    (select IMAGE from HOSPITAL_IMAGE hi where hi.HID=h.HID limit 1) as IMAGE
+    (select IMAGE from HOSPITAL_MAIN_IMAGE hi where hi.HID=h.HID limit 1) as IMAGE
     from HOSPITAL h order by ORDERING limit $num ,1")->row();
   }
   //nav
@@ -170,7 +170,7 @@ class Gdata extends CI_Model{
     where rd.HID=h.HID) as RATING
 
     ,
-    (select IMAGE from HOSPITAL_IMAGE hi where  hi.HID=h.HID limit 1) as IMAGE
+    (select IMAGE from HOSPITAL_MAIN_IMAGE hmi where  hmi.HID=h.HID) as IMAGE
     FROM HOSPITAL h
     join DOCTOR d on d.HID=h.HID
     WHERE h.NAME LIKE  '%$name%'
@@ -181,7 +181,9 @@ class Gdata extends CI_Model{
   }
   public function getEditData($hid){
 
-
+    $data['main_image']=$this->q("
+    select IMAGE from HOSPITAL_MAIN_IMAGE where HID='$hid'
+    ");
     $data['hospital']=$this->q(
     "
     select * from HOSPITAL where HID='$hid'
@@ -202,6 +204,11 @@ class Gdata extends CI_Model{
     select * from HOSPITAL_IMAGE where HID='$hid'
     "
     )->result_array();
+    $data['HOSPITAL_MAIN_IMAGE']=$this->q(
+    "
+    select IMAGE from HOSPITAL_MAIN_IMAGE where HID='$hid'
+    "
+    )->row()->IMAGE;
     return $data;
   }
   //register
@@ -264,12 +271,49 @@ class Gdata extends CI_Model{
     ('$req->title','$req->author','$req->password','$req->body')
     ");
   }
+  public function deleteHospital($hid){
+    $this->db->trans_start();
+    $this->q("
+    delete from HOSPITAL where HID='$hid'
+    ");
+    $this->q("
+    delete from HOSPITAL_IMAGE where HID='$hid'
+    ");
+    $this->q("
+    delete from HOSPITAL_MAIN_IMAGE where HID='$hid'
+    ");
+    $this->q("
+    delete from PROMOTION where HID='$hid'
+    ");
+    $this->q("
+    delete from DOCTOR where HID='$hid'
+    ");
+    $this->db->trans_complete();
+  }
   public function editNewHospital($req){
     $hid=$req->hid;
     $doctor=$req->doctor;
     $gallery=$req->gallery;
     $hospital=$req->hospital[0];
     $promotion=$req->promotion;
+
+    $tricare=$req->tricare;
+    $specialtyList=$req->specialty;
+    $specialty="";
+    for($i=0; $i<count($specialtyList);$i++){
+      $specialty.=$specialtyList[$i].",";
+    }
+    $langList=$req->lang;
+    $lang="";
+    if($langList->eng){
+      $lang.="eng,";
+    }
+    if($langList->chi){
+      $lang.="chi,";
+    }
+    if($langList->jap){
+      $lang.="jap,";
+    }
 
     $this->db->trans_start();
     $this->q("
@@ -279,10 +323,10 @@ class Gdata extends CI_Model{
     delete from HOSPITAL_IMAGE where HID='$hid'
     ");
     $this->q("
-    delete from HOSPITAL_IMAGE where HID='$hid'
+    delete from PROMOTION where HID='$hid'
     ");
     $this->q("
-    delete from PROMOTION where HID='$hid'
+    delete from HOSPITAL_MAIN_IMAGE where HID='$hid'
     ");
     $this->q("
     delete from DOCTOR where HID='$hid'
@@ -297,10 +341,13 @@ class Gdata extends CI_Model{
       ");
     }
     $this->q("
+    insert into HOSPITAL_MAIN_IMAGE (HID, IMAGE) values ('$hid','$req->HOSPITAL_MAIN_IMAGE')
+    ");
+    $this->q("
     insert into HOSPITAL
-    (HID, NAME, DESCRIPTION, ORDERING)
+    (HID, NAME, DESCRIPTION, ORDERING, SPECIALTY, TRICARE, LANGUAGE)
     values
-    ('$hid','$hospital->NAME','$hospital->DESCRIPTION','$hospital->ORDERING')
+    ('$hid','$hospital->NAME','$hospital->DESCRIPTION','$hospital->ORDERING','$specialty','$tricare','$lang')
     ");
     for($i=0; $i<count($gallery); $i++){
       $data=$gallery[$i];
@@ -322,20 +369,39 @@ class Gdata extends CI_Model{
   public function addHospital($req){
     $doctor=$req->doctor;
     $gallery=$req->gallery;
+    $tricare=$req->tricare;
+    $specialtyList=$req->specialty;
+    $specialty="";
+    for($i=0; $i<count($specialtyList);$i++){
+      $specialty.=$specialtyList[$i].",";
+    }
+    $langList=$req->lang;
+    $lang="";
+    if($langList->eng){
+      $lang.="eng,";
+    }
+    if($langList->chi){
+      $lang.="chi,";
+    }
+    if($langList->jap){
+      $lang.="jap,";
+    }
     //insert hospital first and get new hid
     // ans insert doctors respectatively
     $this->db->trans_start();
 
     $this->q("
     insert into HOSPITAL
-    (NAME, DESCRIPTION, ORDERING)
+    (NAME, DESCRIPTION, ORDERING, SPECIALTY, TRICARE, LANGUAGE)
     values
-    ('$req->hos_title','$req->hos_description','$req->ordering')
+    ('$req->hos_title','$req->hos_description','$req->ordering','$specialty','$tricare','$lang')
     ");
     $new_hospital=$this->q("
     select max(HID) as hid from HOSPITAL
     ")->row();
     $new_hid=$new_hospital->hid;
+
+
     for($i=0; $i<count($doctor); $i++){
       $data=$doctor[$i];
       $this->q("
@@ -362,6 +428,9 @@ class Gdata extends CI_Model{
       ('$new_hid','$req->promotion')
       ");
     }
+    $this->q("
+    insert into HOSPITAL_MAIN_IMAGE (HID, IMAGE) values ('$new_hid','$req->HOSPITAL_MAIN_IMAGE')
+    ");
     $this->db->trans_complete();
 
     if ($this->db->trans_status() === FALSE)

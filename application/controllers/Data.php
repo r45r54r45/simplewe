@@ -207,6 +207,10 @@ class Data extends CI_Controller {
 	}
 
 	//add hospital
+	public function deleteHospital($hid){
+		$this->load->model('gdata');
+		$this->gdata->deleteHospital($hid);
+	}
 	public function addHospital(){
 		$postdata = file_get_contents("php://input");
 		$req = json_decode($postdata);
