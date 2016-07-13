@@ -240,7 +240,7 @@ class Data extends CI_Controller {
 		$this->load->library('email');
 
 		$this->email->from('admin@simplwe.com', 'simplwe');
-		$this->email->to('r54r45r54@gmail.com');
+		$this->email->to('consult@simplwe.com');
 		$this->email->subject('Hospital Consult');
 		$data.="hospital: ".$req->hospital."\n";
 		$data.="email: ".$req->email."\n";
