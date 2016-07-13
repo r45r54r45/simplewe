@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Data extends CI_Controller {
 	//private $receiving_email = "fill here";
-	private $receiving_email = "consult@simplwe.com";
+	private $receiving_email = 'consult@simplwe.com';
 
 	public function __construct(){
 		parent::__construct();
