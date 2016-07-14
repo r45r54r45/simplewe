@@ -143,8 +143,8 @@ class Data extends CI_Controller {
 		$req = json_decode($postdata);
 		//send email with consult data
 		$this->load->library('email');
-		$this->email->from('admin@simplwe.com', 'simplwe');
-		$this->email->to("admin@simplwe.com");
+		$this->email->from($req->email, 'client');
+		$this->email->to("consult@simplwe.com");
 		$this->email->subject('CONSULT RECEIVED');
 		$str="";
 		$str.="NAME: ";
