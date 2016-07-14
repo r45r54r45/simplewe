@@ -189,6 +189,20 @@ class Data extends CI_Controller {
 		$req = json_decode($postdata);
 		$this->load->model('gdata');
 		$this->gdata->writeConsult($req);
+
+		$this->load->library('email');
+		$this->email->from("consult@simplwe.com", $req->author);
+		$this->email->to("consult@simplwe.com");
+		$this->email->subject('CONSULT RECEIVED');
+		$str="";
+		$str.="TITLE: ";
+		$str.=$req->title."\r\n";
+		$str.="AUTHOR: ";
+		$str.=$req->author."\r\n";
+		$str.="Message: ";
+		$str.=$req->body."\r\n";
+		$this->email->message($str);
+		$this->email->send();
 	}
 	public function getConsult($cid){
 		$this->load->model('gdata');
